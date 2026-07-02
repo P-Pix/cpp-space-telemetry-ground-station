@@ -1,0 +1,11 @@
+build/
+*.o
+*.a
+*.so
+*.log
+*.csv
+*.stgf
+.DS_Store
+.cache/
+.vscode/
+.idea/
