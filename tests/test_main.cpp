@@ -2,6 +2,7 @@
 #include "stgs/Crc32.hpp"
 #include "stgs/FrameCodec.hpp"
 #include "stgs/Replay.hpp"
+#include "stgs/StationHealth.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -121,6 +122,37 @@ void testReplayRoundTrip() {
     std::filesystem::remove(path);
 }
 
+
+void testStationHealthDegradedAndRecovery() {
+    stgs::StationHealthConfig config;
+    config.windowSize = 6;
+    config.minSamples = 4;
+    config.degradedRejectionRate = 0.5;
+    config.recoveryRejectionRate = 0.0;
+    config.criticalFramesForDegraded = 3;
+    stgs::StationHealthMonitor monitor(config);
+
+    const auto frame = sampleFrame();
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    ASSERT_TRUE(!monitor.recordRejected().has_value());
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    auto transition = monitor.recordRejected();
+    ASSERT_TRUE(transition.has_value());
+    ASSERT_EQ(transition->from, stgs::StationState::Nominal);
+    ASSERT_EQ(transition->to, stgs::StationState::Degraded);
+    ASSERT_EQ(monitor.state(), stgs::StationState::Degraded);
+
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    ASSERT_TRUE(!monitor.recordDecoded(frame).has_value());
+    transition = monitor.recordDecoded(frame);
+    ASSERT_TRUE(transition.has_value());
+    ASSERT_EQ(transition->from, stgs::StationState::Degraded);
+    ASSERT_EQ(transition->to, stgs::StationState::Nominal);
+}
+
 void testBlockingQueue() {
     stgs::BlockingQueue<int> queue;
     auto future = std::async(std::launch::async, [&queue] {
@@ -148,6 +180,7 @@ int main() {
         {"length_mismatch", testLengthMismatch},
         {"stream_extractor_split_and_noise", testStreamExtractorSplitAndNoise},
         {"replay_round_trip", testReplayRoundTrip},
+        {"station_health_degraded_and_recovery", testStationHealthDegradedAndRecovery},
         {"blocking_queue", testBlockingQueue},
     };
 

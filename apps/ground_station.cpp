@@ -3,6 +3,7 @@
 #include "stgs/Logger.hpp"
 #include "stgs/NetworkServer.hpp"
 #include "stgs/Replay.hpp"
+#include "stgs/StationHealth.hpp"
 
 #include <atomic>
 #include <chrono>
@@ -10,6 +11,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <optional>
 #include <sstream>
@@ -28,16 +30,24 @@ void handleSignal(int) {
     }
 }
 
+enum class OutputFormat {
+    Auto,
+    Csv,
+    Json
+};
+
 struct Options {
     std::optional<stgs::Transport> transport;
     std::string bindAddress = "0.0.0.0";
     std::uint16_t port = 9000;
     std::optional<std::filesystem::path> replayFile;
     double replayRate = 0.0;
-    std::filesystem::path outputCsv = "telemetry.csv";
+    std::filesystem::path outputFile = "telemetry.csv";
+    OutputFormat outputFormat = OutputFormat::Auto;
     std::optional<std::filesystem::path> logFile;
     stgs::LogLevel logLevel = stgs::LogLevel::Info;
     std::size_t decoderThreads = 2;
+    stgs::StationHealthConfig healthConfig;
 };
 
 void printUsage() {
@@ -49,17 +59,24 @@ Usage:
   stgs_ground_station --replay frames.stgf [options]
 
 Options:
-  --udp                      Listen for one telemetry frame per UDP datagram.
-  --tcp                      Listen for telemetry frames over a TCP byte stream.
-  --bind <ipv4>              Bind address, default 0.0.0.0.
-  --port <port>              Listening port, default 9000.
-  --replay <file>            Replay frames from an STGF binary capture file.
-  --replay-rate <fps>        Replay speed in frames/second, 0 means as fast as possible.
-  --output <csv>             Output CSV file, default telemetry.csv.
-  --log <file>               Optional log file.
-  --log-level <level>        trace, debug, info, warn, error. Default info.
-  --decoder-threads <n>      Number of decoder worker threads, default 2.
-  --help                     Show this help.
+  --udp                           Listen for one telemetry frame per UDP datagram.
+  --tcp                           Listen for telemetry frames over a TCP byte stream.
+  --bind <ipv4>                   Bind address, default 0.0.0.0.
+  --port <port>                   Listening port, default 9000.
+  --replay <file>                 Replay frames from an STGF binary capture file.
+  --replay-rate <fps>             Replay speed in frames/second, 0 means as fast as possible.
+  --output <file>                 Output telemetry file, default telemetry.csv.
+  --output-format <csv|json>      Output format. Default is inferred from extension, then CSV.
+  --log <file>                    Optional log file.
+  --log-level <level>             trace, debug, info, warn, error. Default info.
+  --decoder-threads <n>           Number of decoder worker threads, default 2.
+  --disable-degraded              Disable station degraded-mode monitoring.
+  --degraded-window <n>           Health window size, default 100 samples.
+  --degraded-min-samples <n>      Minimum samples before state change, default 20.
+  --degraded-rejection-rate <p>   Nominal -> Degraded threshold, default 0.10.
+  --degraded-recovery-rate <p>    Degraded -> Nominal threshold, default 0.03.
+  --degraded-critical-count <n>   Critical telemetry count threshold, default 3.
+  --help                          Show this help.
 )";
 }
 
@@ -77,6 +94,35 @@ std::uint16_t parsePort(const std::string& value) {
         throw std::runtime_error("port must be in the 1..65535 range");
     }
     return static_cast<std::uint16_t>(port);
+}
+
+double parseProbability(const std::string& value, const std::string& name) {
+    const auto p = std::stod(value);
+    if (p < 0.0 || p > 1.0) {
+        throw std::runtime_error(name + " must be between 0 and 1");
+    }
+    return p;
+}
+
+OutputFormat parseOutputFormat(const std::string& value) {
+    if (value == "csv") {
+        return OutputFormat::Csv;
+    }
+    if (value == "json") {
+        return OutputFormat::Json;
+    }
+    throw std::runtime_error("--output-format must be csv or json");
+}
+
+OutputFormat resolveOutputFormat(OutputFormat requested, const std::filesystem::path& output) {
+    if (requested != OutputFormat::Auto) {
+        return requested;
+    }
+    const auto ext = output.extension().string();
+    if (ext == ".json") {
+        return OutputFormat::Json;
+    }
+    return OutputFormat::Csv;
 }
 
 Options parseArgs(int argc, char** argv) {
@@ -102,7 +148,9 @@ Options parseArgs(int argc, char** argv) {
                 throw std::runtime_error("--replay-rate must be >= 0");
             }
         } else if (arg == "--output") {
-            opts.outputCsv = requireValue(i, argc, argv);
+            opts.outputFile = requireValue(i, argc, argv);
+        } else if (arg == "--output-format") {
+            opts.outputFormat = parseOutputFormat(requireValue(i, argc, argv));
         } else if (arg == "--log") {
             opts.logFile = requireValue(i, argc, argv);
         } else if (arg == "--log-level") {
@@ -116,6 +164,18 @@ Options parseArgs(int argc, char** argv) {
             if (opts.decoderThreads == 0) {
                 throw std::runtime_error("--decoder-threads must be greater than zero");
             }
+        } else if (arg == "--disable-degraded") {
+            opts.healthConfig.enabled = false;
+        } else if (arg == "--degraded-window") {
+            opts.healthConfig.windowSize = std::stoul(requireValue(i, argc, argv));
+        } else if (arg == "--degraded-min-samples") {
+            opts.healthConfig.minSamples = std::stoul(requireValue(i, argc, argv));
+        } else if (arg == "--degraded-rejection-rate") {
+            opts.healthConfig.degradedRejectionRate = parseProbability(requireValue(i, argc, argv), "--degraded-rejection-rate");
+        } else if (arg == "--degraded-recovery-rate") {
+            opts.healthConfig.recoveryRejectionRate = parseProbability(requireValue(i, argc, argv), "--degraded-recovery-rate");
+        } else if (arg == "--degraded-critical-count") {
+            opts.healthConfig.criticalFramesForDegraded = std::stoul(requireValue(i, argc, argv));
         } else {
             throw std::runtime_error("unknown option: " + arg);
         }
@@ -126,6 +186,9 @@ Options parseArgs(int argc, char** argv) {
     }
     if (!opts.replayFile.has_value() && !opts.transport.has_value()) {
         throw std::runtime_error("choose --udp, --tcp, or --replay");
+    }
+    if (opts.healthConfig.minSamples > opts.healthConfig.windowSize) {
+        throw std::runtime_error("--degraded-min-samples cannot exceed --degraded-window");
     }
     return opts;
 }
@@ -143,6 +206,43 @@ std::string csvEscape(const std::string& value) {
     return out;
 }
 
+std::string jsonEscape(const std::string& value) {
+    std::ostringstream out;
+    for (unsigned char ch : value) {
+        switch (ch) {
+        case '"':
+            out << "\\\"";
+            break;
+        case '\\':
+            out << "\\\\";
+            break;
+        case '\b':
+            out << "\\b";
+            break;
+        case '\f':
+            out << "\\f";
+            break;
+        case '\n':
+            out << "\\n";
+            break;
+        case '\r':
+            out << "\\r";
+            break;
+        case '\t':
+            out << "\\t";
+            break;
+        default:
+            if (ch < 0x20U) {
+                out << "\\u" << std::hex << std::setw(4) << std::setfill('0') << static_cast<int>(ch);
+            } else {
+                out << static_cast<char>(ch);
+            }
+            break;
+        }
+    }
+    return out.str();
+}
+
 void writeCsvHeader(std::ofstream& out) {
     out << "timestamp_ms,satellite_id,temperature_c,battery_percent,status,payload_len,payload_hex\n";
 }
@@ -155,6 +255,45 @@ void writeFrameCsv(std::ofstream& out, const stgs::TelemetryFrame& frame) {
         << stgs::statusToString(frame.status) << ','
         << frame.payload.size() << ','
         << csvEscape(stgs::payloadToHex(frame.payload, frame.payload.size())) << '\n';
+}
+
+void writeJsonHeader(std::ofstream& out) {
+    out << "[\n";
+}
+
+void writeFrameJson(std::ofstream& out, const stgs::TelemetryFrame& frame, bool first) {
+    if (!first) {
+        out << ",\n";
+    }
+    out << "  {"
+        << "\"timestamp_ms\":" << frame.timestampMs << ','
+        << "\"satellite_id\":" << frame.satelliteId << ','
+        << "\"temperature_c\":" << std::setprecision(6) << frame.temperatureC << ','
+        << "\"battery_percent\":" << static_cast<int>(frame.batteryPercent) << ','
+        << "\"status\":\"" << jsonEscape(stgs::statusToString(frame.status)) << "\"," 
+        << "\"payload_len\":" << frame.payload.size() << ','
+        << "\"payload_hex\":\"" << jsonEscape(stgs::payloadToHex(frame.payload, frame.payload.size())) << "\""
+        << '}';
+}
+
+void writeJsonFooter(std::ofstream& out) {
+    out << "\n]\n";
+}
+
+void logTransition(stgs::Logger& logger, const stgs::StationStateTransition& transition) {
+    std::ostringstream oss;
+    oss << "station state changed: " << stgs::stationStateToString(transition.from)
+        << " -> " << stgs::stationStateToString(transition.to)
+        << ", samples=" << transition.snapshot.samples
+        << ", rejected=" << transition.snapshot.rejected
+        << ", rejection_rate=" << transition.snapshot.rejectionRate
+        << ", critical=" << transition.snapshot.critical
+        << ", reason=" << transition.reason;
+    if (transition.to == stgs::StationState::Degraded) {
+        logger.warning(oss.str());
+    } else {
+        logger.info(oss.str());
+    }
 }
 
 void runReplay(const Options& opts,
@@ -189,7 +328,9 @@ void runReplay(const Options& opts,
 int main(int argc, char** argv) {
     try {
         const auto opts = parseArgs(argc, argv);
+        const auto outputFormat = resolveOutputFormat(opts.outputFormat, opts.outputFile);
         stgs::Logger logger(opts.logFile, opts.logLevel);
+        stgs::StationHealthMonitor health(opts.healthConfig);
         std::atomic_bool running{true};
         gRunning = &running;
         std::signal(SIGINT, handleSignal);
@@ -202,18 +343,31 @@ int main(int argc, char** argv) {
         std::atomic_ulong rejected{0};
         std::atomic_ulong written{0};
 
-        std::ofstream csv(opts.outputCsv, std::ios::out | std::ios::trunc);
-        if (!csv) {
-            throw std::runtime_error("failed to open CSV output file: " + opts.outputCsv.string());
+        std::ofstream out(opts.outputFile, std::ios::out | std::ios::trunc);
+        if (!out) {
+            throw std::runtime_error("failed to open output file: " + opts.outputFile.string());
         }
-        writeCsvHeader(csv);
+        if (outputFormat == OutputFormat::Json) {
+            writeJsonHeader(out);
+        } else {
+            writeCsvHeader(out);
+        }
 
         std::thread writerThread([&] {
+            bool firstJsonFrame = true;
             while (auto frame = decodedQueue.pop()) {
-                writeFrameCsv(csv, *frame);
+                if (outputFormat == OutputFormat::Json) {
+                    writeFrameJson(out, *frame, firstJsonFrame);
+                    firstJsonFrame = false;
+                } else {
+                    writeFrameCsv(out, *frame);
+                }
                 ++written;
             }
-            csv.flush();
+            if (outputFormat == OutputFormat::Json) {
+                writeJsonFooter(out);
+            }
+            out.flush();
         });
 
         std::vector<std::thread> decoderThreads;
@@ -225,10 +379,16 @@ int main(int argc, char** argv) {
                     if (std::holds_alternative<stgs::TelemetryFrame>(result)) {
                         auto frame = std::get<stgs::TelemetryFrame>(std::move(result));
                         ++decoded;
+                        if (auto transition = health.recordDecoded(frame); transition.has_value()) {
+                            logTransition(logger, *transition);
+                        }
                         decodedQueue.push(std::move(frame));
                     } else {
                         const auto& err = std::get<stgs::FrameError>(result);
                         ++rejected;
+                        if (auto transition = health.recordRejected(); transition.has_value()) {
+                            logTransition(logger, *transition);
+                        }
                         logger.warning("decoder " + std::to_string(i) + " rejected frame: " +
                                        stgs::errorCodeToString(err.code) + " - " + err.message);
                     }
@@ -258,12 +418,15 @@ int main(int argc, char** argv) {
         decodedQueue.close();
         writerThread.join();
 
+        const auto snapshot = health.snapshot();
         std::ostringstream summary;
         summary << "summary received=" << received.load()
                 << " decoded=" << decoded.load()
                 << " rejected=" << rejected.load()
                 << " written=" << written.load()
-                << " output=" << opts.outputCsv.string();
+                << " station_state=" << stgs::stationStateToString(snapshot.state)
+                << " rejection_rate=" << snapshot.rejectionRate
+                << " output=" << opts.outputFile.string();
         logger.info(summary.str());
         return 0;
     } catch (const std::exception& ex) {

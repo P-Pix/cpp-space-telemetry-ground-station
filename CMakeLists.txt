@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(STGS_BUILD_TESTS "Build unit tests" ON)
+option(STGS_BUILD_BENCHMARKS "Build benchmark tools" ON)
 
 find_package(Threads REQUIRED)
 
@@ -22,7 +23,8 @@ add_library(stgs_core
     src/Crc32.cpp
     src/FrameCodec.cpp
     src/Logger.cpp
-    src/Replay.cpp)
+    src/Replay.cpp
+    src/StationHealth.cpp)
 
 target_include_directories(stgs_core
     PUBLIC
@@ -75,4 +77,17 @@ if(STGS_BUILD_TESTS)
     target_compile_options(stgs_tests PRIVATE ${STGS_WARNINGS})
 
     add_test(NAME stgs_unit_tests COMMAND stgs_tests)
+endif()
+
+
+if(STGS_BUILD_BENCHMARKS)
+    add_executable(stgs_benchmark_decode
+        benchmarks/benchmark_decode.cpp)
+
+    target_link_libraries(stgs_benchmark_decode
+        PRIVATE
+            stgs_core
+            Threads::Threads)
+
+    target_compile_options(stgs_benchmark_decode PRIVATE ${STGS_WARNINGS})
 endif()

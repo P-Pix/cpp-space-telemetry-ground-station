@@ -1,0 +1,38 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-test-benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSTGS_BUILD_TESTS=ON -DSTGS_BUILD_BENCHMARKS=ON
+
+      - name: Build
+        run: cmake --build build -j2
+
+      - name: Unit tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Smoke replay CSV
+        run: |
+          ./build/stgs_satellite_simulator --output-file frames.stgf --count 100 --rate 0 --seed 42
+          ./build/stgs_ground_station --replay frames.stgf --output telemetry.csv --decoder-threads 2
+          test -s telemetry.csv
+
+      - name: Smoke replay JSON
+        run: |
+          ./build/stgs_ground_station --replay frames.stgf --output telemetry.json --decoder-threads 2
+          python3 -m json.tool telemetry.json >/dev/null
+
+      - name: Benchmark smoke
+        run: ./build/stgs_benchmark_decode --frames 10000 --payload-size 64 --decoder-threads 2
