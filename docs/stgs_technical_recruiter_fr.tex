@@ -1,0 +1,451 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage[french]{babel}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{lastpage}
+
+\definecolor{primary}{HTML}{1F4E79}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{lightgray}{HTML}{F3F6F8}
+\definecolor{codegray}{HTML}{F7F7F7}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    pdftitle={Dossier technique recruteur - C++ Space Telemetry Ground Station},
+    pdfauthor={Guillaume Lemonnier}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{C++ Space Telemetry Ground Station}
+\rhead{Dossier technique recruteur}
+\cfoot{\thepage\ / \pageref{LastPage}}
+
+\titleformat{\section}{\Large\bfseries\color{primary}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{darkgray}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{darkgray}}{\thesubsubsection}{0.7em}{}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{codegray},
+    frame=single,
+    rulecolor=\color{lightgray},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    tabsize=2
+}
+
+\newcommand{\projectname}{C++ Space Telemetry Ground Station}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\decision}[2]{\noindent\fcolorbox{primary}{lightgray}{\begin{minipage}{0.96\linewidth}\textbf{#1}\par\vspace{0.2em}#2\end{minipage}}\par\vspace{0.8em}}
+
+\begin{document}
+\sloppy
+\emergencystretch=3em
+
+\begin{titlepage}
+    \centering
+    \vspace*{1.8cm}
+    {\Huge\bfseries\color{primary} \projectname \par}
+    \vspace{0.5cm}
+    {\Large Dossier technique pour recruteur informatique\par}
+    \vspace{1.2cm}
+    {\large Version française\par}
+    \vspace{1.0cm}
+    \rule{0.82\linewidth}{0.6pt}\par
+    \vspace{0.6cm}
+    {\large Projet portfolio C++20 - Linux - télémétrie - réseau - multithreading - CMake - tests - CI/CD\par}
+    \vspace{0.6cm}
+    \rule{0.82\linewidth}{0.6pt}\par
+    \vfill
+    \begin{flushleft}
+    \textbf{Objectif du document}\par
+    Présenter le projet à un recruteur ou à un ingénieur logiciel afin d'expliquer les intentions de réalisation, l'architecture, les choix de développement, la qualité logicielle et les compétences démontrées par le code.\par
+    \vspace{0.7cm}
+    \textbf{Auteur}\par
+    Guillaume Lemonnier\par
+    \vspace{0.3cm}
+    \textbf{Date}\par
+    Juillet 2026\par
+    \end{flushleft}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Résumé exécutif}
+
+\projectname{} est un projet C++20 sous Linux qui simule une station sol capable de recevoir, décoder, valider, rejouer et exporter des trames de télémétrie de type satellite ou équipement embarqué. Le projet a été pensé comme une preuve de compétence pour des postes orientés logiciel industriel, systèmes, télémétrie, réseau, C++ moderne et environnements contraints.
+
+Le projet couvre une chaîne complète : génération de trames, réception UDP/TCP, reconstruction de flux TCP, parsing binaire strict, validation CRC-32, pipeline multithreadé, fichiers de replay, export CSV/JSON, journalisation, tests automatisés, CI GitHub Actions, benchmark reproductible et mode opérationnel dégradé.
+
+\decision{Positionnement recruteur}{Ce projet ne cherche pas à être un produit spatial certifié. Il sert à démontrer une capacité à construire un mini-système C++ structuré, testable, robuste et explicable, avec des choix proches de problématiques rencontrées dans des environnements industriels, défense, spatial ou embarqués.}
+
+\section{Volonté de réalisation}
+
+Le projet répond à trois intentions principales.
+
+\subsection{Démontrer du C++ moderne concret}
+
+L'objectif n'était pas de produire un simple exercice de syntaxe C++, mais un projet où le langage est utilisé pour structurer un vrai pipeline applicatif : modèles de domaine, encodage binaire, gestion d'erreurs, I/O Linux, files thread-safe, tests et outils CLI.
+
+Les éléments travaillés sont notamment :
+
+\begin{itemize}[nosep]
+    \item C++20, RAII, types forts et séparation en modules ;
+    \item usage de \code{std::variant} pour distinguer une trame valide d'une erreur de parsing ;
+    \item files bloquantes thread-safe pour découpler réception, décodage et écriture ;
+    \item compilation stricte avec CMake, warnings et tests automatisés.
+\end{itemize}
+
+\subsection{Rapprocher le projet d'un contexte industriel}
+
+Le domaine de la télémétrie est volontairement choisi car il oblige à traiter des sujets proches du logiciel système : protocole binaire, intégrité, perte réseau, corruption de données, replay, monitoring d'état et performances.
+
+Le projet inclut donc :
+
+\begin{itemize}[nosep]
+    \item un protocole binaire strict ;
+    \item une validation CRC avant confiance dans les données ;
+    \item une simulation de pertes et de corruption ;
+    \item un mode dégradé lorsque le flux devient trop instable ;
+    \item un benchmark pour mesurer le comportement du pipeline.
+\end{itemize}
+
+\subsection{Produire un projet explicable en entretien}
+
+Le code a été organisé pour être facilement présenté : arborescence claire, documentation technique, README anglais, commandes reproductibles et séparation entre code métier, infrastructure réseau, replay, tests et benchmark.
+
+\section{Périmètre fonctionnel livré}
+
+\begin{longtable}{p{0.18\linewidth} p{0.28\linewidth} p{0.44\linewidth}}
+\toprule
+\textbf{Version} & \textbf{Objectif} & \textbf{Fonctionnalités implémentées} \\
+\midrule
+V1 & Pipeline de base & Simulateur de trames, réception UDP, parser C++, validation CRC-32, logs, tests unitaires, README anglais. \\
+\addlinespace
+V2 & Industrialisation & Pipeline multithreadé, fichiers de replay STGF, export CSV et JSON, benchmark reproductible, CTest, GitHub Actions. \\
+\addlinespace
+V3 & Robustesse opérationnelle & Protocole binaire plus strict, simulation de pertes réseau et corruptions, mode dégradé, documentation d'architecture, rapport de performance. \\
+\bottomrule
+\end{longtable}
+
+\section{Architecture générale}
+
+L'architecture est volontairement découpée en composants simples. La station sol peut recevoir des trames depuis le réseau ou depuis un fichier de replay. Ces trames brutes sont placées dans une file, décodées par un ou plusieurs workers, contrôlées par un moniteur de santé, puis exportées.
+
+\begin{lstlisting}
+                  +-------------------------+
+                  | stgs_satellite_simulator|
+                  |  UDP/TCP or STGF file   |
+                  +------------+------------+
+                               |
+                               v
++------------------+    +------+-------+    +----------------+    +---------------+
+| Network receiver | -> | Raw queue    | -> | Decoder workers| -> | Decoded queue |
+| or replay reader |    | ByteVector   |    | CRC + parsing  |    | TelemetryFrame|
++------------------+    +--------------+    +------+---------+    +-------+-------+
+                                                   |                      |
+                                                   v                      v
+                                          +--------+---------+      +------+------+
+                                          | Health monitor   |      | CSV/JSON    |
+                                          | nominal/degraded |      | writer      |
+                                          +------------------+      +-------------+
+\end{lstlisting}
+
+\subsection{Organisation du code}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.44\linewidth} >{\raggedright\arraybackslash}p{0.46\linewidth}}
+\toprule
+\textbf{Fichier ou dossier} & \textbf{Responsabilité} \\
+\midrule
+\path|apps/ground_station.cpp| & Application principale : CLI, réception UDP/TCP, replay, workers, exports, mode dégradé. \\
+\path|apps/satellite_simulator.cpp| & Générateur de télémétrie : réseau, fichier STGF, pertes, corruption, débit simulé. \\
+\path|include/stgs/TelemetryFrame.hpp| & Modèle de domaine représentant une trame décodée. \\
+\path|include/stgs/FrameCodec.hpp|\newline\path|src/FrameCodec.cpp| & Encodage, décodage, validation et extraction de trames dans un flux TCP. \\
+\path|include/stgs/NetworkServer.hpp|\newline\path|src/NetworkServer.cpp| & Réception UDP/TCP sous Linux via sockets POSIX et \code{poll()}. \\
+\path|include/stgs/BlockingQueue.hpp| & File producteur/consommateur fermable pour le pipeline multithreadé. \\
+\path|include/stgs/StationHealth.hpp|\newline\path|src/StationHealth.cpp| & Surveillance de santé opérationnelle et transitions nominal/dégradé. \\
+\path|include/stgs/Replay.hpp|\newline\path|src/Replay.cpp| & Lecture/écriture du format de replay STGF. \\
+\path|benchmarks/benchmark_decode.cpp| & Benchmark reproductible du pipeline de décodage. \\
+\path|tests/test_main.cpp| & Tests unitaires et tests de comportement. \\
+\path|.github/workflows/ci.yml| & Compilation, tests, smoke replay, export JSON et benchmark smoke. \\
+\bottomrule
+\end{longtable}
+
+\section{Choix de développement}
+
+\subsection{Choix de C++20}
+
+C++20 est utilisé pour rester proche de postes système/industriel tout en bénéficiant d'un langage plus expressif et plus sûr qu'un style C++ ancien. Le projet privilégie une approche explicite : types métier, fonctions isolées, composants testables, peu de dépendances externes.
+
+\decision{Pourquoi peu de dépendances ?}{Le projet est volontairement léger. L'objectif est de montrer la maîtrise des fondamentaux C++/Linux plutôt que de masquer la complexité derrière une pile de frameworks. Cela rend aussi le build plus simple en CI et facilite l'audit du code.}
+
+\subsection{Choix de CMake}
+
+CMake structure le projet en cibles séparées. Les principales cibles sont :
+
+\begin{itemize}[nosep]
+    \item \code{stgs\_core} pour les composants de base ;
+    \item \code{stgs\_network} pour l'infrastructure réseau ;
+    \item \code{stgs\_ground\_station} pour l'application de réception ;
+    \item \code{stgs\_satellite\_simulator} pour le générateur ;
+    \item \code{stgs\_tests} pour CTest ;
+    \item \code{stgs\_benchmark\_decode} pour les mesures de performance.
+\end{itemize}
+
+Cette séparation permet de compiler le coeur indépendamment des applications et de réutiliser les mêmes composants dans les tests.
+
+\begin{lstlisting}[language=bash]
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+ctest --test-dir build --output-on-failure
+\end{lstlisting}
+
+\subsection{Choix du modèle d'erreur}
+
+Le parser retourne un \code{std::variant<TelemetryFrame, FrameError>}. Une trame invalide est considérée comme un cas de données attendu, pas comme une exception applicative.
+
+Ce choix est pertinent pour un flux de télémétrie : dans un réseau bruité, recevoir des données invalides n'est pas un crash, mais un événement à compter, journaliser et utiliser pour décider d'un état dégradé.
+
+\begin{lstlisting}[language=C++]
+using FrameParseResult = std::variant<TelemetryFrame, FrameError>;
+
+FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes);
+\end{lstlisting}
+
+\subsection{Choix d'un protocole binaire strict}
+
+Le protocole contient un mot magique, une version, un identifiant satellite, un timestamp, des mesures, une longueur de payload et un CRC-32. Tous les entiers sont en big-endian pour être cohérents avec l'ordre réseau.
+
+\begin{lstlisting}
+MAGIC | VERSION | SATELLITE_ID | TIMESTAMP_MS | TEMPERATURE_C |
+BATTERY_PERCENT | STATUS | PAYLOAD_LEN | PAYLOAD | CRC32
+\end{lstlisting}
+
+Les règles de validation sont strictes : magic attendu, version supportée, longueur cohérente, taille maximale de payload, CRC correct, batterie entre 0 et 100, statut connu.
+
+\decision{Pourquoi un magic word ?}{En TCP, le transport est un flux d'octets et ne conserve pas les frontières applicatives. Le mot magique STGS permet de resynchroniser le flux si des octets parasites ou des trames corrompues apparaissent.}
+
+\subsection{Choix UDP et TCP}
+
+Le projet implémente les deux approches :
+
+\begin{itemize}[nosep]
+    \item en UDP, chaque datagramme est traité comme une trame candidate complète ;
+    \item en TCP, un extracteur reconstruit les trames à partir d'un flux d'octets.
+\end{itemize}
+
+Cela permet d'illustrer deux modèles réseau différents : la simplicité et la perte possible côté UDP, la fiabilité de transport mais la nécessité de framing côté TCP.
+
+\section{Pipeline multithreadé}
+
+Le pipeline sépare les responsabilités : réception, décodage, surveillance et écriture. Le nombre de workers de décodage est configurable via \code{--decoder-threads}. Cette conception montre une compréhension des problématiques de concurrence sans introduire de complexité inutile.
+
+\begin{lstlisting}
+Receiver or replay reader
+    -> BlockingQueue<ByteVector>
+        -> decoder worker 1
+        -> decoder worker 2
+        -> ...
+            -> BlockingQueue<TelemetryFrame>
+                -> CSV/JSON writer
+\end{lstlisting}
+
+Le composant \code{BlockingQueue} est fermable, ce qui simplifie l'arrêt propre des threads. Lorsqu'il n'y a plus de données, les workers peuvent sortir proprement sans attente active.
+
+\section{Mode dégradé}
+
+\subsection{Intention}
+
+Le mode dégradé est une fonctionnalité volontairement ajoutée pour dépasser le simple parsing de trames. Il introduit une notion d'état opérationnel de la station : même si le programme continue de fonctionner, le flux de télémétrie peut devenir suffisamment mauvais pour devoir signaler une dégradation.
+
+\subsection{Mécanisme}
+
+\code{StationHealthMonitor} maintient une fenêtre glissante d'échantillons récents. Chaque échantillon correspond soit à une trame rejetée, soit à une trame décodée. Une trame décodée est marquée critique si son statut vaut \code{CRITICAL} ou \code{SAFE\_MODE}.
+
+La station passe de \code{NOMINAL} à \code{DEGRADED} si :
+
+\begin{itemize}[nosep]
+    \item le taux de rejet dépasse le seuil configuré ;
+    \item ou le nombre de trames critiques atteint le seuil configuré.
+\end{itemize}
+
+Elle revient à \code{NOMINAL} lorsque le taux de rejet repasse sous le seuil de récupération et que la fenêtre ne contient plus de volume critique problématique.
+
+\begin{lstlisting}
+--degraded-window 100
+--degraded-min-samples 20
+--degraded-rejection-rate 0.10
+--degraded-recovery-rate 0.03
+--degraded-critical-count 3
+\end{lstlisting}
+
+\decision{Valeur pour un recruteur}{Cette partie montre une capacité à penser au comportement opérationnel d'un logiciel, pas seulement à son résultat nominal. Le code surveille les erreurs, prend une décision d'état et journalise les transitions.}
+
+\section{Replay, export et observabilité}
+
+\subsection{Format de replay STGF}
+
+Le format STGF permet d'enregistrer des trames binaires puis de les rejouer dans le même pipeline que le réseau. C'est un choix important pour le test, la reproductibilité et l'analyse d'incident.
+
+\begin{lstlisting}
+'S' 'T' 'G' 'F' 0 0 0 1
+FRAME_LENGTH:uint32_be | FRAME_BYTES
+\end{lstlisting}
+
+\subsection{Exports CSV et JSON}
+
+Le CSV permet une inspection simple avec des outils bureautiques. Le JSON facilite l'intégration avec des outils d'analyse, dashboards ou tests automatisés. Le format peut être inféré depuis l'extension ou forcé via \code{--output-format}.
+
+\begin{lstlisting}[language=bash]
+./build/stgs_ground_station --replay frames.stgf --output replay.csv
+./build/stgs_ground_station --replay frames.stgf --output replay.json
+./build/stgs_ground_station --replay frames.stgf --output telemetry.out --output-format json
+\end{lstlisting}
+
+\subsection{Logs}
+
+Le logger est thread-safe et peut écrire en console ou dans un fichier. Les logs servent à comprendre le comportement de la station : démarrage, erreurs de trames, transitions de santé, résumé de fin.
+
+\section{Tests, qualité et CI/CD}
+
+\subsection{Stratégie de test}
+
+Les tests vérifient les comportements critiques : CRC connu, round trip encode/decode, rejet des erreurs de magic, CRC, longueur, extraction TCP avec bruit, replay, queue bloquante et transitions du mode dégradé.
+
+\begin{lstlisting}[language=bash]
+ctest --test-dir build --output-on-failure
+\end{lstlisting}
+
+\subsection{GitHub Actions}
+
+Le workflow CI compile en Release, exécute CTest, génère un replay STGF, rejoue vers CSV, rejoue vers JSON, valide le JSON avec Python et lance un benchmark smoke. Cela montre que le projet est pensé pour être vérifié automatiquement, pas seulement exécuté localement.
+
+\decision{Choix qualité}{Pour un recruteur, la présence de CTest, d'un workflow CI, d'un benchmark et de tests d'erreurs est aussi importante que la fonctionnalité nominale. Cela démontre une culture de maintenabilité et d'industrialisation.}
+
+\section{Benchmark et performance}
+
+Le projet inclut \code{stgs\_benchmark\_decode}, un outil qui mesure le débit du pipeline de décodage sans réseau ni disque. Il pré-génère des trames valides, les pousse dans la file, les décode avec un nombre configurable de workers et mesure les frames par seconde.
+
+\begin{lstlisting}[language=bash]
+./build/stgs_benchmark_decode --frames 200000 --payload-size 64 --decoder-threads 4
+\end{lstlisting}
+
+Le rapport de performance documente la méthode et des mesures de référence. Les résultats montrent notamment que le multithreading n'améliore pas automatiquement les performances sur de petites charges : la synchronisation de file peut coûter plus cher que le travail de parsing. Cette interprétation est utile en entretien car elle montre que les choix de concurrence doivent être mesurés.
+
+\section{Compétences démontrées}
+
+\begin{longtable}{p{0.30\linewidth} p{0.60\linewidth}}
+\toprule
+\textbf{Compétence} & \textbf{Preuve dans le projet} \\
+\midrule
+C++ moderne & C++20, types de domaine, \code{std::variant}, RAII, séparation en bibliothèques. \\
+Linux & Sockets POSIX, \code{poll()}, CLI, fichiers, exécution et build Linux. \\
+Réseau & Réception UDP/TCP, framing TCP, simulation de pertes et corruption. \\
+Protocole binaire & Magic word, version, longueurs, big-endian, CRC, payload variable. \\
+Multithreading & Queues thread-safe, workers de décodage, writer séparé, arrêt propre. \\
+Performance & Benchmark reproductible, mesure frames/seconde, analyse d'impact payload/threads. \\
+CMake & Cibles séparées, options de build tests/benchmarks, CTest. \\
+Tests & Tests unitaires et tests d'erreurs, intégration CTest et CI. \\
+CI/CD & GitHub Actions avec build, tests, replay, JSON validation et benchmark smoke. \\
+Documentation & README anglais, documentation d'architecture et rapport de performance. \\
+Robustesse & Rejet des trames invalides, monitoring de santé, mode dégradé, logs. \\
+\bottomrule
+\end{longtable}
+
+\section{Limites assumées}
+
+Le projet est volontairement pédagogique et portfolio. Il ne prétend pas couvrir les exigences d'un système spatial certifié. Les principales limites sont :
+
+\begin{itemize}[nosep]
+    \item protocole inspiré télémétrie, mais non compatible CCSDS ;
+    \item pas de vraie couche hardware ou driver ;
+    \item pas de persistance longue durée ni rotation de fichiers ;
+    \item pas de métriques Prometheus ou dashboard web ;
+    \item pas de fuzzing ni tests de charge réseau complets ;
+    \item pas de packaging système type Debian ou service systemd.
+\end{itemize}
+
+Ces limites sont utiles à mentionner en entretien car elles montrent une capacité à distinguer un projet portfolio d'un logiciel de production critique.
+
+\section{Pistes d'évolution}
+
+Les évolutions les plus pertinentes pour renforcer encore le projet seraient :
+
+\begin{itemize}[nosep]
+    \item ajouter un header inspiré CCSDS avec compteur de séquence ;
+    \item calculer la perte UDP à partir des compteurs de trames ;
+    \item ajouter un dashboard WebSocket ou Prometheus ;
+    \item ajouter des tests de fuzzing sur le parser ;
+    \item créer un mode service Linux avec systemd ;
+    \item ajouter une simulation de périphérique embarqué ou capteur matériel ;
+    \item ajouter des scénarios de charge réseau plus réalistes ;
+    \item produire une documentation Doxygen du coeur C++.
+\end{itemize}
+
+\section{Message à tenir en entretien}
+
+\begin{quote}
+J'ai développé ce projet pour démontrer ma montée en compétence sur du C++ moderne orienté systèmes. L'objectif était de construire une mini station sol de télémétrie capable de recevoir des trames UDP/TCP ou des fichiers de replay, de les décoder via un protocole binaire strict, de valider leur intégrité par CRC, d'exporter les données, de mesurer les performances et de surveiller l'état opérationnel via un mode dégradé. Le projet montre surtout ma capacité à structurer un code C++ testable, documenté, compilé avec CMake, vérifié par CI et explicable techniquement.
+\end{quote}
+
+\section{Commandes de démonstration}
+
+\subsection{Build et tests}
+
+\begin{lstlisting}[language=bash]
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+ctest --test-dir build --output-on-failure
+\end{lstlisting}
+
+\subsection{Replay vers CSV et JSON}
+
+\begin{lstlisting}[language=bash]
+./build/stgs_satellite_simulator --output-file frames.stgf --count 1000 --rate 0
+./build/stgs_ground_station --replay frames.stgf --output replay.csv
+./build/stgs_ground_station --replay frames.stgf --output replay.json
+\end{lstlisting}
+
+\subsection{Simulation UDP avec pertes et corruption}
+
+\begin{lstlisting}[language=bash]
+./build/stgs_ground_station --udp --port 9000 --output telemetry.json --log ground.log
+./build/stgs_satellite_simulator --udp --host 127.0.0.1 --port 9000 \
+  --count 5000 --rate 2000 --loss 0.02 --corrupt 0.01
+\end{lstlisting}
+
+\subsection{Benchmark}
+
+\begin{lstlisting}[language=bash]
+./build/stgs_benchmark_decode --frames 200000 --payload-size 64 --decoder-threads 4
+./benchmarks/run_benchmark.sh
+\end{lstlisting}
+
+\section{Conclusion}
+
+\projectname{} est un projet portfolio orienté recruteur qui démontre une base solide en C++ moderne, Linux, réseau, protocole binaire, multithreading, CMake, tests, CI/CD, robustesse et documentation technique. Sa valeur principale est de montrer une démarche complète : partir d'un objectif technique clair, concevoir une architecture modulaire, implémenter les fonctionnalités, tester les erreurs, mesurer les performances et documenter les choix.
+
+Pour un poste de développement logiciel industriel, spatial, défense, systèmes ou télémétrie, ce projet constitue une preuve concrète d'apprentissage structuré et de capacité à produire un code explicable, maintenable et vérifiable.
+
+\end{document}
