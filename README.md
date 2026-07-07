@@ -1,6 +1,6 @@
 # cpp-space-telemetry-ground-station
 
-![C++ Linux Space Telemetry Ground Station banner](banniere.png)
+![C++ Linux Space Telemetry Ground Station banner](Banniere.png)
 *Banner generate by ChatGPT*
 
 A C++20 Linux-based telemetry ground station simulator for receiving, decoding, validating, replaying and exporting satellite-like telemetry frames over UDP, TCP or STGF replay files.
