@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(cpp_space_telemetry_ground_station
-    VERSION 1.0.0
     DESCRIPTION "C++20 Linux telemetry ground station simulator"
     LANGUAGES CXX)
 

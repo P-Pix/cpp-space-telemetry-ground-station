@@ -3,7 +3,7 @@
 \usepackage[a4paper,margin=1.65cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[french]{babel}
+\usepackage[provide=*,french]{babel}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{xcolor}
@@ -671,7 +671,7 @@ FrameFileReader::FrameFileReader(const std::filesystem::path& path) {
     std::array<std::uint8_t, FileHeader.size()> header{};
     readExact(in_, header.data(), header.size());
     if (header != FileHeader) {
-        throw std::runtime_error("invalid replay file header; expected STGF v1");
+        throw std::runtime_error("invalid or unsupported STGF replay file header");
     }
 }
 
@@ -701,7 +701,7 @@ Le replay sert a rendre les incidents reproductibles. Un fichier \texttt{STGF} c
 
 \complexity{L'ecriture et la lecture sont en $O(n)$ pour $n$ octets stockes. Chaque trame ajoute un overhead constant de 4 octets de longueur.}
 
-\rationale{Le replay est une fonctionnalite importante pour le debug industriel: au lieu de dire \og ca a bugge en reseau \fg{}, on capture les trames et on rejoue exactement le meme scenario.}
+\rationale{Le replay est une fonctionnalite importante pour le debug industriel: au lieu de dire ``ca a bugge en reseau'', on capture les trames et on rejoue exactement le meme scenario.}
 
 \section{Export CSV/JSON sans dependance externe}
 
@@ -971,7 +971,6 @@ Les tests couvrent plusieurs proprietes essentielles: vecteur connu CRC32, encod
 cmake_minimum_required(VERSION 3.16)
 
 project(cpp_space_telemetry_ground_station
-    VERSION 1.0.0
     DESCRIPTION "C++20 Linux telemetry ground station simulator"
     LANGUAGES CXX)
 
@@ -1043,7 +1042,7 @@ Pas de packaging Debian & Ajout install target, systemd service, paquet Linux \\
 
 \section{Ce que le document doit faire comprendre d'un point de vue recruteur}
 
-Le projet montre une logique de developpeur qui ne se limite pas a \og faire fonctionner \fg{} un programme. Les choix visibles sont ceux d'un logiciel que l'on veut expliquer, tester, rejouer, mesurer et maintenir.
+Le projet montre une logique de developpeur qui ne se limite pas a ``faire fonctionner'' un programme. Les choix visibles sont ceux d'un logiciel que l'on veut expliquer, tester, rejouer, mesurer et maintenir.
 
 \begin{itemize}
   \item J'accepte la complexite utile: protocole binaire, CRC, replay, multithreading.

@@ -55,7 +55,7 @@ FrameFileReader::FrameFileReader(const std::filesystem::path& path) {
     std::array<std::uint8_t, FileHeader.size()> header{};
     readExact(in_, header.data(), header.size());
     if (header != FileHeader) {
-        throw std::runtime_error("invalid replay file header; expected STGF v1");
+        throw std::runtime_error("invalid or unsupported STGF replay file header");
     }
 }
 

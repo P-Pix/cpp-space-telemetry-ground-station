@@ -1,42 +1,26 @@
 # cpp-space-telemetry-ground-station
 
 ![C++ Linux Space Telemetry Ground Station banner](Banniere.png)
-*Banner generate by ChatGPT*
+*Banner generated with ChatGPT.*
 
 A C++20 Linux-based telemetry ground station simulator for receiving, decoding, validating, replaying and exporting satellite-like telemetry frames over UDP, TCP or STGF replay files.
 
 The project is intentionally designed as an interview-quality systems portfolio project for modern C++ roles involving Linux, binary protocols, telemetry, multithreading, CMake, testing, CI/CD and robust error handling.
 
-## Implemented roadmap
+## Features
 
-### V1 - Core telemetry pipeline
-
-- Satellite telemetry frame simulator.
-- UDP receiver.
-- C++ binary frame parser.
-- CRC-32 validation.
-- Thread-safe logs.
-- Unit tests through CTest.
-- English README.
-
-### V2 - Industrialization
-
-- Multithreaded decoding pipeline.
-- STGF replay files.
-- CSV export.
-- JSON export.
-- Reproducible decode benchmark.
-- CTest integration.
-- GitHub Actions CI workflow.
-
-### V3 - Robustness and operational behavior
-
-- Strict binary protocol with magic word, version, payload length, max payload and CRC.
-- Network loss simulation through the simulator.
-- Corruption simulation through the simulator.
-- Ground-station degraded mode based on rejection rate or critical telemetry.
-- Architecture documentation.
-- Performance report.
+- Configurable satellite telemetry simulator over UDP, TCP or STGF replay files.
+- Strict binary protocol with a magic word, protocol revision, bounded payload length and CRC-32 integrity checks.
+- Multithreaded producer/consumer decoding pipeline with configurable worker count.
+- TCP stream reassembly and resynchronization on malformed or fragmented input.
+- Deterministic packet-loss and frame-corruption injection for resilience testing.
+- Operational health monitoring with automatic `NOMINAL` and `DEGRADED` state transitions.
+- CSV and JSON telemetry export through a shared validated decoding path.
+- Thread-safe console and file logging.
+- Reproducible decode benchmark and documented reference measurements.
+- Dependency-free unit and integration tests driven by CTest.
+- Automated Release build, tests, replay smoke checks and benchmark smoke test in GitHub Actions.
+- Architecture, protocol, testing and performance documentation.
 
 ## Binary protocol
 

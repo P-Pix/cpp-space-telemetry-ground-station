@@ -669,7 +669,7 @@ FrameFileReader::FrameFileReader(const std::filesystem::path& path) {
     std::array<std::uint8_t, FileHeader.size()> header{};
     readExact(in_, header.data(), header.size());
     if (header != FileHeader) {
-        throw std::runtime_error("invalid replay file header; expected STGF v1");
+        throw std::runtime_error("invalid or unsupported STGF replay file header");
     }
 }
 
@@ -969,7 +969,6 @@ Tests cover essential properties: known CRC32 vector, encode/decode round-trip, 
 cmake_minimum_required(VERSION 3.16)
 
 project(cpp_space_telemetry_ground_station
-    VERSION 1.0.0
     DESCRIPTION "C++20 Linux telemetry ground station simulator"
     LANGUAGES CXX)
 
