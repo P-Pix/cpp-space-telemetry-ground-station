@@ -3,7 +3,6 @@ build/
 *.a
 *.so
 *.log
-*.csv
 *.stgf
 .DS_Store
 .cache/

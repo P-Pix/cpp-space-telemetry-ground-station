@@ -1,0 +1,60 @@
+[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_ground_station --tcp --port 9000 --decoder-threads 4 --output telemetry.csv
+2026-08-20T19:08:40.608Z [INFO] TCP receiver listening on 0.0.0.0:9000
+2026-08-20T19:08:48.061Z [INFO] TCP client connected
+2026-08-20T19:08:48.131Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=36, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:08:50.061Z [INFO] TCP client disconnected
+2026-08-20T19:08:53.172Z [INFO] TCP client connected
+2026-08-20T19:08:53.382Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:08:53.542Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:08:54.804Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:08:54.924Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:08:55.172Z [INFO] TCP client disconnected
+2026-08-20T19:09:04.987Z [INFO] TCP client connected
+2026-08-20T19:09:06.253Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:06.331Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:07.977Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:08.537Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:08.811Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:08.981Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:09.906Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:09.967Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:12.729Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:12.913Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:14.023Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:14.157Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:14.409Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:14.585Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:15.171Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:15.429Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:16.623Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:16.799Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:19.251Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:19.419Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:19.619Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:19.687Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:20.096Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:20.375Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:22.655Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:22.775Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:24.371Z [INFO] station state changed: DEGRADED -> NOMINAL, samples=100, rejected=0, rejection_rate=0, critical=0, reason=rejection rate 0 recovered below threshold 0.03
+2026-08-20T19:09:24.441Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=100, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3
+2026-08-20T19:09:24.987Z [INFO] TCP client disconnected
+2026-08-20T19:09:32.665Z [INFO] TCP client connected
+2026-08-20T19:09:34.665Z [INFO] TCP client disconnected
+2026-08-20T19:09:38.624Z [INFO] TCP client connected
+2026-08-20T19:09:38.824Z [INFO] TCP client disconnected
+2026-08-20T19:09:41.095Z [INFO] TCP client connected
+2026-08-20T19:09:41.115Z [INFO] TCP client disconnected
+2026-08-20T19:09:45.899Z [INFO] TCP client connected
+2026-08-20T19:10:05.899Z [INFO] TCP client disconnected
+^C2026-08-20T19:10:08.521Z [INFO] TCP receiver stopped
+2026-08-20T19:10:08.524Z [INFO] summary received=12400 decoded=12400 rejected=0 written=12400 station_state=DEGRADED rejection_rate=0 output=telemetry.csv
+
+
+
+[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 58080 --count 100 --rate 5
+simulator summary produced=100 dropped=0 corrupted=0
+[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 58080 --count 100 --rate 50
+simulator summary produced=100 dropped=0 corrupted=0
+[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 58080 --count 1000 --rate 500
+simulator summary produced=1000 dropped=0 corrupted=0
