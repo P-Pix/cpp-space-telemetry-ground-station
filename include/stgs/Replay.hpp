@@ -14,59 +14,60 @@
 #include <optional>
 #include <span>
 
-namespace stgs {
+namespace stgs
+{
 
-/**
- * @brief Écrit des trames wire dans un fichier de replay STGF versionné.
- *
- * Chaque trame est préfixée par sa longueur ; les octets sont conservés tels quels, CRC compris,
- * afin que le replay réutilise les validations du chemin live.
- */
+    /**
+     * @brief Écrit des trames wire dans un fichier de replay STGF versionné.
+     *
+     * Chaque trame est préfixée par sa longueur ; les octets sont conservés tels quels, CRC compris,
+     * afin que le replay réutilise les validations du chemin live.
+     */
+    class FrameFileWriter
+    {
+    public:
+        explicit FrameFileWriter(const std::filesystem::path &path);
+        ~FrameFileWriter();
 
-class FrameFileWriter {
-public:
-    explicit FrameFileWriter(const std::filesystem::path& path);
-    ~FrameFileWriter();
+        FrameFileWriter(const FrameFileWriter &) = delete;
+        FrameFileWriter &operator=(const FrameFileWriter &) = delete;
 
-    FrameFileWriter(const FrameFileWriter&) = delete;
-    FrameFileWriter& operator=(const FrameFileWriter&) = delete;
+        /**
+         * @brief Ajoute une trame wire au fichier STGF courant.
+         * @param frameBytes Trame complète, CRC inclus.
+         * @throws std::runtime_error Si la taille dépasse MaxFrameSize ou si l’écriture échoue.
+         */
+        void writeFrame(std::span<const std::uint8_t> frameBytes);
 
-/**
- * @brief Ajoute une trame wire au fichier STGF courant.
- * @param frameBytes Trame complète, CRC inclus.
- * @throws std::runtime_error Si la taille dépasse MaxFrameSize ou si l’écriture échoue.
- */
+    private:
+        std::ofstream out_;
+    };
 
-    void writeFrame(std::span<const std::uint8_t> frameBytes);
+    /**
+     * @brief Lit séquentiellement les trames d’un fichier STGF en contrôlant ses bornes.
+     *
+     * L’entête de fichier est validé au constructeur et chaque longueur est limitée entre MinFrameSize
+     * et MaxFrameSize avant allocation du buffer de trame.
+     */
 
-private:
-    std::ofstream out_;
-};
+    class FrameFileReader
+    {
+    public:
+        explicit FrameFileReader(const std::filesystem::path &path);
 
-/**
- * @brief Lit séquentiellement les trames d’un fichier STGF en contrôlant ses bornes.
- *
- * L’entête de fichier est validé au constructeur et chaque longueur est limitée entre MinFrameSize
- * et MaxFrameSize avant allocation du buffer de trame.
- */
+        FrameFileReader(const FrameFileReader &) = delete;
+        FrameFileReader &operator=(const FrameFileReader &) = delete;
 
-class FrameFileReader {
-public:
-    explicit FrameFileReader(const std::filesystem::path& path);
+        /**
+         * @brief Lit la prochaine trame wire du replay.
+         * @return Trame suivante ou std::nullopt à la fin normale du fichier.
+         * @throws std::runtime_error Si le fichier est tronqué ou annonce une longueur interdite.
+         */
 
-    FrameFileReader(const FrameFileReader&) = delete;
-    FrameFileReader& operator=(const FrameFileReader&) = delete;
+        std::optional<ByteVector> readNext();
 
-/**
- * @brief Lit la prochaine trame wire du replay.
- * @return Trame suivante ou std::nullopt à la fin normale du fichier.
- * @throws std::runtime_error Si le fichier est tronqué ou annonce une longueur interdite.
- */
-
-    std::optional<ByteVector> readNext();
-
-private:
-    std::ifstream in_;
-};
+    private:
+        std::ifstream in_;
+    };
 
 } // namespace stgs
