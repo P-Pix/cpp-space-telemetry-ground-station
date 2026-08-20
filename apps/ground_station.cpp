@@ -1,3 +1,10 @@
+/**
+ * @file ground_station.cpp
+ * @brief Implémente l’orchestration de la station sol et de son pipeline multithread.
+ *
+ * Le point d’entrée relie réception ou replay, files de travail, décodeurs, suivi de santé et export CSV/JSON sans dupliquer la validation des trames.
+ */
+
 #include "stgs/BlockingQueue.hpp"
 #include "stgs/FrameCodec.hpp"
 #include "stgs/Logger.hpp"

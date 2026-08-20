@@ -1,3 +1,10 @@
+/**
+ * @file StationHealth.hpp
+ * @brief Déclare le moniteur de santé opérationnelle de la station sol.
+ *
+ * Il agrège une fenêtre glissante de trames acceptées/rejetées et applique une hystérésis entre les états NOMINAL et DEGRADED.
+ */
+
 #pragma once
 
 #include "stgs/TelemetryFrame.hpp"
@@ -14,6 +21,13 @@ enum class StationState {
     Nominal,
     Degraded
 };
+
+/**
+ * @brief Paramètre la fenêtre glissante et les seuils de transition de santé.
+ *
+ * Le seuil de récupération peut être inférieur au seuil de dégradation afin de créer une
+ * hystérésis et d’éviter les oscillations d’état sur un flux proche de la limite.
+ */
 
 struct StationHealthConfig {
     bool enabled = true;
@@ -39,6 +53,15 @@ struct StationStateTransition {
     std::string reason;
 };
 
+/**
+ * @brief Suit la qualité récente du flux et signale les transitions NOMINAL/DEGRADED.
+ *
+ * Objectif projet :
+ * Rendre visible une dégradation persistante sans basculer sur une erreur isolée. Une fenêtre
+ * glissante agrège les rejets et télémétries critiques ; des seuils distincts de dégradation et
+ * de récupération introduisent une hystérésis.
+ */
+
 class StationHealthMonitor {
 public:
     explicit StationHealthMonitor(StationHealthConfig config = {});
@@ -46,7 +69,18 @@ public:
     StationHealthMonitor(const StationHealthMonitor&) = delete;
     StationHealthMonitor& operator=(const StationHealthMonitor&) = delete;
 
+/**
+ * @brief Ajoute une télémétrie valide à la fenêtre de santé.
+ * @param frame Trame déjà validée par FrameCodec.
+ * @return Transition d’état si les seuils provoquent une bascule, sinon std::nullopt.
+ */
+
     std::optional<StationStateTransition> recordDecoded(const TelemetryFrame& frame);
+/**
+ * @brief Enregistre le rejet d’un candidat de trame.
+ * @return Transition éventuelle vers DEGRADED ou vers NOMINAL.
+ */
+
     std::optional<StationStateTransition> recordRejected();
 
     [[nodiscard]] StationHealthSnapshot snapshot() const;

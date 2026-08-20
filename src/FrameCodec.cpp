@@ -1,3 +1,10 @@
+/**
+ * @file FrameCodec.cpp
+ * @brief Implémente l’encodage, la validation et le réassemblage des trames STGS.
+ *
+ * Le décodeur contrôle magic, version, taille, CRC et valeurs métier avant de produire TelemetryFrame.
+ */
+
 #include "stgs/FrameCodec.hpp"
 
 #include "stgs/ByteUtils.hpp"
@@ -97,6 +104,13 @@ ByteVector encodeFrame(const TelemetryFrame& frame) {
     return bytes;
 }
 
+/**
+ * @brief Applique l’ensemble des validations structurelles et métier à une trame reçue.
+ *
+ * La taille minimale et payloadLength sont contrôlés avant accès aux champs variables. Le CRC est
+ * vérifié avant de construire TelemetryFrame, puis batterie et statut sont bornés explicitement.
+ */
+
 FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes) {
     if (bytes.size() < MinFrameSize) {
         return makeError(FrameErrorCode::TooShort, "frame is shorter than the minimum header + CRC size");
@@ -177,6 +191,15 @@ const char* errorCodeToString(FrameErrorCode code) noexcept {
     }
     return "Unknown";
 }
+
+/**
+ * @brief Consomme de nouveaux octets TCP et extrait toutes les trames complètes disponibles.
+ *
+ * Le buffer est resynchronisé sur le magic STGS. Une longueur impossible ne déclenche pas une
+ * allocation : un octet est écarté et la recherche de magic reprend sur le flux restant.
+ * @param bytes Octets nouvellement lus sur la socket TCP.
+ * @return Liste des candidats de trame complets extraits du flux.
+ */
 
 std::vector<ByteVector> StreamFrameExtractor::feed(std::span<const std::uint8_t> bytes) {
     buffer_.insert(buffer_.end(), bytes.begin(), bytes.end());

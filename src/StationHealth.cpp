@@ -1,3 +1,10 @@
+/**
+ * @file StationHealth.cpp
+ * @brief Implémente la détection de dégradation à partir d’une fenêtre glissante de télémétrie.
+ *
+ * Une hystérésis entre seuil de dégradation et seuil de récupération évite les bascules répétées lorsque le taux de rejet oscille près de la limite.
+ */
+
 #include "stgs/StationHealth.hpp"
 
 #include <algorithm>
@@ -42,6 +49,14 @@ std::optional<StationStateTransition> StationHealthMonitor::recordDecoded(const 
 std::optional<StationStateTransition> StationHealthMonitor::recordRejected() {
     return recordSample(Sample{true, false});
 }
+
+/**
+ * @brief Met à jour la fenêtre glissante et applique les seuils avec hystérésis.
+ *
+ * Aucune transition n’est évaluée avant minSamples. En état NOMINAL, taux de rejet ou nombre de
+ * trames critiques peuvent dégrader la station ; en état DEGRADED, la récupération exige un taux
+ * sous le seuil de reprise et l’absence de trame critique dans la fenêtre.
+ */
 
 std::optional<StationStateTransition> StationHealthMonitor::recordSample(Sample sample) {
     std::lock_guard<std::mutex> lock(mutex_);

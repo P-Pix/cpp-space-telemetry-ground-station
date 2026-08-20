@@ -1,3 +1,10 @@
+/**
+ * @file Crc32.cpp
+ * @brief Implémente le CRC-32 des trames de télémétrie STGS.
+ *
+ * Le résultat est utilisé à l’émission et au décodage pour détecter les corruptions de transport ou de replay.
+ */
+
 #include "stgs/Crc32.hpp"
 
 #include <array>

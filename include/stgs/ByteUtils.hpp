@@ -1,3 +1,10 @@
+/**
+ * @file ByteUtils.hpp
+ * @brief Définit les primitives internes de lecture/écriture big-endian.
+ *
+ * Ces helpers centralisent les conversions binaires du protocole STGS et du format de replay.
+ */
+
 #pragma once
 
 #include <bit>

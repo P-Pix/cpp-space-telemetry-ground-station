@@ -1,3 +1,10 @@
+/**
+ * @file satellite_simulator.cpp
+ * @brief Implémente le générateur de télémétrie satellite pour UDP, TCP ou replay.
+ *
+ * L’outil peut injecter pertes et corruptions de manière contrôlée afin d’exercer la robustesse de la station sol.
+ */
+
 #include "stgs/FrameCodec.hpp"
 #include "stgs/NetworkServer.hpp"
 #include "stgs/Replay.hpp"

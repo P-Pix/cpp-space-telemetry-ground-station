@@ -1,3 +1,10 @@
+/**
+ * @file NetworkServer.cpp
+ * @brief Implémente la réception de télémétrie sur UDP et TCP.
+ *
+ * UDP traite chaque datagramme comme un candidat de trame ; TCP maintient un extracteur par client pour gérer fragmentation, concaténation et resynchronisation.
+ */
+
 #include "stgs/NetworkServer.hpp"
 
 #include <arpa/inet.h>
@@ -129,6 +136,13 @@ void NetworkServer::runUdp(FrameCallback& callback, const std::atomic_bool& runn
     closeServerSocket();
     logger_.info("UDP receiver stopped");
 }
+
+/**
+ * @brief Gère plusieurs clients TCP non bloquants et réassemble leur flux indépendamment.
+ *
+ * Chaque client possède son StreamFrameExtractor afin qu’un fragment ou du bruit reçu sur une
+ * connexion n’altère pas l’état de framing des autres connexions.
+ */
 
 void NetworkServer::runTcp(FrameCallback& callback, const std::atomic_bool& running) {
     serverFd_ = createBoundSocket(SOCK_STREAM);

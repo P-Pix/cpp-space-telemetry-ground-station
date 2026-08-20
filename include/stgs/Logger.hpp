@@ -1,3 +1,10 @@
+/**
+ * @file Logger.hpp
+ * @brief Déclare le logger thread-safe de la station de télémétrie.
+ *
+ * Il fournit un seuil de niveau commun aux threads réseau, de décodage et d’écriture.
+ */
+
 #pragma once
 
 #include <filesystem>
@@ -16,6 +23,13 @@ enum class LogLevel {
     Warning = 3,
     Error = 4
 };
+
+/**
+ * @brief Fournit un flux de diagnostic commun aux threads de la station sol.
+ *
+ * Le seuil est configurable et les écritures sont protégées par mutex pour conserver des lignes
+ * cohérentes lorsque réseau, décodeurs et writer journalisent simultanément.
+ */
 
 class Logger {
 public:

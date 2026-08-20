@@ -1,3 +1,10 @@
+/**
+ * @file Logger.cpp
+ * @brief Implémente la journalisation synchronisée de la station sol.
+ *
+ * Les lignes console et fichier sont sérialisées pour rester lisibles dans le pipeline multithread.
+ */
+
 #include "stgs/Logger.hpp"
 
 #include <chrono>

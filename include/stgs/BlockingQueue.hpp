@@ -1,3 +1,10 @@
+/**
+ * @file BlockingQueue.hpp
+ * @brief Définit la file thread-safe du pipeline de télémétrie.
+ *
+ * Elle relie les étapes réception, décodage et écriture et fournit une sémantique de fermeture pour réveiller les consommateurs à l’arrêt.
+ */
+
 #pragma once
 
 #include <condition_variable>
@@ -7,6 +14,14 @@
 #include <utility>
 
 namespace stgs {
+
+/**
+ * @brief File FIFO thread-safe reliant les étapes du pipeline de station sol.
+ *
+ * La file n’est pas bornée dans cette implémentation. close() réveille les consommateurs et
+ * pop() renvoie std::nullopt seulement lorsque la file fermée ne contient plus d’élément.
+ * @tparam T Type transféré entre deux étapes du pipeline.
+ */
 
 template <typename T>
 class BlockingQueue {

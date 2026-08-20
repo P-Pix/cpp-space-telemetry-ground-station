@@ -1,3 +1,10 @@
+/**
+ * @file TelemetryFrame.hpp
+ * @brief Définit le modèle métier et les limites structurelles d’une trame STGS.
+ *
+ * Les constantes de taille bornent les allocations et les payloads avant que les données reçues ne soient interprétées.
+ */
+
 #pragma once
 
 #include <cstdint>
@@ -28,6 +35,13 @@ enum class Status : std::uint8_t {
     Critical = 2,
     SafeMode = 3
 };
+
+/**
+ * @brief Représente une trame de télémétrie validée sous forme typée.
+ *
+ * Une instance provenant de decodeFrame() a déjà passé les contrôles de structure, de CRC, de
+ * batterie et de statut ; le payload reste opaque pour la couche station.
+ */
 
 struct TelemetryFrame {
     std::uint8_t version = ProtocolVersion;

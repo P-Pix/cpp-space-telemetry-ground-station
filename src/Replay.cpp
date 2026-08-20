@@ -1,3 +1,10 @@
+/**
+ * @file Replay.cpp
+ * @brief Implémente le conteneur de replay STGF.
+ *
+ * Le lecteur valide l’entête de fichier et borne chaque longueur de trame avant allocation, afin de rejeter les fichiers tronqués ou incohérents.
+ */
+
 #include "stgs/Replay.hpp"
 
 #include "stgs/ByteUtils.hpp"
@@ -58,6 +65,12 @@ FrameFileReader::FrameFileReader(const std::filesystem::path& path) {
         throw std::runtime_error("invalid or unsupported STGF replay file header");
     }
 }
+
+/**
+ * @brief Lit une entrée STGF en refusant les longueurs hors bornes avant allocation.
+ * @return Trame brute suivante ou std::nullopt à la fin normale du fichier.
+ * @throws std::runtime_error Si la longueur ou le contenu sont tronqués/incohérents.
+ */
 
 std::optional<ByteVector> FrameFileReader::readNext() {
     std::array<std::uint8_t, 4> lenBytes{};

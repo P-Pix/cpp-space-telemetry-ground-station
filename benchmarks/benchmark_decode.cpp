@@ -1,3 +1,10 @@
+/**
+ * @file benchmark_decode.cpp
+ * @brief Implémente le benchmark isolé du décodage et du pipeline de files.
+ *
+ * La mesure écarte volontairement réseau et disque pour caractériser le coût CPU du traitement de trames.
+ */
+
 #include "stgs/BlockingQueue.hpp"
 #include "stgs/FrameCodec.hpp"
 
