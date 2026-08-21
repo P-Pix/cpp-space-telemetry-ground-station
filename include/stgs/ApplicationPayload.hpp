@@ -30,11 +30,11 @@ namespace stgs
     inline constexpr std::size_t ApplicationCommonHeaderSize = U32WireSize + U8WireSize + U8WireSize;
     inline constexpr std::size_t TextMessageFixedWireSize = ApplicationCommonHeaderSize + U32WireSize;
     inline constexpr std::size_t SignalBlockFixedWireSize = ApplicationCommonHeaderSize +
-                                                             U16WireSize +
-                                                             Float32WireSize +
-                                                             Float32WireSize +
-                                                             U32WireSize +
-                                                             U16WireSize;
+                                                            U16WireSize +
+                                                            Float32WireSize +
+                                                            Float32WireSize +
+                                                            U32WireSize +
+                                                            U16WireSize;
     inline constexpr std::size_t SignalSampleWireSize = Float32WireSize;
     inline constexpr std::size_t MaxTextMessageBytes = MaxPayloadSize - TextMessageFixedWireSize;
     inline constexpr std::size_t MaxSignalSamplesPerPayload =

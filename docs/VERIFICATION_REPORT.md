@@ -52,10 +52,27 @@ ASan/UBSan et TSan utilisent volontairement des builds séparés.
 
 ## Analyse statique complémentaire
 
-`clang++ --analyze` a été exécuté sur les unités de production `src/*.cpp` et `apps/*.cpp` sans
-diagnostic remonté. L'analyse isolée du benchmark n'est pas utilisée comme critère de livraison :
-la commande groupée a atteint la limite de temps de l'environnement après avoir terminé les unités
-de production.
+`clang++ --analyze` a été exécuté en parallèle sur toutes les unités de production sous `src/` et
+`apps/`, y compris les nouveaux sous-modules de la station et du simulateur, sans diagnostic remonté.
+Le benchmark reste validé par compilation stricte et exécution de contrôle, mais n'est pas inclus
+dans ce passage d'analyseur statique.
+
+## Découpage modulaire
+
+La révision finale a supprimé les principaux fichiers monolithiques sans changer le contrat public :
+
+- `apps/ground_station.cpp` est désormais un `main` minimal ; CLI, signaux POSIX, export, pipeline,
+  workers, entrée réseau/replay et traitement STGA sont séparés par responsabilité ;
+- `apps/satellite_simulator.cpp` délègue CLI, sockets, génération de trames et orchestration à des
+  modules dédiés ;
+- `NetworkServer` est séparé en cycle de vie commun, réception TCP et réception UDP ;
+- la suite de tests est répartie entre codec, STGA/signal, replay/santé et réseau, avec un support
+  commun et un runner minimal.
+
+Après découpage, aucun fichier `.cpp` ou `.hpp` de production/tests ne dépasse 300 lignes dans la
+révision livrée ; les fichiers les plus longs restent les parseurs CLI et composants déjà fortement
+cohésifs. Le replay de référence produit exactement le même CSV avec l'ancien binaire et la version
+refactorée, ce qui fournit un contrôle de non-régression fonctionnelle supplémentaire.
 
 ## Scénario réseau réel
 

@@ -364,36 +364,42 @@ See [`docs/PERFORMANCE_REPORT.md`](docs/PERFORMANCE_REPORT.md). Thread count is 
 ```text
 .
 ├── apps/
-│   ├── ground_station.cpp
+│   ├── ground_station.cpp              # main minimal
+│   ├── ground_station/
+│   │   ├── GroundStationApp.*          # orchestration haut niveau
+│   │   ├── GroundStationOptions.*      # CLI + validation
+│   │   ├── GroundStationPipeline.*     # cycle de vie du pipeline
+│   │   ├── GroundStationWorkers.cpp    # décodage + ordering + monitoring
+│   │   ├── GroundStationInput.cpp      # réseau / replay
+│   │   ├── GroundStationProcessing.*   # santé + STGA
+│   │   ├── PosixSignalStopController.* # SIGINT/SIGTERM
+│   │   └── TelemetryOutput.*           # CSV / JSON
 │   ├── port_check.cpp
-│   └── satellite_simulator.cpp
+│   ├── satellite_simulator.cpp         # main minimal
+│   └── satellite_simulator/
+│       ├── SimulatorApp.*              # orchestration émission
+│       ├── SimulatorOptions.*          # CLI + validation
+│       ├── SimulatorFrameFactory.*     # génération message/signal/télémétrie
+│       └── SimulatorSocket.*           # sockets + envoi exact
 ├── benchmarks/
-│   └── benchmark_decode.cpp
 ├── docs/
-│   ├── PERFORMANCE_REPORT.md
-│   ├── SHOWCASE_GUIDE.md
-│   ├── TECHNICAL_DESIGN.md
-│   └── VERIFICATION_REPORT.md
-├── include/stgs/
-│   ├── ApplicationPayload.hpp
-│   ├── BlockingQueue.hpp
-│   ├── ByteUtils.hpp
-│   ├── CliParsing.hpp
-│   ├── Crc32.hpp
-│   ├── FrameCodec.hpp
-│   ├── Logger.hpp
-│   ├── NetworkServer.hpp
-│   ├── PortDiagnostics.hpp
-│   ├── Replay.hpp
-│   ├── SignalProcessing.hpp
-│   ├── StationHealth.hpp
-│   ├── TelemetryFrame.hpp
-│   └── TerminalUi.hpp
+├── include/stgs/                       # API publique / cœur réutilisable
 ├── src/
+│   ├── NetworkServer.cpp               # cycle de vie commun
+│   ├── NetworkServerTcp.cpp            # poll + multi-clients + framing TCP
+│   └── NetworkServerUdp.cpp            # datagrammes UDP
 ├── tests/
+│   ├── test_codec.cpp
+│   ├── test_application_signal.cpp
+│   ├── test_replay_health.cpp
+│   ├── test_network.cpp
+│   ├── test_main.cpp                   # runner uniquement
+│   └── support/TestSupport.*
 ├── CMakeLists.txt
 └── Makefile
 ```
+
+The executable entry points are deliberately thin. Application-specific concerns are split by responsibility rather than accumulated in a monolithic `main`, while reusable protocol/network/DSP contracts remain under `include/stgs` and `src`. This keeps the codebase easy to navigate during review without creating artificial micro-files.
 
 ## Design principles visible in the code
 

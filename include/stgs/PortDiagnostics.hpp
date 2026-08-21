@@ -94,8 +94,8 @@ namespace stgs
      * @throws std::invalid_argument Si la plage est invalide/trop grande ou la cible non locale.
      */
     std::vector<TcpPortProbeResult> scanTcpPorts(const std::string &host,
-                                                PortRange range,
-                                                std::chrono::milliseconds timeout);
+                                                 PortRange range,
+                                                 std::chrono::milliseconds timeout);
 
     /**
      * @brief Vérifie si une socket locale peut être bindée sur un port sans conserver la socket.

@@ -20,9 +20,9 @@ namespace stgs
     /** @brief Algorithme de reconstruction appliqué aux blocs SIGNAL_BLOCK reçus. */
     enum class SignalFilterMode
     {
-        None,           ///< Conserve les échantillons reçus sans transformation.
-        MovingAverage,  ///< FIR centré simple, utile pour visualiser un lissage générique.
-        SineProjection  ///< Reconstruction corrélative exploitant la fréquence nominale connue.
+        None,          ///< Conserve les échantillons reçus sans transformation.
+        MovingAverage, ///< FIR centré simple, utile pour visualiser un lissage générique.
+        SineProjection ///< Reconstruction corrélative exploitant la fréquence nominale connue.
     };
 
     /** @brief Métriques calculées pour comparer signal reçu, reconstruction et résidu. */

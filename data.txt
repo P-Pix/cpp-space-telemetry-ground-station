@@ -1,4 +1,4 @@
-.[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_ground_station --tcp --port 9000 --decoder-threads 4 --output telemetry.csv
+[Guillaume]─[cpp-space-telemetry-ground-station]─[(main)]─>$ ./build/stgs_ground_station --tcp --port 9000 --decoder-threads 4 --output telemetry.csv
 2026-08-20T19:08:40.608Z [INFO] TCP receiver listening on 0.0.0.0:9000
 2026-08-20T19:08:48.061Z [INFO] TCP client connected
 2026-08-20T19:08:48.131Z [WARN] station state changed: NOMINAL -> DEGRADED, samples=36, rejected=0, rejection_rate=0, critical=3, reason=critical telemetry count 3 reached threshold 3

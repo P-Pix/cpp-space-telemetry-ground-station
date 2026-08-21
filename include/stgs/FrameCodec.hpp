@@ -23,15 +23,15 @@ namespace stgs
     /** @brief Causes de rejet attendues lors du décodage d'une trame reçue. */
     enum class FrameErrorCode
     {
-        TooShort,            ///< La trame ne contient même pas le minimum wire STGS.
-        BadMagic,            ///< Le préfixe de resynchronisation n'est pas "STGS".
-        UnsupportedVersion,  ///< La version annoncée n'est pas comprise par ce codec.
-        PayloadTooLarge,     ///< PAYLOAD_LEN dépasse la limite applicative MaxPayloadSize.
-        LengthMismatch,      ///< La taille réelle ne correspond pas au header + payload + CRC.
-        BadCrc,              ///< L'intégrité CRC-32/ISO-HDLC ne correspond pas aux octets reçus.
-        InvalidTemperature,  ///< La température encodée vaut NaN ou +/-Inf.
-        InvalidBattery,      ///< Le pourcentage batterie dépasse 100.
-        InvalidStatus        ///< L'octet d'état n'appartient pas à l'enum Status v1.
+        TooShort,           ///< La trame ne contient même pas le minimum wire STGS.
+        BadMagic,           ///< Le préfixe de resynchronisation n'est pas "STGS".
+        UnsupportedVersion, ///< La version annoncée n'est pas comprise par ce codec.
+        PayloadTooLarge,    ///< PAYLOAD_LEN dépasse la limite applicative MaxPayloadSize.
+        LengthMismatch,     ///< La taille réelle ne correspond pas au header + payload + CRC.
+        BadCrc,             ///< L'intégrité CRC-32/ISO-HDLC ne correspond pas aux octets reçus.
+        InvalidTemperature, ///< La température encodée vaut NaN ou +/-Inf.
+        InvalidBattery,     ///< Le pourcentage batterie dépasse 100.
+        InvalidStatus       ///< L'octet d'état n'appartient pas à l'enum Status v1.
     };
 
     /** @brief Diagnostic structuré retourné pour une corruption de données attendue. */

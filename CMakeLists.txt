@@ -68,6 +68,8 @@ target_compile_options(stgs_core PRIVATE ${STGS_WARNINGS})
 
 add_library(stgs_network
     src/NetworkServer.cpp
+    src/NetworkServerTcp.cpp
+    src/NetworkServerUdp.cpp
     src/PortDiagnostics.cpp)
 
 target_link_libraries(stgs_network
@@ -77,11 +79,27 @@ target_link_libraries(stgs_network
 
 target_compile_options(stgs_network PRIVATE ${STGS_WARNINGS})
 
-add_executable(stgs_ground_station apps/ground_station.cpp)
+add_executable(stgs_ground_station
+    apps/ground_station.cpp
+    apps/ground_station/GroundStationApp.cpp
+    apps/ground_station/GroundStationInput.cpp
+    apps/ground_station/GroundStationOptions.cpp
+    apps/ground_station/GroundStationPipeline.cpp
+    apps/ground_station/GroundStationProcessing.cpp
+    apps/ground_station/GroundStationUsage.cpp
+    apps/ground_station/GroundStationWorkers.cpp
+    apps/ground_station/PosixSignalStopController.cpp
+    apps/ground_station/TelemetryOutput.cpp)
 target_link_libraries(stgs_ground_station PRIVATE stgs_network stgs_core Threads::Threads)
 target_compile_options(stgs_ground_station PRIVATE ${STGS_WARNINGS})
 
-add_executable(stgs_satellite_simulator apps/satellite_simulator.cpp)
+add_executable(stgs_satellite_simulator
+    apps/satellite_simulator.cpp
+    apps/satellite_simulator/SimulatorApp.cpp
+    apps/satellite_simulator/SimulatorFrameFactory.cpp
+    apps/satellite_simulator/SimulatorOptions.cpp
+    apps/satellite_simulator/SimulatorSocket.cpp
+    apps/satellite_simulator/SimulatorUsage.cpp)
 target_link_libraries(stgs_satellite_simulator PRIVATE stgs_network stgs_core Threads::Threads)
 target_compile_options(stgs_satellite_simulator PRIVATE ${STGS_WARNINGS})
 
@@ -92,7 +110,13 @@ target_compile_options(stgs_port_check PRIVATE ${STGS_WARNINGS})
 if(STGS_BUILD_TESTS)
     enable_testing()
 
-    add_executable(stgs_tests tests/test_main.cpp)
+    add_executable(stgs_tests
+        tests/test_main.cpp
+        tests/test_application_signal.cpp
+        tests/test_codec.cpp
+        tests/test_network.cpp
+        tests/test_replay_health.cpp
+        tests/support/TestSupport.cpp)
     target_link_libraries(stgs_tests PRIVATE stgs_network stgs_core Threads::Threads)
     target_compile_options(stgs_tests PRIVATE ${STGS_WARNINGS})
 
