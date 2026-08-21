@@ -1,0 +1,287 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=2cm,left=2cm,right=2cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lastpage}
+\definecolor{STGSBlue}{HTML}{16324F}
+\definecolor{STGSTeal}{HTML}{0B7A75}
+\definecolor{STGSGray}{HTML}{F3F5F7}
+\definecolor{STGSBorder}{HTML}{CAD4DE}
+\definecolor{STGSRed}{HTML}{A23B3B}
+\definecolor{STGSGreen}{HTML}{276749}
+\definecolor{STGSOrange}{HTML}{A15C16}
+\hypersetup{colorlinks=true,linkcolor=STGSBlue,urlcolor=STGSTeal,citecolor=STGSTeal,pdftitle={STGS documentation technique}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{STGSBlue}{\textbf{STGS - Documentation d'exécution}}}
+\fancyhead[R]{\small Projet C++20 / Linux}
+\fancyfoot[L]{\small Révision documentaire : 21 août 2026}
+\fancyfoot[R]{\small Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{STGSBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{STGSTeal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{STGSBlue}}{\thesubsubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.3em}
+\lstdefinestyle{terminal}{
+  backgroundcolor=\color{STGSGray},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{STGSBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=terminal}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\source}[2]{\textcolor{STGSTeal}{\textbf{Source :}} \code{#1}, lignes #2}
+\newtcolorbox{callflow}[1]{
+  enhanced,breakable,colback=STGSGray,colframe=STGSBlue,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{limitbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSOrange,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{whybox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSTeal,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSRed,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newcommand{\cover}[3]{
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+\includegraphics[width=0.88\textwidth]{assets/Banniere.png}\\[1.2cm]
+{\Huge\bfseries\color{STGSBlue} #1\par}
+\vspace{0.35cm}
+{\Large #2\par}
+\vspace{0.7cm}
+\begin{tcolorbox}[colback=STGSGray,colframe=STGSBorder,width=0.86\textwidth]
+#3
+\end{tcolorbox}
+\vfill
+{\large Space Telemetry Ground Station (STGS)\par}
+{\small Documentation basée sur l'archive \code{cpp-space-telemetry-ground-station-showcase-modular.zip}.\par}
+{\small Les numéros de lignes correspondent à cette révision et peuvent évoluer après modification du code.\par}
+\end{titlepage}
+\tableofcontents
+\newpage
+}
+\begin{document}
+\cover{Volume 3 - Commandes du simulateur}{Génération, transport, messages, bruit, signaux et captures STGF}{
+Ce volume suit \texttt{stgs\_satellite\_simulator} depuis le parsing jusqu'à la socket et détaille la différence entre perte, corruption CRC et bruit de mesure.
+}
+
+\section{Chemin commun}
+\begin{callflow}{Point d'entrée du simulateur}
+\ttfamily
+main
+$\rightarrow$ parseArgs
+$\rightarrow$ run(Options)
+$\rightarrow$ TerminalUi
+$\rightarrow$ discoverPort éventuel
+$\rightarrow$ RNG mt19937
+$\rightarrow$ FrameFileWriter éventuel
+$\rightarrow$ socket TCP/UDP éventuelle
+$\rightarrow$ boucle count
+$\rightarrow$ makeFrame
+$\rightarrow$ encodeFrame
+$\rightarrow$ loss/corrupt
+$\rightarrow$ send / capture
+$\rightarrow$ sleep\_until
+$\rightarrow$ résumé
+\end{callflow}
+
+\source{apps/satellite_simulator.cpp}{14--26} ; \source{apps/satellite_simulator/SimulatorApp.cpp}{103--200}
+
+\section{Trafic aléatoire TCP}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 --count 1000 --rate 500
+\end{lstlisting}
+
+\code{parseArgs()} valide TCP, IPv4 à la construction de l'adresse, port, nombre de trames et rate fini positif ou nul. \code{run()} crée un \code{std::mt19937}, ouvre une socket SOCK\_STREAM, construit l'adresse et appelle \code{connect()} une fois. Ensuite chaque trame est envoyée avec \code{sendAll()}, qui boucle jusqu'à ce que tous les octets aient été transmis ; \code{MSG_NOSIGNAL} évite qu'un peer fermé tue le processus par SIGPIPE.
+
+\source{apps/satellite_simulator/SimulatorSocket.cpp}{61--108}
+
+\subsection{Création d'une trame aléatoire}
+\code{makeFrame()} applique les valeurs de démonstration suivantes : température gaussienne $22\,^{\circ}$C, $\sigma=4$ ; batterie 100..0 cyclique ; statuts pondérés 90\% NOMINAL, 7\% WARNING, 2\% CRITICAL, 1\% SAFE\_MODE ; payload binaire uniforme de la taille demandée.
+
+\begin{warningbox}{Nature des distributions}
+Ces valeurs servent à exercer le code et la logique de santé. Elles ne représentent aucune mission ou spécification Safran.
+\end{warningbox}
+
+\section{Trafic aléatoire UDP}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --udp --host 127.0.0.1 --port 9000 --count 1000 --rate 500
+\end{lstlisting}
+Le chemin de génération est identique. La socket est SOCK\_DGRAM et chaque trame complète est envoyée par un unique \code{sendto()}. Le code exige que le nombre d'octets retourné soit exactement la taille de la trame.
+
+\source{apps/satellite_simulator/SimulatorApp.cpp}{83--99, 161--170}
+
+\section{Découverte d'un listener TCP}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --discover-ports 9000:9010 --count 100
+\end{lstlisting}
+\code{--discover-ports} est limité au loopback IPv4 et à 256 ports. \code{discoverPort()} appelle \code{scanTcpPorts()}, affiche le rapport et choisit le premier état OPEN.
+
+\begin{callflow}{Découverte}
+\ttfamily
+scanTcpPorts
+$\rightarrow$ probeTcpPort pour chaque port
+$\rightarrow$ socket non bloquante
+$\rightarrow$ connect
+$\rightarrow$ si EINPROGRESS : poll(POLLOUT)
+$\rightarrow$ getsockopt(SO\_ERROR)
+$\rightarrow$ OPEN/CLOSED/TIMEOUT/ERROR
+$\rightarrow$ premier OPEN choisi
+$\rightarrow$ vraie socket du simulateur + connect
+\end{callflow}
+
+\begin{warningbox}{Limite de la découverte}
+OPEN signifie seulement qu'un listener TCP a accepté la connexion. STGS v1 est unidirectionnel et n'a pas de handshake d'identité ; la découverte ne prouve donc pas que le service est réellement STGS.
+\end{warningbox}
+
+\section{Envoi d'un message texte}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 --message "Bonjour STGS"
+\end{lstlisting}
+Sans \code{--count}, le mode message choisit une seule trame.
+
+\begin{callflow}{Encapsulation du message}
+\ttfamily
+makeFrame(sequence=0)
+$\rightarrow$ encodeTextMessagePayload
+$\rightarrow$ STGA magic + version + kind TEXT\_MESSAGE + sequence + texte
+$\rightarrow$ frame.payload
+$\rightarrow$ encodeFrame
+$\rightarrow$ header STGS + payload STGA + CRC32
+$\rightarrow$ sendAll/sendto
+\end{callflow}
+
+À la réception : \code{decodeFrame()} valide l'enveloppe externe, puis \code{decodeApplicationPayload()} retrouve TEXT\_MESSAGE. \code{TerminalUi::receivedMessage()} affiche le texte après \code{sanitizeRemoteText()} : les caractères de contrôle, notamment ESC, sont neutralisés.
+
+\begin{limitbox}{Taille du message}
+Le payload STGS est limité à 4096 octets. Le header STGA message occupe 10 octets ; le texte peut donc occuper au maximum 4086 octets. La chaîne est transportée en octets ; le code ne valide pas formellement l'UTF-8.
+\end{limitbox}
+
+\section{Envoi d'une onde sinusoïdale bruitée}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 \
+  --signal --signal-frequency 5 --sample-rate 200 \
+  --signal-samples 256 --signal-amplitude 1.0 --noise-stddev 0.35 \
+  --count 5 --rate 2
+\end{lstlisting}
+
+\subsection{Génération}
+Pour le bloc $b$, \code{makeSignalPayload()} calcule :
+\[
+n_0 = b \times N, \qquad \omega = 2\pi f / f_s,
+\]
+\[
+x[n] = A\sin(\omega(n_0+n)) + \varepsilon[n], \quad \varepsilon \sim \mathcal{N}(0,\sigma^2).
+\]
+L'index absolu \code{startSampleIndex} maintient la continuité de phase entre blocs.
+
+\source{apps/satellite_simulator/SimulatorFrameFactory.cpp}{63--97}
+
+\subsection{Pourquoi le bruit est ajouté avant CRC}
+\code{--noise-stddev} modifie les \textbf{données de mesure}, puis le payload et le CRC sont calculés sur ces valeurs. La trame est donc intègre mais son signal est bruité : c'est un cas destiné au DSP.
+
+\subsection{Réception et filtre}
+Après décodage STGA, la station choisit :
+\begin{itemize}
+\item \code{none} : aucune transformation ;
+\item \code{moving-average} : FIR centré ;
+\item \code{sine-projection} : projection sur sin/cos à la fréquence nominale + composante DC.
+\end{itemize}
+Elle calcule ensuite RMS, résidu, amplitude estimée et $20\log_{10}(RMS_{filtré}/RMS_{résidu})$.
+
+\begin{limitbox}{Limites signal STGA v1}
+\begin{itemize}
+\item sample rate : 1..65535 Hz (u16) ;
+\item fréquence : finie, strictement $0<f<f_s/2$ (Nyquist) ;
+\item amplitude : finie et $\ge 0$ ;
+\item bruit sigma : fini et $\ge 0$ ;
+\item header signal STGA : 22 octets ;
+\item chaque sample : float32 = 4 octets ;
+\item samples par trame : $\lfloor(4096-22)/4\rfloor = 1018$ maximum ;
+\item \code{startSampleIndex} : u32, donc le run complet doit rester dans sa plage.
+\end{itemize}
+\end{limitbox}
+
+\section{Perte simulée vs corruption de transport}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 --loss 0.05 --corrupt 0.02 --count 1000
+\end{lstlisting}
+
+\subsection{\texttt{--loss 0.05}}
+Après \code{encodeFrame()}, le RNG décide de laisser tomber la trame. Elle n'est ni envoyée ni écrite dans la capture STGF et incrémente \code{dropped}.
+
+\subsection{\texttt{--corrupt 0.02}}
+Si la trame n'est pas perdue, \code{maybeCorrupt()} choisit un octet aléatoire \textbf{après calcul du CRC} et applique XOR \code{0x5A}. La trame est ensuite envoyée/capturée. Le but est de produire un CRC incohérent et de vérifier le chemin de rejet côté station.
+
+\begin{whybox}{Pourquoi \texttt{0x5A} ?}
+Le masque binaire \code{01011010} retourne plusieurs bits sans forcer l'octet vers une valeur fixe. C'est un choix de simulation nommé, pas une constante du protocole.
+\end{whybox}
+
+\section{Créer uniquement un fichier de replay}
+\begin{lstlisting}
+./build/stgs_satellite_simulator --output-file frames.stgf --count 1000 --seed 42
+\end{lstlisting}
+Aucun transport n'est requis si \code{--output-file} est présent. \code{run()} crée un \code{FrameFileWriter}, génère les trames, applique perte/corruption comme d'habitude, puis écrit les trames effectivement produites au format STGF.
+
+\begin{callflow}{Capture STGF}
+\ttfamily
+FrameFileWriter ctor
+$\rightarrow$ écrit magic STGF + version
+$\rightarrow$ writeFrame
+$\rightarrow$ longueur u32 + octets STGS complets
+$\rightarrow$ flush vérifié
+\end{callflow}
+
+\section{RNG et reproductibilité}
+\code{--seed N} fixe \code{std::mt19937}. À configuration et environnement identiques, payloads aléatoires, bruit, pertes, corruptions et statuts suivent la même séquence pseudo-aléatoire. L'horodatage \code{timestampMs}, lui, provient de l'horloge système et reste variable.
+
+\section{Table complète des limites simulateur}
+\begin{longtable}{p{0.28\textwidth}p{0.22\textwidth}p{0.40\textwidth}}
+\toprule
+Option & Borne & Remarque \\
+\midrule
+\endhead
+\code{--count} & 1..10 000 000 & Garde-fou CLI. \\
+\code{--rate} & >=0, fini & 0 = pas de temporisation. \\
+\code{--satellite} & 0..65535 & u16 du protocole. \\
+\code{--payload-size} & 0..4096 & Mode aléatoire seulement. \\
+\code{--loss}, \code{--corrupt} & [0,1] & Probabilités. \\
+\code{--discover-ports} & <=256 ports & Loopback IPv4 seulement. \\
+Timeout découverte & 1..60000 ms & Par port. \\
+Message & <=4086 octets & Dérivé de MaxPayloadSize. \\
+Signal samples & 1..1018 & Dérivé du header STGA. \\
+\bottomrule
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,270 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=2cm,left=2cm,right=2cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lastpage}
+\definecolor{STGSBlue}{HTML}{16324F}
+\definecolor{STGSTeal}{HTML}{0B7A75}
+\definecolor{STGSGray}{HTML}{F3F5F7}
+\definecolor{STGSBorder}{HTML}{CAD4DE}
+\definecolor{STGSRed}{HTML}{A23B3B}
+\definecolor{STGSGreen}{HTML}{276749}
+\definecolor{STGSOrange}{HTML}{A15C16}
+\hypersetup{colorlinks=true,linkcolor=STGSBlue,urlcolor=STGSTeal,citecolor=STGSTeal,pdftitle={STGS documentation technique}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{STGSBlue}{\textbf{STGS - Documentation d'exécution}}}
+\fancyhead[R]{\small Projet C++20 / Linux}
+\fancyfoot[L]{\small Révision documentaire : 21 août 2026}
+\fancyfoot[R]{\small Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{STGSBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{STGSTeal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{STGSBlue}}{\thesubsubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.3em}
+\lstdefinestyle{terminal}{
+  backgroundcolor=\color{STGSGray},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{STGSBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=terminal}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\source}[2]{\textcolor{STGSTeal}{\textbf{Source :}} \code{#1}, lignes #2}
+\newtcolorbox{callflow}[1]{
+  enhanced,breakable,colback=STGSGray,colframe=STGSBlue,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{limitbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSOrange,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{whybox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSTeal,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSRed,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newcommand{\cover}[3]{
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+\includegraphics[width=0.88\textwidth]{assets/Banniere.png}\\[1.2cm]
+{\Huge\bfseries\color{STGSBlue} #1\par}
+\vspace{0.35cm}
+{\Large #2\par}
+\vspace{0.7cm}
+\begin{tcolorbox}[colback=STGSGray,colframe=STGSBorder,width=0.86\textwidth]
+#3
+\end{tcolorbox}
+\vfill
+{\large Space Telemetry Ground Station (STGS)\par}
+{\small Documentation basée sur l'archive \code{cpp-space-telemetry-ground-station-showcase-modular.zip}.\par}
+{\small Les numéros de lignes correspondent à cette révision et peuvent évoluer après modification du code.\par}
+\end{titlepage}
+\tableofcontents
+\newpage
+}
+\begin{document}
+\cover{Volume 1 - Architecture et exécution}{Comment le programme passe de la ligne de commande aux sockets, threads, codecs et exports}{
+Ce volume décrit le trajet global d'une trame et les responsabilités de chaque couche. Il sert de carte de navigation avant les volumes consacrés aux commandes détaillées.
+}
+
+\section{Architecture en une phrase}
+STGS sépare volontairement cinq responsabilités : \textbf{entrée} (TCP/UDP/replay), \textbf{framing et validation} (STGS v1 + CRC), \textbf{pipeline concurrent borné}, \textbf{interprétation applicative} (STGA texte/signal) et \textbf{sortie} (terminal + CSV/JSON).
+
+\begin{callflow}{Flux global d'une trame réseau}
+\ttfamily
+socket TCP/UDP
+$\rightarrow$ NetworkServer
+$\rightarrow$ GroundStationPipeline::submit()
+$\rightarrow$ rawQueue
+$\rightarrow$ decoderLoop()
+$\rightarrow$ decodeFrame()
+$\rightarrow$ decodedQueue
+$\rightarrow$ writerLoop() / réordonnancement
+$\rightarrow$ StationHealthMonitor
+$\rightarrow$ decodeApplicationPayload()
+$\rightarrow$ TerminalUi
+$\rightarrow$ TelemetryOutput
+\end{callflow}
+
+\section{Frontière processus : les deux \texttt{main}}
+Les deux exécutables applicatifs gardent un \code{main()} volontairement minimal. Leur rôle est de :
+\begin{enumerate}
+\item demander au parseur CLI de construire une configuration validée ;
+\item appeler la fonction \code{run()} de l'application ;
+\item convertir toute exception non gérée en message stderr et code retour 1.
+\end{enumerate}
+
+\source{apps/ground_station.cpp}{15--27}\\
+\source{apps/satellite_simulator.cpp}{14--26}
+
+\begin{whybox}{Pourquoi ce choix ?}
+Un \code{main()} court rend la frontière processus évidente et testable mentalement. La logique métier n'est pas mélangée avec le traitement de \code{argc/argv} ou les codes de sortie.
+\end{whybox}
+
+\section{Protocole STGS v1}
+\subsection{Layout binaire}
+Tous les entiers sont sérialisés en big-endian. La taille du header est dérivée des tailles wire et verrouillée par \code{static_assert}.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries}l l X}
+\toprule
+Champ & Taille & Rôle \\
+\midrule
+MAGIC & 4 octets & Valeur ASCII \code{STGS}, resynchronisation TCP. \\
+VERSION & 1 & Version du protocole, actuellement 1. \\
+SATELLITE\_ID & 2 & Identifiant logique de la source. \\
+TIMESTAMP\_MS & 8 & Horodatage en millisecondes. \\
+TEMPERATURE\_C & 4 & Float32, doit être fini. \\
+BATTERY\_PERCENT & 1 & Entier 0..100. \\
+STATUS & 1 & NOMINAL/WARNING/CRITICAL/SAFE\_MODE. \\
+PAYLOAD\_LEN & 2 & Taille du payload. \\
+PAYLOAD & 0..4096 & Données opaques ou enveloppe STGA. \\
+CRC32 & 4 & CRC-32/ISO-HDLC sur tout ce qui précède. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\source{include/stgs/TelemetryFrame.hpp}{22--71}
+
+\begin{limitbox}{Limites wire}
+Header : 23 octets. CRC : 4 octets. Payload : 4096 octets maximum. Trame minimale : 27 octets. Trame maximale : $23+4096+4=4123$ octets.
+\end{limitbox}
+
+\subsection{CRC : pourquoi \texttt{0xEDB88320}}
+Le CRC est exactement CRC-32/ISO-HDLC : width=32, poly canonique \code{0x04C11DB7}, init \code{0xFFFFFFFF}, refin/refout=true, xorout \code{0xFFFFFFFF}. L'implémentation parcourt les bits LSB-first ; elle utilise donc le polynôme réfléchi \code{0xEDB88320}. Le vecteur standard \code{123456789} doit produire \code{0xCBF43926}.
+
+\begin{callflow}{Calcul du CRC}
+\ttfamily
+crc32(bytes)
+$\rightarrow$ crc = 0xFFFFFFFF
+$\rightarrow$ index = (crc XOR byte) \& 0xFF
+$\rightarrow$ crc = (crc >> 8) XOR table[index]
+$\rightarrow$ crc XOR 0xFFFFFFFF
+\end{callflow}
+
+\source{include/stgs/Crc32.hpp}{18--42} et \source{src/Crc32.cpp}{42--54}
+
+\section{Pourquoi TCP et UDP ne suivent pas le même chemin}
+\subsection{UDP}
+UDP conserve les frontières de datagrammes. Le serveur alloue un buffer de \code{MaxFrameSize}, utilise \code{recvfrom(..., MSG_TRUNC, ...)} et rejette un datagramme plus grand que la taille maximale au lieu de transmettre au codec un préfixe tronqué.
+
+\source{src/NetworkServerUdp.cpp}{18--77}
+
+\subsection{TCP}
+TCP est un flux d'octets : une lecture peut contenir une demi-trame, une trame, plusieurs trames, ou du bruit avant le magic. Chaque client possède donc son propre \code{StreamFrameExtractor}.
+
+\begin{callflow}{Framing TCP}
+\ttfamily
+recv()
+$\rightarrow$ StreamFrameExtractor::feed(fragment)
+$\rightarrow$ recherche magic STGS
+$\rightarrow$ attente du header complet
+$\rightarrow$ lecture PAYLOAD\_LEN
+$\rightarrow$ attente de header + payload + CRC
+$\rightarrow$ émission d'un candidat complet
+\end{callflow}
+
+L'extracteur ne valide pas encore le CRC : il ne fait que retrouver les frontières. \code{decodeFrame()} prend ensuite la décision de validation/rejet.
+
+\source{include/stgs/FrameCodec.hpp}{67--92} et \source{src/FrameCodec.cpp}{221--263}
+
+\section{Pipeline concurrent et déterminisme}
+La station crée trois catégories de threads :
+\begin{itemize}
+\item un thread de progression terminal ;
+\item un writer unique ;
+\item N décodeurs configurés par \code{--decoder-threads}.
+\end{itemize}
+
+\begin{callflow}{Démarrage et arrêt des workers}
+\ttfamily
+GroundStationPipeline::run()
+$\rightarrow$ startWorkers()
+$\rightarrow$ receiveInput()
+$\rightarrow$ rawQueue.close()
+$\rightarrow$ join décodeurs
+$\rightarrow$ decodedQueue.close()
+$\rightarrow$ join writer
+$\rightarrow$ stop progress thread
+$\rightarrow$ rethrow erreur asynchrone éventuelle
+\end{callflow}
+
+\source{apps/ground_station/GroundStationPipeline.cpp}{49--128}
+
+\subsection{Backpressure}
+Les files de production sont bornées. Lorsque la file est pleine, \code{push()} attend qu'un consommateur libère une place. La surcharge se traduit donc par ralentissement du producteur, pas par croissance mémoire illimitée.
+
+\source{include/stgs/BlockingQueue.hpp}{22--113}
+
+\subsection{Pourquoi réordonner ?}
+Avec plusieurs workers, le résultat de la trame 12 peut terminer avant la trame 11. Chaque trame reçoit donc une séquence monotone avant décodage. Le writer conserve les résultats dans une \code{std::map} et ne consomme que \code{expectedSequence}. Ainsi la santé et le CSV/JSON sont indépendants du nombre de workers.
+
+\source{apps/ground_station/GroundStationWorkers.cpp}{76--155}
+
+\section{Couche applicative STGA}
+Le payload STGS reste opaque au protocole externe. S'il commence par le magic \code{STGA}, il peut être interprété comme :
+\begin{itemize}
+\item \textbf{TEXT\_MESSAGE} : séquence applicative + octets de texte ;
+\item \textbf{SIGNAL\_BLOCK} : fréquence d'échantillonnage, fréquence nominale, amplitude, index absolu et échantillons float32.
+\end{itemize}
+Un payload sans magic STGA reste valide et est simplement considéré comme binaire historique.
+
+\source{include/stgs/ApplicationPayload.hpp}{1--150}
+
+\section{Arrêt Ctrl+C sans handler C++ dangereux}
+Le processus bloque SIGINT/SIGTERM avant la création des workers. Un \code{std::jthread} dédié appelle \code{sigtimedwait()} toutes les 100 ms. Lorsqu'il reçoit le signal, il met l'atomic \code{running} à false. Les boucles réseau relisent cette valeur au plus tard après leur timeout de \code{poll()} (250 ms par défaut).
+
+\begin{whybox}{Pourquoi ne pas appeler directement du C++ depuis un signal handler ?}
+Les primitives C++ usuelles (mutex, iostream, allocations) ne sont pas garanties async-signal-safe. Le thread d'attente transforme le signal POSIX en événement ordinaire manipulable par le programme.
+\end{whybox}
+
+\source{apps/ground_station/PosixSignalStopController.cpp}{21--138}
+
+\section{Affichage terminal}
+\code{TerminalUi} active les couleurs uniquement sur un TTY, si \code{TERM} n'est pas \code{dumb}, si \code{NO_COLOR} n'est pas défini et si la CLI n'a pas demandé \code{--no-color}. Le texte reçu d'un autre processus est assaini : ESC et caractères de contrôle sont échappés afin qu'un message distant ne puisse pas injecter de séquence ANSI dans le terminal.
+
+\source{src/TerminalUi.cpp}{78--186}
+
+\section{Garanties et non-garanties}
+\begin{tabularx}{\textwidth}{>{\bfseries}l X}
+\toprule
+Garanti dans cette maquette & Non garanti / volontairement hors périmètre \\
+\midrule
+Validation taille, magic, version, CRC et champs de base & Chiffrement ou authentification réseau \\
+Réassemblage TCP fragmenté et multi-clients & Identité d'un service détecté sur un port OPEN \\
+Backpressure et ordre d'export déterministe & Temps réel dur / latence bornée au niveau OS \\
+Replay STGF avec bornes avant allocation & Modélisation RF ou protocole spatial normatif \\
+Signal synthétique + DSP lisible & Chaîne de traitement qualifiée ou certifiée \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

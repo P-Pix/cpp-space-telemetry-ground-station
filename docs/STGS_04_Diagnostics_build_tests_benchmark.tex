@@ -1,0 +1,248 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=2cm,left=2cm,right=2cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lastpage}
+\definecolor{STGSBlue}{HTML}{16324F}
+\definecolor{STGSTeal}{HTML}{0B7A75}
+\definecolor{STGSGray}{HTML}{F3F5F7}
+\definecolor{STGSBorder}{HTML}{CAD4DE}
+\definecolor{STGSRed}{HTML}{A23B3B}
+\definecolor{STGSGreen}{HTML}{276749}
+\definecolor{STGSOrange}{HTML}{A15C16}
+\hypersetup{colorlinks=true,linkcolor=STGSBlue,urlcolor=STGSTeal,citecolor=STGSTeal,pdftitle={STGS documentation technique}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{STGSBlue}{\textbf{STGS - Documentation d'exécution}}}
+\fancyhead[R]{\small Projet C++20 / Linux}
+\fancyfoot[L]{\small Révision documentaire : 21 août 2026}
+\fancyfoot[R]{\small Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{STGSBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{STGSTeal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{STGSBlue}}{\thesubsubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.3em}
+\lstdefinestyle{terminal}{
+  backgroundcolor=\color{STGSGray},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{STGSBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=terminal}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\source}[2]{\textcolor{STGSTeal}{\textbf{Source :}} \code{#1}, lignes #2}
+\newtcolorbox{callflow}[1]{
+  enhanced,breakable,colback=STGSGray,colframe=STGSBlue,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{limitbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSOrange,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{whybox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSTeal,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSRed,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newcommand{\cover}[3]{
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+\includegraphics[width=0.88\textwidth]{assets/Banniere.png}\\[1.2cm]
+{\Huge\bfseries\color{STGSBlue} #1\par}
+\vspace{0.35cm}
+{\Large #2\par}
+\vspace{0.7cm}
+\begin{tcolorbox}[colback=STGSGray,colframe=STGSBorder,width=0.86\textwidth]
+#3
+\end{tcolorbox}
+\vfill
+{\large Space Telemetry Ground Station (STGS)\par}
+{\small Documentation basée sur l'archive \code{cpp-space-telemetry-ground-station-showcase-modular.zip}.\par}
+{\small Les numéros de lignes correspondent à cette révision et peuvent évoluer après modification du code.\par}
+\end{titlepage}
+\tableofcontents
+\newpage
+}
+\begin{document}
+\cover{Volume 4 - Diagnostics, build, tests et benchmark}{Ce que font CMake, Make, CTest, les sanitizers, le port-check et le benchmark}{
+Ce volume documente les commandes de maintenance et de preuve : compilation stricte, tests, diagnostics locaux, mesures de débit et instrumentations mémoire/concurrence.
+}
+
+\section{Configuration CMake}
+\begin{lstlisting}
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSTGS_WARNINGS_AS_ERRORS=ON
+\end{lstlisting}
+CMake configure C++20 sans extensions, recherche Threads, crée les bibliothèques \code{stgs_core} et \code{stgs_network}, puis les exécutables. Les warnings incluent \code{-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2}; \code{-Werror} les transforme en erreurs.
+
+\source{CMakeLists.txt}{1--104}
+
+\section{Compilation}
+\begin{lstlisting}
+cmake --build build --parallel 8
+\end{lstlisting}
+Le générateur choisi par CMake compile les unités séparées puis lie :
+\begin{itemize}
+\item \code{stgs_ground_station} ;
+\item \code{stgs_satellite_simulator} ;
+\item \code{stgs_port_check} ;
+\item \code{stgs_tests} si activé ;
+\item \code{stgs_benchmark_decode} si activé.
+\end{itemize}
+Le paramètre \code{--parallel} ne modifie pas le comportement du programme : il parallélise seulement la compilation.
+
+\section{\texttt{make build}, \texttt{make release}, \texttt{make debug}}
+Le Makefile est une façade : CMake reste la source de vérité.
+
+\begin{lstlisting}
+make build
+make release
+make debug
+\end{lstlisting}
+\code{make build} exécute d'abord \code{configure}, puis \code{cmake --build}. \code{release} et \code{debug} rappellent \code{build} en remplaçant \code{BUILD_TYPE}.
+
+\section{Tests CTest}
+\begin{lstlisting}
+make test
+# equivalent fonctionnel apres build :
+ctest --test-dir build --output-on-failure
+\end{lstlisting}
+Le binaire \code{stgs_tests} regroupe tests codec/CRC, application-signal, replay/santé et réseau loopback. CTest ne lance pas un test par fonction : il lance l'exécutable de test enregistré sous \code{stgs_unit_and_integration_tests}.
+
+\begin{whybox}{Pourquoi les tests réseau loopback comptent ?}
+Ils exercent de vraies sockets locales et des scénarios de fragmentation/fermeture, là où un simple test du codec ne peut pas détecter les erreurs de cycle de vie de \code{poll()}, \code{accept()} ou \code{recv()}.
+\end{whybox}
+
+\section{ASan + UBSan}
+\begin{lstlisting}
+make asan-test
+\end{lstlisting}
+Le Makefile crée \code{build-asan} en Debug avec \code{STGS_ENABLE_SANITIZERS=ON}. CMake ajoute \code{-fsanitize=address,undefined -fno-omit-frame-pointer}. Puis CTest tourne avec :
+\begin{lstlisting}
+ASAN_OPTIONS=detect_leaks=1
+UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
+\end{lstlisting}
+AddressSanitizer cible notamment accès hors limites, use-after-free et erreurs de durée de vie ; UBSan cible des comportements indéfinis détectables à l'exécution. Ce n'est pas une preuve mathématique d'absence de bug.
+
+\section{ThreadSanitizer}
+\begin{lstlisting}
+make tsan-test
+\end{lstlisting}
+Une build séparée active \code{-fsanitize=thread}. Le projet interdit volontairement de combiner TSan avec ASan/UBSan dans la même configuration. TSan observe les accès concurrents exécutés par les tests et signale les data races détectées.
+
+\section{Diagnostic de ports}
+\begin{lstlisting}
+./build/stgs_port_check --host 127.0.0.1 --ports 9000:9010 --timeout-ms 200
+\end{lstlisting}
+
+\begin{callflow}{Port check}
+\ttfamily
+main
+$\rightarrow$ parseArgs local
+$\rightarrow$ isLoopbackIpv4
+$\rightarrow$ scanTcpPorts
+$\rightarrow$ probeTcpPort x N
+$\rightarrow$ socket O\_NONBLOCK
+$\rightarrow$ connect
+$\rightarrow$ poll(POLLOUT)
+$\rightarrow$ getsockopt(SO\_ERROR)
+$\rightarrow$ rapport TerminalUi
+\end{callflow}
+
+Le parcours est séquentiel. Les états sont : OPEN, CLOSED, TIMEOUT ou ERROR. La latence couvre la tentative de connexion observée. La plage est limitée à 256 ports et la cible au loopback 127.0.0.0/8 (ou \code{localhost}).
+
+\begin{warningbox}{Port OPEN n'est pas service STGS identifié}
+Le diagnostic ne réalise aucun handshake applicatif. Un autre serveur TCP local sera également classé OPEN.
+\end{warningbox}
+
+\section{Makefile : \texttt{make port-check}}
+\begin{lstlisting}
+make port-check HOST=127.0.0.1 PORTS=9000:9010
+\end{lstlisting}
+Après \code{make build}, la recette appelle exactement \code{stgs_port_check --host $(HOST) --ports $(PORTS)}.
+
+\section{Démonstrations Makefile}
+\subsection{Message}
+\begin{lstlisting}
+make message-demo HOST=127.0.0.1 PORTS=9000:9010
+\end{lstlisting}
+Le Makefile envoie un message via TCP en utilisant \code{--discover-ports}, avec \code{--count 1}.
+
+\subsection{Signal}
+\begin{lstlisting}
+make signal-demo HOST=127.0.0.1 PORTS=9000:9010
+\end{lstlisting}
+La recette envoie 5 blocs de 256 samples à 2 fps : sinus 5 Hz, $f_s=200$ Hz, amplitude 1.0, bruit gaussien $\sigma=0.35$.
+
+\section{Benchmark de décodage}
+\begin{lstlisting}
+./build/stgs_benchmark_decode --frames 200000 --payload-size 256 --decoder-threads 4 --seed 123456789
+\end{lstlisting}
+
+\begin{callflow}{Benchmark}
+\ttfamily
+parseArgs
+$\rightarrow$ pré-génération de N TelemetryFrame
+$\rightarrow$ encodeFrame pour chaque trame
+$\rightarrow$ BlockingQueue capacité 4096
+$\rightarrow$ démarrage N workers
+$\rightarrow$ start steady\_clock
+$\rightarrow$ push des trames encodées
+$\rightarrow$ workers: decodeFrame
+$\rightarrow$ join
+$\rightarrow$ frames\_per\_second = traitées / durée
+\end{callflow}
+
+\begin{warningbox}{Ce que mesure le benchmark}
+Il mesure volontairement le coût CPU du pipeline de file + \code{decodeFrame()}. Il exclut réseau, TCP framing, disque, terminal, santé et STGA. Le débit obtenu n'est donc pas le débit bout-en-bout de la station.
+\end{warningbox}
+
+\begin{limitbox}{Bornes benchmark}
+Frames : 1..10 000 000. Payload : 0..4096. Workers : 1..256. La totalité du jeu est pré-générée avant le chronométrage ; le garde-fou sur N évite une allocation accidentelle démesurée.
+\end{limitbox}
+
+\section{Nettoyage}
+\begin{lstlisting}
+make clean
+make distclean
+\end{lstlisting}
+\code{clean} demande au générateur CMake de nettoyer le build courant. \code{distclean} supprime les répertoires \code{build}, \code{build-*}, les sorties telemetry CSV/JSON et les fichiers \code{*.stgf}.
+
+\section{Lecture recommandée d'un résultat de validation}
+\begin{enumerate}
+\item Build strict GCC/Clang : qualité de compilation et portabilité de base.
+\item CTest : couverture fonctionnelle exécutée.
+\item ASan/UBSan : erreurs mémoire/UB sur les chemins testés.
+\item TSan : races sur les chemins concurrents testés.
+\item Benchmark : tendance CPU locale, à interpréter selon payload et workers.
+\end{enumerate}
+Aucun de ces outils pris isolément ne prouve l'absence totale de défaut ; leur intérêt vient de leur complémentarité.
+
+\end{document}

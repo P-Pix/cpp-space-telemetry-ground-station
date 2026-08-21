@@ -1,0 +1,236 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=2cm,left=2cm,right=2cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lastpage}
+\definecolor{STGSBlue}{HTML}{16324F}
+\definecolor{STGSTeal}{HTML}{0B7A75}
+\definecolor{STGSGray}{HTML}{F3F5F7}
+\definecolor{STGSBorder}{HTML}{CAD4DE}
+\definecolor{STGSRed}{HTML}{A23B3B}
+\definecolor{STGSGreen}{HTML}{276749}
+\definecolor{STGSOrange}{HTML}{A15C16}
+\hypersetup{colorlinks=true,linkcolor=STGSBlue,urlcolor=STGSTeal,citecolor=STGSTeal,pdftitle={STGS documentation technique}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{STGSBlue}{\textbf{STGS - Documentation d'exécution}}}
+\fancyhead[R]{\small Projet C++20 / Linux}
+\fancyfoot[L]{\small Révision documentaire : 21 août 2026}
+\fancyfoot[R]{\small Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{STGSBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{STGSTeal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{STGSBlue}}{\thesubsubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.3em}
+\lstdefinestyle{terminal}{
+  backgroundcolor=\color{STGSGray},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{STGSBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=terminal}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\source}[2]{\textcolor{STGSTeal}{\textbf{Source :}} \code{#1}, lignes #2}
+\newtcolorbox{callflow}[1]{
+  enhanced,breakable,colback=STGSGray,colframe=STGSBlue,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{limitbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSOrange,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{whybox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSTeal,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSRed,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newcommand{\cover}[3]{
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+\includegraphics[width=0.88\textwidth]{assets/Banniere.png}\\[1.2cm]
+{\Huge\bfseries\color{STGSBlue} #1\par}
+\vspace{0.35cm}
+{\Large #2\par}
+\vspace{0.7cm}
+\begin{tcolorbox}[colback=STGSGray,colframe=STGSBorder,width=0.86\textwidth]
+#3
+\end{tcolorbox}
+\vfill
+{\large Space Telemetry Ground Station (STGS)\par}
+{\small Documentation basée sur l'archive \code{cpp-space-telemetry-ground-station-showcase-modular.zip}.\par}
+{\small Les numéros de lignes correspondent à cette révision et peuvent évoluer après modification du code.\par}
+\end{titlepage}
+\tableofcontents
+\newpage
+}
+\begin{document}
+\cover{Volume 5 - Limites, invariants et lecture d'entretien}{Ce que le projet garantit, où il s'arrête, et comment justifier les choix}{
+Ce volume rassemble les limites chiffrées, les comportements d'erreur et les points à expliquer lors d'une revue C++/systèmes. Il distingue explicitement les garanties de la maquette des propriétés qui nécessiteraient une architecture de production ou de certification.
+}
+
+\section{Table de limites de référence}
+\begin{longtable}{p{0.27\textwidth}p{0.22\textwidth}p{0.41\textwidth}}
+\toprule
+Élément & Limite & Origine / conséquence \\
+\midrule
+\endhead
+Port utilisateur & 1..65535 & Type u16, port 0 refusé par la CLI. \\
+Plage diagnostic & 256 ports max & Empêche un scan local non borné. \\
+Timeout probe & 1..60000 ms & Garde-fou CLI. \\
+Header STGS & 23 octets & Layout v1 verrouillé par static\_assert. \\
+CRC STGS & 4 octets & CRC-32/ISO-HDLC. \\
+Payload STGS & 4096 octets max & Limite applicative volontaire. \\
+Trame STGS & 27..4123 octets & Header + payload + CRC. \\
+Message STGA & 4086 octets max & 4096 - 10 octets de header texte. \\
+Signal STGA & 1018 samples max & 4096 - 22, puis 4 octets/sample. \\
+Sample rate & 1..65535 Hz & u16 STGA. \\
+Fréquence signal & $0<f<f_s/2$ & Nyquist strict. \\
+Décodeurs station & 1..256 & Garde-fou CLI. \\
+Capacité de file & 1..1 000 000 & Production toujours bornée. \\
+Filtre moyenne & fenêtre impaire 1..1017 & Centré et borné au bloc maximal. \\
+Frames simulateur & 1..10 000 000 & Garde-fou génération. \\
+\bottomrule
+\end{longtable}
+
+\section{Invariants du codec}
+\code{decodeFrame()} vérifie dans cet ordre : taille minimale, magic, version, PAYLOAD\_LEN, taille totale, CRC, température finie, batterie, statut. Cet ordre évite de lire des champs hors limites et évite de construire une \code{TelemetryFrame} avant validation d'intégrité.
+
+\begin{callflow}{Décision de validation}
+\ttfamily
+bytes
+$\rightarrow$ size >= 27
+$\rightarrow$ magic == STGS
+$\rightarrow$ version == 1
+$\rightarrow$ payload <= 4096
+$\rightarrow$ size exacte
+$\rightarrow$ CRC correct
+$\rightarrow$ temperature finie
+$\rightarrow$ battery <= 100
+$\rightarrow$ status connu
+$\rightarrow$ TelemetryFrame
+\end{callflow}
+
+Les corruptions attendues sont des valeurs \code{FrameError}, pas des exceptions. Cela évite d'utiliser les exceptions comme contrôle de flux normal sur une entrée bruitée.
+
+\section{Invariants du TCP}
+\begin{itemize}
+\item un \code{StreamFrameExtractor} par client ;
+\item les frontières de \code{recv()} ne sont jamais considérées comme des frontières de trame ;
+\item la liste \code{pollfd} est un snapshot cohérent du nombre de clients avant \code{poll()} ;
+\item les clients sont traités en ordre inverse pour permettre \code{erase()} sans décaler les indices restant à traiter ;
+\item les données sont drainées même quand \code{POLLHUP} accompagne les derniers octets ;
+\item les nouveaux clients ne sont acceptés qu'après traitement du snapshot courant.
+\end{itemize}
+
+\source{src/NetworkServerTcp.cpp}{105--246}
+
+\section{Invariants du pipeline}
+\begin{itemize}
+\item la séquence est attribuée avant le décodage parallèle ;
+\item un worker ne modifie ni santé ni fichier ;
+\item un seul writer applique les effets de bord ordonnés ;
+\item une séquence manquante à la fermeture déclenche une erreur ;
+\item la file brute est fermée et drainée avant la file décodée ;
+\item la première exception de worker est capturée et relancée sur le thread principal.
+\end{itemize}
+
+\section{STGA : distinction entre erreur de trame et erreur applicative}
+Une trame peut avoir un CRC correct mais contenir une enveloppe STGA malformée. Dans ce cas :
+\begin{enumerate}
+\item \code{decodeFrame()} accepte la trame ;
+\item le compteur \code{decoded} augmente ;
+\item \code{decodeApplicationPayload()} retourne une erreur applicative ;
+\item \code{applicationErrors} augmente et un warning est loggé ;
+\item la trame externe reste exportée, car son intégrité STGS est valide.
+\end{enumerate}
+Ce découplage permet de faire évoluer la couche applicative sans confondre intégrité transport et interprétation métier.
+
+\section{Santé : sens exact des seuils}
+La fenêtre contient à la fois trames valides et rejets. Un rejet compte dans le taux de rejet mais jamais comme télémétrie critique. Une trame valide CRITICAL ou SAFE\_MODE compte comme critique.
+
+\begin{limitbox}{Valeurs par défaut}
+Fenêtre 100, minimum 20, dégradation à 10\% de rejets ou 8 critiques, récupération à 3\% de rejets et 3 critiques maximum. Ce sont des paramètres de démonstration, pas une norme spatiale.
+\end{limitbox}
+
+\section{DSP : ce que l'onde représente réellement}
+Le mode signal ne simule pas une onde RF analogique. Il transporte un bloc d'échantillons numériques représentant un sinus synthétique et éventuellement un bruit gaussien. Le filtre \code{sine-projection} suppose connue la fréquence nominale incluse dans les métadonnées STGA.
+
+\subsection{Moyenne glissante}
+Pour chaque point, la fenêtre impaire est centrée et tronquée aux bords. Complexité de l'implémentation actuelle : approximativement $O(NW)$, acceptable pour les petits blocs de démonstration mais optimisable par somme glissante pour de très grands flux.
+
+\subsection{Projection sinus/cosinus}
+Les coefficients sont estimés par :
+\[
+a = \frac{2}{N}\sum x[n]\sin(\omega n), \qquad
+b = \frac{2}{N}\sum x[n]\cos(\omega n)
+\]
+et la reconstruction par $dc + a\sin(\omega n) + b\cos(\omega n)$. L'amplitude estimée vaut $\sqrt{a^2+b^2}$.
+
+\begin{warningbox}{Limite de la métrique SNR}
+Le bruit est défini comme \code{raw-filtered}. Le SNR est donc dépendant du filtre et constitue une métrique de démonstration, pas une mesure RF instrumentale.
+\end{warningbox}
+
+\section{Port discovery : limite de sécurité et de sémantique}
+Les fonctions de probe acceptent uniquement le loopback IPv4. Elles sont séquentielles, limitées à 256 ports et utilisent un timeout borné. Cette décision réduit volontairement la fonctionnalité : l'objectif est de diagnostiquer plusieurs processus locaux STGS, pas de fournir un scanner réseau.
+
+\section{Fichiers STGF}
+Le fichier commence par \code{STGF} + version u32 big-endian. Chaque entrée contient longueur u32 + trame STGS complète. Avant allocation, la longueur doit être comprise entre 27 et 4123. Le replay ne contourne pas le codec : les trames repassent par le même \code{decodeFrame()} que le réseau.
+
+\section{I/O et erreurs disque}
+\code{TelemetryOutput} et \code{FrameFileWriter} vérifient l'état du flux après écriture et au flush explicite. Une erreur disque remonte donc comme exception, est capturée par la stratégie d'arrêt du pipeline si elle survient dans le writer, puis finit par faire échouer le processus plutôt que de produire silencieusement un fichier présenté comme complet.
+
+\section{Questions probables en entretien et réponses techniques}
+\subsection{Pourquoi un CRC et pas un hash cryptographique ?}
+Le CRC vise la détection d'erreurs accidentelles sur la trame de démonstration, pas l'authenticité. Pour une menace active, il faudrait ajouter un mécanisme cryptographique (par exemple MAC/AEAD) et une gestion de clés ; ce n'est pas le rôle de CRC-32.
+
+\subsection{Pourquoi UDP et TCP ?}
+UDP permet un message par datagramme et une architecture simple ; TCP démontre le problème réel de framing sur flux, fragmentation, multi-clients et backpressure. Le codec reste commun.
+
+\subsection{Pourquoi plusieurs décodeurs mais un writer ?}
+Le décodage/CRC est parallélisable ; l'ordre des effets de bord doit rester déterministe. Le writer unique simplifie l'invariant d'ordre et évite un verrou complexe autour du fichier et du moniteur de santé.
+
+\subsection{Pourquoi une file bornée ?}
+Sans borne, un producteur plus rapide que les consommateurs transforme la surcharge en croissance mémoire. La backpressure déplace le problème vers le débit, observable et maîtrisable.
+
+\subsection{Pourquoi le port-check ne vérifie-t-il pas l'identité STGS ?}
+Le protocole actuel est unidirectionnel et n'a pas de handshake. Ajouter une identité exigerait de concevoir une négociation/commande bidirectionnelle distincte. Le code préfère afficher honnêtement OPEN = listener TCP.
+
+\subsection{Pourquoi les valeurs de santé ne sont-elles pas des seuils métier ?}
+Parce que le projet est une vitrine technique. Les seuils sont configurables et explicitement documentés comme valeurs de démonstration pour éviter de leur donner une autorité qu'ils n'ont pas.
+
+\section{Ce qu'il faudrait ajouter pour une production critique}
+Selon le contexte réel : authentification/chiffrement, configuration mission externalisée, observabilité structurée, stratégie HA, tests de charge bout-en-bout, fuzzing continu, limites de connexions, gestion de quotas, compatibilité/versioning de protocole plus formalisés, métriques exportables, packaging/installation et éventuellement exigences de temps réel/certification.
+
+\begin{whybox}{Pourquoi documenter explicitement les limites ?}
+Une documentation technique crédible ne prétend pas que la maquette garantit ce qu'elle n'implémente pas. Savoir définir la frontière de garantie est souvent plus important en revue d'architecture que d'afficher une longue liste de fonctionnalités.
+\end{whybox}
+
+\end{document}

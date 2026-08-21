@@ -1,0 +1,317 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=2cm,left=2cm,right=2cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lastpage}
+\definecolor{STGSBlue}{HTML}{16324F}
+\definecolor{STGSTeal}{HTML}{0B7A75}
+\definecolor{STGSGray}{HTML}{F3F5F7}
+\definecolor{STGSBorder}{HTML}{CAD4DE}
+\definecolor{STGSRed}{HTML}{A23B3B}
+\definecolor{STGSGreen}{HTML}{276749}
+\definecolor{STGSOrange}{HTML}{A15C16}
+\hypersetup{colorlinks=true,linkcolor=STGSBlue,urlcolor=STGSTeal,citecolor=STGSTeal,pdftitle={STGS documentation technique}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{STGSBlue}{\textbf{STGS - Documentation d'exécution}}}
+\fancyhead[R]{\small Projet C++20 / Linux}
+\fancyfoot[L]{\small Révision documentaire : 21 août 2026}
+\fancyfoot[R]{\small Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\Large\bfseries\color{STGSBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{STGSTeal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{STGSBlue}}{\thesubsubsection}{0.7em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.3em}
+\lstdefinestyle{terminal}{
+  backgroundcolor=\color{STGSGray},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{STGSBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=terminal}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\source}[2]{\textcolor{STGSTeal}{\textbf{Source :}} \code{#1}, lignes #2}
+\newtcolorbox{callflow}[1]{
+  enhanced,breakable,colback=STGSGray,colframe=STGSBlue,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{limitbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSOrange,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{whybox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSTeal,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=white,colframe=STGSRed,
+  title={#1},fonttitle=\bfseries,left=1.2mm,right=1.2mm,top=1mm,bottom=1mm
+}
+\newcommand{\cover}[3]{
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+\includegraphics[width=0.88\textwidth]{assets/Banniere.png}\\[1.2cm]
+{\Huge\bfseries\color{STGSBlue} #1\par}
+\vspace{0.35cm}
+{\Large #2\par}
+\vspace{0.7cm}
+\begin{tcolorbox}[colback=STGSGray,colframe=STGSBorder,width=0.86\textwidth]
+#3
+\end{tcolorbox}
+\vfill
+{\large Space Telemetry Ground Station (STGS)\par}
+{\small Documentation basée sur l'archive \code{cpp-space-telemetry-ground-station-showcase-modular.zip}.\par}
+{\small Les numéros de lignes correspondent à cette révision et peuvent évoluer après modification du code.\par}
+\end{titlepage}
+\tableofcontents
+\newpage
+}
+\begin{document}
+\cover{Volume 2 - Commandes de la station sol}{Traçage précis de \texttt{stgs\_ground\_station}}{
+Chaque commande est suivie depuis le parsing CLI jusqu'au résumé final. Les différences TCP, UDP, replay et auto-port sont explicitées, ainsi que les options de pipeline, santé, filtrage et sortie.
+}
+
+\section{Point d'entrée commun}
+Toutes les commandes de station commencent par :
+\begin{callflow}{Appels communs}
+\ttfamily
+main(argc, argv)
+$\rightarrow$ parseArgs(argc, argv)
+$\rightarrow$ run(Options)
+$\rightarrow$ TerminalUi
+$\rightarrow$ Logger + StationHealthMonitor + PosixSignalStopController
+$\rightarrow$ GroundStationPipeline::run()
+\end{callflow}
+
+\source{apps/ground_station.cpp}{15--27} ; \source{apps/ground_station/GroundStationApp.cpp}{107--124}
+
+\section{Commande TCP classique}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --decoder-threads 4 --output telemetry.csv
+\end{lstlisting}
+
+\subsection{Parsing exact}
+\code{parseArgs()} sélectionne \code{Transport::Tcp}, valide le port dans [1,65535], fixe 4 workers et le chemin de sortie. Le format est \code{Auto} ; l'extension n'étant pas \code{.json}, \code{resolveOutputFormat()} choisira CSV.
+
+\subsection{Chaîne d'appels}
+\begin{callflow}{TCP sur le port 9000}
+\ttfamily
+main
+$\rightarrow$ parseArgs
+$\rightarrow$ run
+$\rightarrow$ GroundStationPipeline ctor
+$\rightarrow$ TelemetryOutput ctor
+$\rightarrow$ pipeline.run
+$\rightarrow$ startWorkers
+$\rightarrow$ receiveNetwork
+$\rightarrow$ NetworkServer::run
+$\rightarrow$ NetworkServer::runTcp
+$\rightarrow$ createBoundSocket
+$\rightarrow$ bind + listen + poll
+$\rightarrow$ accept
+$\rightarrow$ recv
+$\rightarrow$ StreamFrameExtractor::feed
+$\rightarrow$ callback
+$\rightarrow$ submit
+$\rightarrow$ rawQueue
+$\rightarrow$ decoderLoop/decodeFrame
+$\rightarrow$ decodedQueue
+$\rightarrow$ writerLoop
+$\rightarrow$ santé + STGA + CSV
+\end{callflow}
+
+\subsection{Pourquoi chaque étape existe}
+\begin{longtable}{p{0.23\textwidth}p{0.32\textwidth}p{0.37\textwidth}}
+\toprule
+Fonction & Action & Pourquoi \\
+\midrule
+\endhead
+\code{createBoundSocket()} & socket IPv4, SO\_REUSEADDR, bind & Centraliser l'initialisation et garantir le RAII en cas d'erreur. \\
+\code{runTcp()} & non-blocking + listen + poll & Supporter plusieurs clients et un arrêt coopératif. \\
+\code{StreamFrameExtractor::feed()} & reconstruit les frontières & TCP ne préserve pas les messages. \\
+\code{submit()} & attribue une séquence + push & Stabiliser l'ordre avant parallélisme. \\
+\code{decodeFrame()} & valide protocole et CRC & Distinguer corruption de transport et trame valide. \\
+\code{writerLoop()} & remet dans l'ordre & Garantir CSV/santé identiques avec 1 ou N workers. \\
+\code{processApplicationPayload()} & détecte STGA & Garder la compatibilité avec les payloads opaques. \\
+\code{TelemetryOutput::write()} & écrit CSV/JSON & Isoler les effets de bord disque du décodage parallèle. \\
+\bottomrule
+\end{longtable}
+
+\begin{limitbox}{Arrêt}
+Ctrl+C ou SIGTERM bascule \code{running=false}. Avec le timeout réseau par défaut, la boucle \code{poll()} réévalue l'arrêt au plus tard après environ 250 ms, hors temps de drainage en cours.
+\end{limitbox}
+
+\section{Commande UDP}
+\begin{lstlisting}
+./build/stgs_ground_station --udp --port 9000 --decoder-threads 4 --output telemetry.csv
+\end{lstlisting}
+Le début du pipeline est identique, mais \code{NetworkServer::run()} appelle \code{runUdp()}. Chaque datagramme est transmis comme un candidat complet. \code{MSG_TRUNC} permet de connaître la taille réelle : tout datagramme supérieur à 4123 octets est rejeté avant le codec.
+
+\begin{callflow}{Différence essentielle UDP}
+\ttfamily
+recvfrom(MSG\_TRUNC)
+$\rightarrow$ taille <= MaxFrameSize ?
+$\rightarrow$ callback(ByteVector)
+$\rightarrow$ pipeline commun
+\end{callflow}
+
+\source{src/NetworkServerUdp.cpp}{18--77}
+
+\section{Sélection automatique d'un port local}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --auto-port 9000:9010 --output telemetry.csv
+\end{lstlisting}
+\code{parseArgs()} interdit la combinaison \code{--port} + \code{--auto-port}, exige TCP et limite la plage à 256 ports. Ensuite \code{run()} appelle \code{selectAutomaticPort()} avant de construire le logger et le pipeline.
+
+\begin{callflow}{Auto-port station}
+\ttfamily
+selectAutomaticPort
+$\rightarrow$ findFirstAvailableLocalPort
+$\rightarrow$ checkLocalPortAvailability(port 9000)
+$\rightarrow$ socket + bind temporaire
+$\rightarrow$ si occupé : port suivant
+$\rightarrow$ premier bind réussi = port choisi
+$\rightarrow$ fermeture de la socket de test
+$\rightarrow$ démarrage normal de la station sur ce port
+\end{callflow}
+
+\begin{warningbox}{Ce que \texttt{--auto-port} ne fait pas}
+Il ne cherche pas une communication existante. Il cherche le premier port \textbf{libre pour bind} sur la machine locale. La recherche d'un listener existant est la fonction de \code{stgs_port_check} et de \code{--discover-ports} côté simulateur.
+\end{warningbox}
+
+\section{Replay STGF}
+\begin{lstlisting}
+./build/stgs_ground_station --replay frames.stgf --replay-rate 100 --output replay.csv
+\end{lstlisting}
+\code{parseArgs()} interdit le mélange replay + TCP/UDP. \code{receiveInput()} choisit \code{receiveReplay()}.
+
+\begin{callflow}{Replay}
+\ttfamily
+FrameFileReader(path)
+$\rightarrow$ validation magic STGF + version
+$\rightarrow$ readNext()
+$\rightarrow$ longueur u32 vérifiée [27,4123]
+$\rightarrow$ lecture exacte de la trame
+$\rightarrow$ submit()
+$\rightarrow$ pipeline normal decode/CRC/santé/STGA/export
+\end{callflow}
+
+Avec \code{--replay-rate 0}, aucune temporisation n'est ajoutée. Au-dessus de 0, le code utilise \code{steady_clock} et \code{sleep_until} avec une échéance cumulée ; le temps du décodage n'est donc pas ajouté à chaque période.
+
+\source{apps/ground_station/GroundStationInput.cpp}{30--63} ; \source{src/Replay.cpp}{103--147}
+
+\section{Sortie CSV et JSON}
+\subsection{CSV implicite}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --output telemetry.csv
+\end{lstlisting}
+L'extension autre que \code{.json} entraîne CSV en mode Auto.
+
+\subsection{JSON implicite}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --output telemetry.json
+\end{lstlisting}
+L'extension exactement \code{.json} entraîne JSON.
+
+\subsection{Forçage du format}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --output data.txt --output-format json
+\end{lstlisting}
+Le format demandé gagne sur l'extension.
+
+\code{TelemetryOutput} ouvre le fichier en troncature dès la construction du pipeline. Chaque trame \textbf{validée} est exportée ; une trame rejetée CRC/format n'est pas écrite. Une erreur STGA interne ne retire pas la trame externe de l'export, car le framing et le CRC restent valides.
+
+\source{apps/ground_station/TelemetryOutput.cpp}{23--72}
+
+\section{Filtrage des signaux reçus}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --signal-filter none
+./build/stgs_ground_station --tcp --port 9000 --signal-filter moving-average --filter-window 5
+./build/stgs_ground_station --tcp --port 9000 --signal-filter sine-projection
+\end{lstlisting}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}l X X}
+\toprule
+Mode & Fonction appelée & Conséquence \\
+\midrule
+none & copie des samples & Affiche le signal brut comme filtré. \\
+moving-average & \code{movingAverageFilter()} & FIR centré, fenêtre impaire. \\
+sine-projection & \code{sineProjectionFilter()} & Estime DC + coefficients sin/cos à la fréquence nominale. \\
+\bottomrule
+\end{tabularx}
+
+Après filtrage, \code{computeSignalMetrics()} calcule RMS brut, RMS filtré, RMS du résidu, amplitude estimée et SNR de démonstration. Le résultat filtré est rendu dans le terminal ; le CSV/JSON conserve la trame reçue et son payload brut.
+
+\section{Santé NOMINAL / DEGRADED}
+Options principales :
+\begin{lstlisting}
+--degraded-window 100
+--degraded-min-samples 20
+--degraded-rejection-rate 0.10
+--degraded-recovery-rate 0.03
+--degraded-critical-count 8
+--recovery-critical-count 3
+\end{lstlisting}
+
+Une trame CRC/format rejetée appelle \code{recordRejected()}. Une trame valide appelle \code{recordDecoded()}; CRITICAL et SAFE\_MODE comptent comme critiques. Aucune transition n'est évaluée avant \code{minSamples}.
+
+\begin{callflow}{Hystérésis par défaut}
+\ttfamily
+NOMINAL
+$\xrightarrow{rejets >= 10\% \; OU \; critiques >= 8}$ DEGRADED
+$\xrightarrow{rejets <= 3\% \; ET \; critiques <= 3}$ NOMINAL
+\end{callflow}
+
+\source{src/StationHealth.cpp}{70--110}
+
+\section{Logging, verbose et couleurs}
+\begin{lstlisting}
+./build/stgs_ground_station --tcp --port 9000 --log station.log --log-level info
+./build/stgs_ground_station --tcp --port 9000 --verbose
+./build/stgs_ground_station --tcp --port 9000 --no-color
+\end{lstlisting}
+\code{--verbose} active aussi le niveau Debug et journalise chaque trame décodée avec sa séquence. \code{--no-color} n'empêche pas la structure de l'UI ; il supprime seulement les codes ANSI.
+
+\section{Table complète des bornes station}
+\begin{longtable}{p{0.28\textwidth}p{0.2\textwidth}p{0.42\textwidth}}
+\toprule
+Option & Borne & Justification \\
+\midrule
+\endhead
+\code{--port} & 1..65535 & Port 0 refusé à l'utilisateur. \\
+\code{--auto-port} & <=256 ports & Diagnostic local volontairement borné. \\
+\code{--decoder-threads} & 1..256 & Garde-fou CLI, pas limite protocole. \\
+\code{--queue-capacity} & 1..1 000 000 & Évite zéro et saisies démesurées. \\
+\code{--replay-rate} & >=0, fini & 0 = débit maximal. \\
+\code{--filter-window} & impair, 1..1017 & Filtre centré ; borne dérivée du bloc signal maximal. \\
+Fenêtre santé & 1..1 000 000 & Garde-fou d'allocation. \\
+Probabilités santé & [0,1] & Taux mathématiquement valide. \\
+\bottomrule
+\end{longtable}
+
+\end{document}
