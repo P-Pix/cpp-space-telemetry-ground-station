@@ -69,7 +69,7 @@ latexmk -pdf STGS_05_Limites_invariants_entretien.tex
 latexmk -pdf STGS_Manuel_execution_complet.tex
 ```
 
-La compilation du manuel complet suppose que les cinq PDF autonomes sont presents dans le meme dossier, comme dans cette archive.
+La compilation du manuel complet suppose que les cinq PDF autonomes sont présents dans le même dossier.
 
 ## Point important pour une revue technique
 
@@ -80,4 +80,4 @@ La documentation distingue volontairement les fonctionnalites proches mais seman
 - `stgs_port_check` produit un rapport sur une plage sans identifier le protocole applicatif ;
 - un port `OPEN` ne prouve pas qu'il s'agit d'un service STGS, car STGS v1 n'implemente pas de handshake d'identite.
 
-Les limites chiffrees et seuils de sante sont documentes comme appartenant a cette revision de demonstration. Ils ne sont pas presentes comme des exigences normatives aerospatiales.
+Les limites chiffrées et seuils de santé sont documentés comme des paramètres de démonstration du projet. Ils ne sont pas presentes comme des exigences normatives aerospatiales.
