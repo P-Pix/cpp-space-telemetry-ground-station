@@ -11,12 +11,18 @@
 #include "stgs/Crc32.hpp"
 
 #include <algorithm>
+#include <cmath>
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
 
 namespace stgs {
 namespace {
+
+// Deux chiffres hexadécimaux représentent un octet ; huit représentent un CRC32 complet.
+inline constexpr int HexByteFieldWidth = 2;
+inline constexpr int HexCrc32FieldWidth = 8;
+inline constexpr int TemperatureDisplayPrecision = 2;
 
 FrameError makeError(FrameErrorCode code, std::string message) {
     return FrameError{code, std::move(message)};
@@ -52,7 +58,7 @@ std::string payloadToHex(const ByteVector& payload, std::size_t maxBytes) {
         if (i > 0U) {
             oss << ' ';
         }
-        oss << std::setw(2) << static_cast<int>(payload[i]);
+        oss << std::setw(HexByteFieldWidth) << static_cast<int>(payload[i]);
     }
     if (payload.size() > displayed) {
         oss << " ...(" << std::dec << payload.size() << " bytes)";
@@ -64,7 +70,7 @@ std::string toString(const TelemetryFrame& frame) {
     std::ostringstream oss;
     oss << "sat=" << frame.satelliteId
         << " ts_ms=" << frame.timestampMs
-        << " temp_c=" << std::fixed << std::setprecision(2) << frame.temperatureC
+        << " temp_c=" << std::fixed << std::setprecision(TemperatureDisplayPrecision) << frame.temperatureC
         << " battery=" << static_cast<int>(frame.batteryPercent) << "%"
         << " status=" << statusToString(frame.status)
         << " payload_len=" << frame.payload.size();
@@ -78,7 +84,10 @@ ByteVector encodeFrame(const TelemetryFrame& frame) {
     if (frame.version != ProtocolVersion) {
         throw std::invalid_argument("unsupported protocol version");
     }
-    if (frame.batteryPercent > 100U) {
+    if (!std::isfinite(frame.temperatureC)) {
+        throw std::invalid_argument("temperature must be finite");
+    }
+    if (frame.batteryPercent > MaxBatteryPercent) {
         throw std::invalid_argument("battery percent must be between 0 and 100");
     }
 
@@ -108,7 +117,8 @@ ByteVector encodeFrame(const TelemetryFrame& frame) {
  * @brief Applique l’ensemble des validations structurelles et métier à une trame reçue.
  *
  * La taille minimale et payloadLength sont contrôlés avant accès aux champs variables. Le CRC est
- * vérifié avant de construire TelemetryFrame, puis batterie et statut sont bornés explicitement.
+ * vérifié avant de construire TelemetryFrame, puis température finie, batterie et statut sont
+ * validés explicitement.
  */
 
 FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes) {
@@ -116,17 +126,17 @@ FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes) {
         return makeError(FrameErrorCode::TooShort, "frame is shorter than the minimum header + CRC size");
     }
 
-    const auto magic = detail::readU32BE(bytes, 0U);
+    const auto magic = detail::readU32BE(bytes, MagicOffset);
     if (magic != FrameMagic) {
         return makeError(FrameErrorCode::BadMagic, "invalid frame magic; expected ASCII STGS");
     }
 
-    const auto version = bytes[4U];
+    const auto version = bytes[VersionOffset];
     if (version != ProtocolVersion) {
         return makeError(FrameErrorCode::UnsupportedVersion, "unsupported protocol version");
     }
 
-    const auto payloadLength = detail::readU16BE(bytes, 21U);
+    const auto payloadLength = detail::readU16BE(bytes, PayloadLengthOffset);
     if (payloadLength > MaxPayloadSize) {
         return makeError(FrameErrorCode::PayloadTooLarge, "payload length exceeds configured maximum");
     }
@@ -142,26 +152,31 @@ FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes) {
     const auto calculatedCrc = crc32(bytes.subspan(0U, bytes.size() - CrcSize));
     if (expectedCrc != calculatedCrc) {
         std::ostringstream oss;
-        oss << "CRC mismatch: expected 0x" << std::hex << std::setw(8) << std::setfill('0') << expectedCrc
-            << ", calculated 0x" << std::setw(8) << calculatedCrc;
+        oss << "CRC mismatch: expected 0x" << std::hex << std::setw(HexCrc32FieldWidth) << std::setfill('0') << expectedCrc
+            << ", calculated 0x" << std::setw(HexCrc32FieldWidth) << calculatedCrc;
         return makeError(FrameErrorCode::BadCrc, oss.str());
     }
 
-    const auto battery = bytes[19U];
-    if (battery > 100U) {
+    const float temperature = detail::readFloatBE(bytes, TemperatureOffset);
+    if (!std::isfinite(temperature)) {
+        return makeError(FrameErrorCode::InvalidTemperature, "temperature field must be finite");
+    }
+
+    const auto battery = bytes[BatteryOffset];
+    if (battery > MaxBatteryPercent) {
         return makeError(FrameErrorCode::InvalidBattery, "battery percent is outside the 0..100 range");
     }
 
-    const auto statusByte = bytes[20U];
+    const auto statusByte = bytes[StatusOffset];
     if (statusByte > static_cast<std::uint8_t>(Status::SafeMode)) {
         return makeError(FrameErrorCode::InvalidStatus, "status field contains an unknown value");
     }
 
     TelemetryFrame frame;
     frame.version = version;
-    frame.satelliteId = detail::readU16BE(bytes, 5U);
-    frame.timestampMs = detail::readU64BE(bytes, 7U);
-    frame.temperatureC = detail::readFloatBE(bytes, 15U);
+    frame.satelliteId = detail::readU16BE(bytes, SatelliteIdOffset);
+    frame.timestampMs = detail::readU64BE(bytes, TimestampOffset);
+    frame.temperatureC = temperature;
     frame.batteryPercent = battery;
     frame.status = static_cast<Status>(statusByte);
     frame.payload.assign(bytes.begin() + static_cast<std::ptrdiff_t>(HeaderSize),
@@ -184,6 +199,8 @@ const char* errorCodeToString(FrameErrorCode code) noexcept {
         return "LengthMismatch";
     case FrameErrorCode::BadCrc:
         return "BadCrc";
+    case FrameErrorCode::InvalidTemperature:
+        return "InvalidTemperature";
     case FrameErrorCode::InvalidBattery:
         return "InvalidBattery";
     case FrameErrorCode::InvalidStatus:
@@ -223,7 +240,7 @@ std::vector<ByteVector> StreamFrameExtractor::feed(std::span<const std::uint8_t>
             return frames;
         }
 
-        const auto payloadLength = detail::readU16BE(buffer_, 21U);
+        const auto payloadLength = detail::readU16BE(buffer_, PayloadLengthOffset);
         if (payloadLength > MaxPayloadSize) {
             buffer_.erase(buffer_.begin());
             continue;

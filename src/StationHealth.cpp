@@ -40,6 +40,15 @@ StationHealthMonitor::StationHealthMonitor(StationHealthConfig config)
     if (config_.recoveryRejectionRate > config_.degradedRejectionRate) {
         throw std::invalid_argument("recovery rejection rate cannot exceed degraded rejection rate");
     }
+    if (config_.criticalFramesForDegraded == 0U) {
+        throw std::invalid_argument("critical frame degradation threshold must be greater than zero");
+    }
+    if (config_.criticalFramesForDegraded > config_.windowSize) {
+        throw std::invalid_argument("critical frame degradation threshold cannot exceed window size");
+    }
+    if (config_.criticalFramesForRecovery >= config_.criticalFramesForDegraded) {
+        throw std::invalid_argument("critical frame recovery threshold must be lower than degradation threshold");
+    }
 }
 
 std::optional<StationStateTransition> StationHealthMonitor::recordDecoded(const TelemetryFrame& frame) {
@@ -55,7 +64,7 @@ std::optional<StationStateTransition> StationHealthMonitor::recordRejected() {
  *
  * Aucune transition n’est évaluée avant minSamples. En état NOMINAL, taux de rejet ou nombre de
  * trames critiques peuvent dégrader la station ; en état DEGRADED, la récupération exige un taux
- * sous le seuil de reprise et l’absence de trame critique dans la fenêtre.
+ * sous le seuil de reprise et un nombre de trames critiques inférieur ou égal au seuil de récupération.
  */
 
 std::optional<StationStateTransition> StationHealthMonitor::recordSample(Sample sample) {
@@ -81,7 +90,8 @@ std::optional<StationStateTransition> StationHealthMonitor::recordSample(Sample 
             target = StationState::Degraded;
         }
     } else {
-        if (snapshot.rejectionRate <= config_.recoveryRejectionRate && snapshot.critical == 0U) {
+        if (snapshot.rejectionRate <= config_.recoveryRejectionRate &&
+            snapshot.critical <= config_.criticalFramesForRecovery) {
             target = StationState::Nominal;
         }
     }
@@ -141,7 +151,9 @@ std::string StationHealthMonitor::transitionReasonLocked(const StationHealthSnap
         }
     } else {
         oss << "rejection rate " << snapshot.rejectionRate
-            << " recovered below threshold " << config_.recoveryRejectionRate;
+            << " <= recovery threshold " << config_.recoveryRejectionRate
+            << " and critical count " << snapshot.critical
+            << " <= recovery threshold " << config_.criticalFramesForRecovery;
     }
     return oss.str();
 }

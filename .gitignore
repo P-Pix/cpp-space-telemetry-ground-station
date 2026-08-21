@@ -1,8 +1,11 @@
 build/
+build-*/
 *.o
 *.a
 *.so
 *.log
+*.csv
+*.json
 *.stgf
 .DS_Store
 .cache/

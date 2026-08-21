@@ -26,7 +26,14 @@ namespace stgs
     class FrameFileWriter
     {
     public:
+        /**
+         * @brief Crée/tronque une capture STGF et écrit immédiatement son en-tête versionné.
+         * @param path Fichier de destination.
+         * @throws std::runtime_error Si le fichier ou son en-tête ne peut pas être écrit.
+         */
         explicit FrameFileWriter(const std::filesystem::path &path);
+
+        /** @brief Termine le flux ; les erreurs finales doivent être contrôlées via flush(). */
         ~FrameFileWriter();
 
         FrameFileWriter(const FrameFileWriter &) = delete;
@@ -38,6 +45,12 @@ namespace stgs
          * @throws std::runtime_error Si la taille dépasse MaxFrameSize ou si l’écriture échoue.
          */
         void writeFrame(std::span<const std::uint8_t> frameBytes);
+
+        /**
+         * @brief Force l'écriture des buffers du flux C++ vers le fichier et vérifie son état.
+         * @throws std::runtime_error Si le flush révèle une erreur d'E/S.
+         */
+        void flush();
 
     private:
         std::ofstream out_;
@@ -53,6 +66,11 @@ namespace stgs
     class FrameFileReader
     {
     public:
+        /**
+         * @brief Ouvre une capture STGF et valide son magic/version avant toute lecture de trame.
+         * @param path Fichier source.
+         * @throws std::runtime_error Si le fichier est absent, tronqué ou d'une version inconnue.
+         */
         explicit FrameFileReader(const std::filesystem::path &path);
 
         FrameFileReader(const FrameFileReader &) = delete;

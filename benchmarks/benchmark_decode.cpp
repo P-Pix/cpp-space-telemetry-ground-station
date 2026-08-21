@@ -6,6 +6,7 @@
  */
 
 #include "stgs/BlockingQueue.hpp"
+#include "stgs/CliParsing.hpp"
 #include "stgs/FrameCodec.hpp"
 
 #include <atomic>
@@ -14,6 +15,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <random>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <thread>
@@ -21,11 +23,29 @@
 
 namespace {
 
+// Valeurs de scénario reproductibles : elles décrivent la charge du benchmark, pas le protocole STGS.
+inline constexpr std::size_t DefaultBenchmarkFrames = 200'000U;
+inline constexpr std::size_t DefaultBenchmarkPayloadBytes = 64U;
+// File bornée assez large pour découpler brièvement producteur/workers sans masquer la backpressure.
+inline constexpr std::size_t BenchmarkQueueCapacity = 4096U;
+inline constexpr std::size_t MaximumBenchmarkFrames = 10'000'000U;
+inline constexpr std::size_t MaximumBenchmarkDecoderThreads = 256U;
+inline constexpr std::uint32_t DefaultBenchmarkSeed = 123'456'789U;
+
+// Jeu de télémétrie synthétique déterministe utilisé uniquement pour nourrir le décodeur.
+inline constexpr std::uint16_t BenchmarkSatelliteBaseId = 1000U;
+inline constexpr std::size_t BenchmarkSatellitePoolSize = 500U;
+inline constexpr std::uint64_t BenchmarkTimestampBaseMs = 1'712'345'678'901ULL;
+inline constexpr float BenchmarkTemperatureBaseC = 20.0F;
+inline constexpr std::size_t BenchmarkTemperatureCycleSteps = 100U;
+inline constexpr float BenchmarkTemperatureStepC = 0.1F;
+inline constexpr std::size_t BenchmarkBatteryCycleStates = 101U; // valeurs 100..0 incluses.
+
 struct Options {
-    std::size_t frames = 200000;
-    std::size_t payloadSize = 64;
+    std::size_t frames = DefaultBenchmarkFrames;
+    std::size_t payloadSize = DefaultBenchmarkPayloadBytes;
     std::size_t decoderThreads = std::max(1U, std::thread::hardware_concurrency());
-    std::uint32_t seed = 123456789U;
+    std::uint32_t seed = DefaultBenchmarkSeed;
 };
 
 void printUsage() {
@@ -51,6 +71,14 @@ std::string requireValue(int& index, int argc, char** argv) {
     return argv[index];
 }
 
+/**
+ * @brief Parse strictement la charge du benchmark avant d'allouer les trames.
+ *
+ * Les mêmes helpers que les exécutables de production sont utilisés : une valeur avec suffixe,
+ * un dépassement entier ou un nombre de workers nul est donc refusé au lieu d'être tronqué.
+ * La borne sur le nombre de trames évite qu'une faute de frappe transforme le benchmark en
+ * allocation mémoire démesurée puisqu'il pré-génère volontairement l'ensemble du jeu de données.
+ */
 Options parseArgs(int argc, char** argv) {
     Options opts;
     for (int i = 1; i < argc; ++i) {
@@ -59,36 +87,48 @@ Options parseArgs(int argc, char** argv) {
             printUsage();
             std::exit(0);
         } else if (arg == "--frames") {
-            opts.frames = std::stoull(requireValue(i, argc, argv));
+            opts.frames = stgs::parseUnsigned<std::size_t>(
+                requireValue(i, argc, argv), "--frames", 1U, MaximumBenchmarkFrames);
         } else if (arg == "--payload-size") {
-            opts.payloadSize = std::stoull(requireValue(i, argc, argv));
+            opts.payloadSize = stgs::parseUnsigned<std::size_t>(
+                requireValue(i, argc, argv), "--payload-size", 0U, stgs::MaxPayloadSize);
         } else if (arg == "--decoder-threads") {
-            opts.decoderThreads = std::stoull(requireValue(i, argc, argv));
+            opts.decoderThreads = stgs::parseUnsigned<std::size_t>(
+                requireValue(i, argc, argv), "--decoder-threads", 1U, MaximumBenchmarkDecoderThreads);
         } else if (arg == "--seed") {
-            opts.seed = static_cast<std::uint32_t>(std::stoul(requireValue(i, argc, argv)));
+            opts.seed = stgs::parseUnsigned<std::uint32_t>(requireValue(i, argc, argv), "--seed");
         } else {
             throw std::runtime_error("unknown option: " + arg);
         }
     }
-    if (opts.frames == 0U) {
-        throw std::runtime_error("--frames must be greater than zero");
-    }
-    if (opts.payloadSize > stgs::MaxPayloadSize) {
-        throw std::runtime_error("--payload-size exceeds MaxPayloadSize");
-    }
-    if (opts.decoderThreads == 0U) {
-        throw std::runtime_error("--decoder-threads must be greater than zero");
-    }
     return opts;
 }
 
+/**
+ * @brief Construit une trame valide et déterministe pour isoler le coût du pipeline de décodage.
+ *
+ * Les variations de satellite, température et batterie empêchent le benchmark de ne traiter qu'un
+ * buffer constant, sans prétendre simuler une mission réelle. Les cycles et l'époque de départ sont
+ * des données de charge nommées ci-dessus ; aucune de ces valeurs n'est une constante du protocole.
+ *
+ * @param opts Configuration de payload du benchmark.
+ * @param rng Générateur déterministe utilisé pour les octets de payload.
+ * @param index Index de la trame synthétique dans le jeu pré-généré.
+ * @return TelemetryFrame conforme, prête à être encodée par le codec réel.
+ */
 stgs::TelemetryFrame makeFrame(const Options& opts, std::mt19937& rng, std::size_t index) {
-    std::uniform_int_distribution<int> byteDist(0, 255);
+    std::uniform_int_distribution<unsigned int> byteDist(
+        0U, static_cast<unsigned int>(std::numeric_limits<std::uint8_t>::max()));
+
     stgs::TelemetryFrame frame;
-    frame.satelliteId = static_cast<std::uint16_t>(1000U + (index % 500U));
-    frame.timestampMs = 1712345678901ULL + index;
-    frame.temperatureC = 20.0F + static_cast<float>(index % 100U) / 10.0F;
-    frame.batteryPercent = static_cast<std::uint8_t>(100U - (index % 101U));
+    const auto satelliteOffset = index % BenchmarkSatellitePoolSize;
+    frame.satelliteId = static_cast<std::uint16_t>(
+        static_cast<std::size_t>(BenchmarkSatelliteBaseId) + satelliteOffset);
+    frame.timestampMs = BenchmarkTimestampBaseMs + static_cast<std::uint64_t>(index);
+    frame.temperatureC = BenchmarkTemperatureBaseC +
+                         static_cast<float>(index % BenchmarkTemperatureCycleSteps) * BenchmarkTemperatureStepC;
+    frame.batteryPercent = static_cast<std::uint8_t>(
+        static_cast<std::size_t>(stgs::MaxBatteryPercent) - (index % BenchmarkBatteryCycleStates));
     frame.status = stgs::Status::Nominal;
     frame.payload.resize(opts.payloadSize);
     for (auto& byte : frame.payload) {
@@ -109,7 +149,7 @@ int main(int argc, char** argv) {
             encoded.push_back(stgs::encodeFrame(makeFrame(opts, rng, i)));
         }
 
-        stgs::BlockingQueue<stgs::ByteVector> queue;
+        stgs::BlockingQueue<stgs::ByteVector> queue(BenchmarkQueueCapacity);
         std::atomic_size_t decoded{0};
         std::atomic_size_t rejected{0};
 

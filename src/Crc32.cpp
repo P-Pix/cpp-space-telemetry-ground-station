@@ -13,13 +13,19 @@
 namespace stgs {
 namespace {
 
-constexpr std::array<std::uint32_t, 256> makeTable() {
-    std::array<std::uint32_t, 256> table{};
+// Une table CRC indexée par octet contient 2^8 = 256 entrées ; chaque entrée traite 8 bits.
+constexpr std::size_t CrcTableEntryCount = 256U;
+constexpr int BitsPerByte = 8;
+constexpr std::uint32_t LeastSignificantBitMask = 1U;
+constexpr std::uint32_t LowByteMask = 0xFFU;
+
+constexpr std::array<std::uint32_t, CrcTableEntryCount> makeTable() {
+    std::array<std::uint32_t, CrcTableEntryCount> table{};
     for (std::uint32_t i = 0; i < table.size(); ++i) {
         std::uint32_t crc = i;
-        for (int bit = 0; bit < 8; ++bit) {
-            if ((crc & 1U) != 0U) {
-                crc = (crc >> 1U) ^ 0xEDB88320U;
+        for (int bit = 0; bit < BitsPerByte; ++bit) {
+            if ((crc & LeastSignificantBitMask) != 0U) {
+                crc = (crc >> 1U) ^ Crc32ReflectedPolynomial;
             } else {
                 crc >>= 1U;
             }
@@ -34,12 +40,12 @@ constexpr auto CrcTable = makeTable();
 } // namespace
 
 std::uint32_t crc32(std::span<const std::uint8_t> bytes) noexcept {
-    std::uint32_t crc = 0xFFFFFFFFU;
+    std::uint32_t crc = Crc32InitialValue;
     for (const auto byte : bytes) {
-        const auto index = static_cast<std::uint8_t>((crc ^ byte) & 0xFFU);
-        crc = (crc >> 8U) ^ CrcTable[index];
+        const auto index = static_cast<std::uint8_t>((crc ^ byte) & LowByteMask);
+        crc = (crc >> static_cast<unsigned>(BitsPerByte)) ^ CrcTable[index];
     }
-    return crc ^ 0xFFFFFFFFU;
+    return crc ^ Crc32FinalXor;
 }
 
 std::uint32_t crc32(std::string_view text) noexcept {

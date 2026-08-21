@@ -20,18 +20,21 @@
 namespace stgs
 {
 
+    /** @brief Causes de rejet attendues lors du décodage d'une trame reçue. */
     enum class FrameErrorCode
     {
-        TooShort,
-        BadMagic,
-        UnsupportedVersion,
-        PayloadTooLarge,
-        LengthMismatch,
-        BadCrc,
-        InvalidBattery,
-        InvalidStatus
+        TooShort,            ///< La trame ne contient même pas le minimum wire STGS.
+        BadMagic,            ///< Le préfixe de resynchronisation n'est pas "STGS".
+        UnsupportedVersion,  ///< La version annoncée n'est pas comprise par ce codec.
+        PayloadTooLarge,     ///< PAYLOAD_LEN dépasse la limite applicative MaxPayloadSize.
+        LengthMismatch,      ///< La taille réelle ne correspond pas au header + payload + CRC.
+        BadCrc,              ///< L'intégrité CRC-32/ISO-HDLC ne correspond pas aux octets reçus.
+        InvalidTemperature,  ///< La température encodée vaut NaN ou +/-Inf.
+        InvalidBattery,      ///< Le pourcentage batterie dépasse 100.
+        InvalidStatus        ///< L'octet d'état n'appartient pas à l'enum Status v1.
     };
 
+    /** @brief Diagnostic structuré retourné pour une corruption de données attendue. */
     struct FrameError
     {
         FrameErrorCode code;
@@ -57,6 +60,8 @@ namespace stgs
      * @return TelemetryFrame validée ou FrameError décrivant le rejet.
      */
     FrameParseResult decodeFrame(std::span<const std::uint8_t> bytes);
+
+    /** @brief Convertit un code de rejet de trame en libellé stable de diagnostic. */
     const char *errorCodeToString(FrameErrorCode code) noexcept;
 
     /**
@@ -67,8 +72,6 @@ namespace stgs
      * structurellement impossible.
      */
 
-    // Reassembles complete binary telemetry frames from a TCP byte stream.
-    // UDP does not need this because each datagram is already a candidate frame.
     class StreamFrameExtractor
     {
     public:
@@ -78,7 +81,10 @@ namespace stgs
          * @return Zéro, une ou plusieurs trames wire complètes.
          */
         std::vector<ByteVector> feed(std::span<const std::uint8_t> bytes);
+        /** @brief Oublie tout fragment TCP incomplet actuellement mémorisé. */
         void clear();
+
+        /** @brief Retourne le nombre d'octets incomplets conservés entre deux feed(). */
         [[nodiscard]] std::size_t bufferedBytes() const noexcept;
 
     private:

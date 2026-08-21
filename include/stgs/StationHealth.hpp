@@ -2,7 +2,9 @@
  * @file StationHealth.hpp
  * @brief Déclare le moniteur de santé opérationnelle de la station sol.
  *
- * Il agrège une fenêtre glissante de trames acceptées/rejetées et applique une hystérésis entre les états NOMINAL et DEGRADED.
+ * Le moniteur agrège une fenêtre glissante de trames valides/rejetées et applique deux hystérésis :
+ * une sur le taux de rejet et une sur le nombre de télémétries critiques. Les seuils par défaut sont
+ * des valeurs de démonstration configurables, pas des limites issues d'une norme spatiale.
  */
 
 #pragma once
@@ -27,28 +29,33 @@ namespace stgs
     /**
      * @brief Paramètre la fenêtre glissante et les seuils de transition de santé.
      *
-     * Le seuil de récupération peut être inférieur au seuil de dégradation afin de créer une
-     * hystérésis et d’éviter les oscillations d’état sur un flux proche de la limite.
+     * Par défaut, huit télémétries critiques dans une fenêtre de 100 échantillons provoquent DEGRADED,
+     * alors que le retour NOMINAL exige au plus trois critiques. Cette hystérésis est volontairement
+     * plus large que la distribution de démonstration (~3 % CRITICAL/SAFE_MODE) afin d'éviter le
+     * clignotement d'état observé autour d'un seuil égal à la moyenne simulée.
      */
     struct StationHealthConfig
     {
         bool enabled = true;
-        std::size_t windowSize = 100;
-        std::size_t minSamples = 20;
+        std::size_t windowSize = 100U;
+        std::size_t minSamples = 20U;
         double degradedRejectionRate = 0.10;
         double recoveryRejectionRate = 0.03;
-        std::size_t criticalFramesForDegraded = 3;
+        std::size_t criticalFramesForDegraded = 8U;
+        std::size_t criticalFramesForRecovery = 3U;
     };
 
+    /** @brief Photographie cohérente de la fenêtre de santé au moment de la lecture. */
     struct StationHealthSnapshot
     {
         StationState state = StationState::Nominal;
-        std::size_t samples = 0;
-        std::size_t rejected = 0;
-        std::size_t critical = 0;
+        std::size_t samples = 0U;
+        std::size_t rejected = 0U;
+        std::size_t critical = 0U;
         double rejectionRate = 0.0;
     };
 
+    /** @brief Décrit une bascule de santé et la cause qui l'a déclenchée. */
     struct StationStateTransition
     {
         StationState from = StationState::Nominal;
@@ -60,14 +67,20 @@ namespace stgs
     /**
      * @brief Suit la qualité récente du flux et signale les transitions NOMINAL/DEGRADED.
      *
-     * Objectif projet :
-     * Rendre visible une dégradation persistante sans basculer sur une erreur isolée. Une fenêtre
-     * glissante agrège les rejets et télémétries critiques ; des seuils distincts de dégradation et
-     * de récupération introduisent une hystérésis.
+     * La classe est thread-safe, mais l'application principale choisit volontairement de la mettre
+     * à jour dans l'ordre de réception après réordonnancement des résultats de décodage. Ainsi le
+     * nombre de workers n'influence jamais l'historique de santé.
      */
     class StationHealthMonitor
     {
     public:
+        /**
+         * @brief Construit le moniteur après validation de toutes les relations entre seuils.
+         * @param config Fenêtre, minimum d'observations et deux paires de seuils d'hystérésis.
+         * @throws std::invalid_argument Si un taux sort de [0,1], si minSamples dépasse la fenêtre,
+         * si le seuil critique est inatteignable dans la fenêtre ou si la récupération n'est pas
+         * strictement inférieure au seuil critique de dégradation.
+         */
         explicit StationHealthMonitor(StationHealthConfig config = {});
 
         StationHealthMonitor(const StationHealthMonitor &) = delete;
@@ -76,17 +89,20 @@ namespace stgs
         /**
          * @brief Ajoute une télémétrie valide à la fenêtre de santé.
          * @param frame Trame déjà validée par FrameCodec.
-         * @return Transition d’état si les seuils provoquent une bascule, sinon std::nullopt.
+         * @return Transition si les seuils provoquent une bascule, sinon std::nullopt.
          */
         std::optional<StationStateTransition> recordDecoded(const TelemetryFrame &frame);
 
         /**
-         * @brief Enregistre le rejet d’un candidat de trame.
-         * @return Transition éventuelle vers DEGRADED ou vers NOMINAL.
+         * @brief Enregistre le rejet d'un candidat de trame.
+         * @return Transition éventuelle après mise à jour de la fenêtre glissante.
          */
         std::optional<StationStateTransition> recordRejected();
 
+        /** @brief Retourne une photographie thread-safe de la fenêtre courante. */
         [[nodiscard]] StationHealthSnapshot snapshot() const;
+
+        /** @brief Retourne uniquement l'état NOMINAL/DEGRADED courant. */
         [[nodiscard]] StationState state() const;
 
     private:
@@ -96,8 +112,13 @@ namespace stgs
             bool critical = false;
         };
 
+        /** @brief Insère un échantillon, tronque la fenêtre et évalue une éventuelle transition. */
         std::optional<StationStateTransition> recordSample(Sample sample);
+
+        /** @brief Construit un snapshot ; mutex_ doit déjà être détenu par l'appelant. */
         [[nodiscard]] StationHealthSnapshot makeSnapshotLocked() const;
+
+        /** @brief Explique la règle précise ayant conduit à une transition ; mutex_ doit être détenu. */
         [[nodiscard]] std::string transitionReasonLocked(const StationHealthSnapshot &snapshot,
                                                          StationState target) const;
 
@@ -107,6 +128,7 @@ namespace stgs
         StationState state_ = StationState::Nominal;
     };
 
+    /** @brief Convertit l'état de santé en libellé stable de log/export. */
     const char *stationStateToString(StationState state) noexcept;
 
 } // namespace stgs

@@ -2,37 +2,104 @@ name: C++ CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
-  build-test-benchmark:
+  build-and-test:
+    name: ${{ matrix.compiler }} Release
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - compiler: gcc
+            cc: gcc
+            cxx: g++
+          - compiler: clang
+            cc: clang
+            cxx: clang++
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSTGS_BUILD_TESTS=ON -DSTGS_BUILD_BENCHMARKS=ON
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+        run: >-
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=Release
+          -DSTGS_BUILD_TESTS=ON
+          -DSTGS_BUILD_BENCHMARKS=ON
+          -DSTGS_WARNINGS_AS_ERRORS=ON
 
       - name: Build
         run: cmake --build build -j2
 
-      - name: Unit tests
+      - name: Unit and loopback integration tests
         run: ctest --test-dir build --output-on-failure
 
-      - name: Smoke replay CSV
+      - name: Replay determinism smoke test
         run: |
-          ./build/stgs_satellite_simulator --output-file frames.stgf --count 100 --rate 0 --seed 42
-          ./build/stgs_ground_station --replay frames.stgf --output telemetry.csv --decoder-threads 2
-          test -s telemetry.csv
+          ./build/stgs_satellite_simulator --output-file frames.stgf --count 500 --rate 0 --seed 424242
+          ./build/stgs_ground_station --replay frames.stgf --output one.csv --decoder-threads 1 --no-color
+          ./build/stgs_ground_station --replay frames.stgf --output many.csv --decoder-threads 4 --no-color
+          cmp one.csv many.csv
 
-      - name: Smoke replay JSON
+      - name: JSON output validation
         run: |
-          ./build/stgs_ground_station --replay frames.stgf --output telemetry.json --decoder-threads 2
+          ./build/stgs_ground_station --replay frames.stgf --output telemetry.json --decoder-threads 2 --no-color
           python3 -m json.tool telemetry.json >/dev/null
 
       - name: Benchmark smoke
         run: ./build/stgs_benchmark_decode --frames 10000 --payload-size 64 --decoder-threads 2
+
+  sanitizers:
+    name: ASan + UBSan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure sanitizers
+        run: >-
+          cmake -S . -B build-sanitizers
+          -DCMAKE_BUILD_TYPE=Debug
+          -DSTGS_BUILD_BENCHMARKS=OFF
+          -DSTGS_ENABLE_SANITIZERS=ON
+          -DSTGS_WARNINGS_AS_ERRORS=ON
+
+      - name: Build
+        run: cmake --build build-sanitizers -j2
+
+      - name: Run tests under sanitizers
+        env:
+          ASAN_OPTIONS: detect_leaks=1
+          UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+        run: ctest --test-dir build-sanitizers --output-on-failure
+
+  thread-sanitizer:
+    name: ThreadSanitizer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure ThreadSanitizer
+        run: >-
+          cmake -S . -B build-tsan
+          -DCMAKE_BUILD_TYPE=Debug
+          -DSTGS_BUILD_BENCHMARKS=OFF
+          -DSTGS_ENABLE_THREAD_SANITIZER=ON
+          -DSTGS_WARNINGS_AS_ERRORS=ON
+
+      - name: Build
+        run: cmake --build build-tsan -j2
+
+      - name: Run tests under ThreadSanitizer
+        env:
+          TSAN_OPTIONS: halt_on_error=1
+        run: ctest --test-dir build-tsan --output-on-failure
