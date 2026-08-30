@@ -1,0 +1,5 @@
+<map id="stgs::NetworkServer::~NetworkServer" name="stgs::NetworkServer::~NetworkServer">
+<area shape="rect" id="Node000001" title="Garantit la fermeture de la socket serveur même après une sortie exceptionnelle." alt="" coords="5,5,160,45"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1NetworkServer.html#ad09bd13117e7641f80e89553a56af016" title="Demande un arrêt coopératif de la boucle réseau depuis un autre thread." alt="" coords="208,5,363,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,23,194,23,194,28,160,28"/>
+</map>

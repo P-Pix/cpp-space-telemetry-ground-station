@@ -1,0 +1,5 @@
+<map id="stgs::signalFilterModeToString" name="stgs::signalFilterModeToString">
+<area shape="rect" id="Node000001" title="Convertit le filtre en libellé CLI stable." alt="" coords="244,5,423,45"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1TerminalUi.html#ada2090e90ddbbfb3c414946682a62fd9" title="Affiche un bloc de signal sous forme de sparklines brute/filtrée et de métriques." alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>

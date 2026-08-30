@@ -1,0 +1,29 @@
+<map id="src/Logger.cpp" name="src/Logger.cpp">
+<area shape="rect" id="Node000001" title="Implémente la journalisation synchronisée de la station sol." alt="" coords="537,5,652,31"/>
+<area shape="rect" id="Node000002" href="$Logger_8hpp.html" title="Déclare le logger thread&#45;safe de la station de télémétrie." alt="" coords="235,79,359,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="548,33,359,78,358,73,546,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="384,79,451,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="567,33,460,76,458,71,565,28"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="475,79,533,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="582,33,531,72,528,68,578,29"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="557,79,632,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="597,31,597,65,592,65,592,31"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="656,79,736,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="612,28,670,68,667,73,609,33"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="760,79,835,104"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="628,28,753,72,751,77,626,33"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="859,79,946,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="645,28,847,74,845,80,644,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,96,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,107,104,151,103,146,257,101"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="121,152,194,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="276,106,193,148,191,143,274,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="219,152,283,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="292,106,268,142,264,139,287,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="307,152,381,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="307,103,331,139,327,142,303,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="405,152,464,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="321,102,401,143,399,148,318,106"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="489,152,586,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="337,101,486,145,484,151,335,107"/>
+</map>

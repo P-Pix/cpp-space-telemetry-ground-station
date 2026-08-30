@@ -1,0 +1,20 @@
+<map id="include/stgs/TerminalUi.hpp" name="include/stgs/TerminalUi.hpp">
+<area shape="rect" id="Node000001" title="Déclare le rendu terminal enrichi utilisé par les outils de démonstration STGS." alt="" coords="189,5,391,31"/>
+<area shape="rect" id="Node000002" href="$SignalProcessing_8hpp.html" title="Déclare les traitements DSP légers de la démonstration de signaux STGS." alt="" coords="128,79,319,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,33,245,70,242,67,277,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="222,33,163,51,134,64,106,81,77,110,55,141,51,138,73,106,103,77,131,60,161,46,221,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="193,33,152,51,134,64,119,80,113,94,113,109,123,139,118,141,108,110,108,93,114,77,130,60,149,46,191,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="305,152,358,177"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="303,29,320,51,334,78,339,109,338,138,333,138,334,109,329,79,316,53,299,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="394,79,453,104"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="313,28,391,70,388,74,310,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="477,79,575,104"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="329,28,475,72,474,77,327,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="195,107,84,149,82,144,193,102"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="211,106,161,145,158,141,207,102"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="242,102,304,142,301,147,239,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="192,152,255,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="226,104,226,138,221,138,221,104"/>
+</map>

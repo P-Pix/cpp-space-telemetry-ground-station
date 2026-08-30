@@ -1,0 +1,5 @@
+<map id="stgs::StationStateTransition" name="stgs::StationStateTransition">
+<area shape="rect" id="Node000001" title="Décrit une bascule de santé et la cause qui l&#39;a déclenchée." alt="" coords="9,93,209,119"/>
+<area shape="rect" id="Node000002" href="$structstgs_1_1StationHealthSnapshot.html" title="Photographie cohérente de la fenêtre de santé au moment de la lecture." alt="" coords="5,5,212,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,45,111,93,106,93,106,45"/>
+</map>

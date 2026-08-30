@@ -1,0 +1,12 @@
+<map id="stgs::app::simulator::makeFrame" name="stgs::app::simulator::makeFrame">
+<area shape="rect" id="Node000001" title="Construit une trame de télémétrie cohérente pour la séquence demandée." alt="" coords="5,74,156,114"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a91ad6444414562d0dcf977c6e8fc5ab7" title="Encode un message texte dans le mini&#45;format applicatif STGA." alt="" coords="204,56,444,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,84,190,80,190,85,156,89"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="733,56,888,81"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="156,93,290,94,444,91,589,84,720,74,720,79,590,89,444,97,290,99,156,98"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1detail.html#a423df63e483c463ac6f72b4bb82bd2ca" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="492,5,685,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,53,508,31,509,36,392,59"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="444,66,720,66,720,71,444,71"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="646,28,742,50,740,56,645,33"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="775,58,767,48,771,38,786,32,811,29,841,33,854,42,850,46,839,38,811,35,787,37,774,42,772,47,779,54"/>
+</map>

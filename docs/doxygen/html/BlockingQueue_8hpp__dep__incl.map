@@ -1,0 +1,17 @@
+<map id="include/stgs/BlockingQueue.hpp" name="include/stgs/BlockingQueue.hpp">
+<area shape="rect" id="Node000001" title="Définit la file FIFO thread&#45;safe et optionnellement bornée du pipeline STGS." alt="" coords="494,5,725,31"/>
+<area shape="rect" id="Node000002" href="$GroundStationPipeline_8hpp.html" title="Déclare le pipeline concurrent de réception, décodage et export de la station sol." alt="" coords="297,79,495,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="566,38,448,81,446,76,565,33"/>
+<area shape="rect" id="Node000007" href="$benchmark__decode_8cpp.html" title="Implémente le benchmark isolé du décodage et du pipeline de files." alt="" coords="520,79,699,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="612,44,612,79,607,79,607,44"/>
+<area shape="rect" id="Node000008" href="$test__replay__health_8cpp.html" title="Tests replay STGF, santé et backpressure." alt="" coords="723,86,930,111"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="655,33,796,83,794,88,653,38"/>
+<area shape="rect" id="Node000003" href="$GroundStationApp_8cpp.html" title="Assemble les services de haut niveau de la station sol." alt="" coords="5,167,176,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,125,158,169,157,164,315,120"/>
+<area shape="rect" id="Node000004" href="$GroundStationInput_8cpp.html" title="Implémente les producteurs réseau et replay du pipeline." alt="" coords="200,167,379,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="363,129,315,169,311,164,360,125"/>
+<area shape="rect" id="Node000005" href="$GroundStationPipeline_8cpp.html" title="Implémente le cycle de vie et la synchronisation globale du pipeline." alt="" coords="403,167,602,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="432,125,481,164,477,169,429,129"/>
+<area shape="rect" id="Node000006" href="$GroundStationWorkers_8cpp.html" title="Implémente les threads de décodage, réordonnancement et observabilité du pipeline." alt="" coords="626,167,825,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="482,120,654,164,653,169,481,125"/>
+</map>

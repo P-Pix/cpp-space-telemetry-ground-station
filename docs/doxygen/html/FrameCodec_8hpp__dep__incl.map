@@ -1,0 +1,81 @@
+<map id="include/stgs/FrameCodec.hpp" name="include/stgs/FrameCodec.hpp">
+<area shape="rect" id="Node000001" title="Déclare le codec strict des trames STGS et le réassembleur de flux TCP." alt="" coords="2031,5,2244,31"/>
+<area shape="rect" id="Node000002" href="$GroundStationPipeline_8hpp.html" title="Déclare le pipeline concurrent de réception, décodage et export de la station sol." alt="" coords="452,343,650,383"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2017,26,1664,41,1216,70,999,89,811,112,668,138,620,153,590,169,573,186,561,207,553,231,548,255,547,304,550,342,545,343,541,304,543,255,548,229,556,205,569,183,587,165,618,148,667,133,810,106,998,84,1215,64,1664,36,2017,21"/>
+<area shape="rect" id="Node000007" href="$TelemetryOutput_8cpp.html" title="Implémente l&#39;export CSV/JSON de la station sol." alt="" coords="264,343,427,383"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="2017,22,1733,26,1371,34,1018,52,872,65,762,81,684,94,613,102,549,108,491,117,437,132,387,158,338,198,291,256,286,267,284,277,291,300,307,322,325,341,321,344,303,325,287,302,279,278,280,265,286,253,334,194,384,153,435,127,490,112,549,103,613,96,683,89,761,76,872,60,1018,47,1370,29,1733,20,2017,17"/>
+<area shape="rect" id="Node000008" href="$SimulatorApp_8cpp.html" title="Assemble découverte, génération, transport et capture du simulateur STGS." alt="" coords="2027,343,2206,383"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="2146,44,2195,254,2198,275,2195,296,2175,324,2150,345,2147,340,2171,320,2190,294,2193,275,2190,255,2141,45"/>
+<area shape="rect" id="Node000009" href="$benchmark__decode_8cpp.html" title="Implémente le benchmark isolé du décodage et du pipeline de files." alt="" coords="2175,79,2354,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="2169,36,2235,76,2232,81,2166,40"/>
+<area shape="rect" id="Node000010" href="$NetworkServer_8hpp.html" title="Déclare le récepteur réseau UDP/TCP de la station sol." alt="" coords="1256,86,1484,111"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2018,34,1482,89,1481,83,2017,29"/>
+<area shape="rect" id="Node000031" href="$test__network_8cpp.html" title="Tests d&#39;intégration loopback TCP/UDP du serveur réseau." alt="" coords="1918,174,2088,199"/>
+<area shape="poly" id="edge44_Node000001_Node000031" title=" " alt="" coords="2122,43,2014,176,2010,172,2118,40"/>
+<area shape="rect" id="Node000032" href="$FrameCodec_8cpp.html" title="Implémente l’encodage, la validation et le réassemblage des trames STGS." alt="" coords="2378,86,2532,111"/>
+<area shape="poly" id="edge42_Node000001_Node000032" title=" " alt="" coords="2198,31,2409,83,2408,89,2196,37"/>
+<area shape="rect" id="Node000033" href="$test__codec_8cpp.html" title="Tests du framing, CRC et codec binaire STGS." alt="" coords="2556,86,2711,111"/>
+<area shape="poly" id="edge43_Node000001_Node000033" title=" " alt="" coords="2239,30,2543,76,2581,83,2580,89,2542,81,2238,35"/>
+<area shape="rect" id="Node000034" href="$test__replay__health_8cpp.html" title="Tests replay STGF, santé et backpressure." alt="" coords="2736,86,2942,111"/>
+<area shape="poly" id="edge45_Node000001_Node000034" title=" " alt="" coords="2258,27,2475,47,2723,76,2773,83,2772,89,2723,81,2474,53,2258,32"/>
+<area shape="rect" id="Node000003" href="$GroundStationApp_8cpp.html" title="Assemble les services de haut niveau de la station sol." alt="" coords="836,431,1007,471"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="646,383,841,428,840,433,645,388"/>
+<area shape="rect" id="Node000004" href="$GroundStationInput_8cpp.html" title="Implémente les producteurs réseau et replay du pipeline." alt="" coords="1111,431,1290,471"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="665,376,1111,435,1110,440,664,382"/>
+<area shape="rect" id="Node000005" href="$GroundStationPipeline_8cpp.html" title="Implémente le cycle de vie et la synchronisation globale du pipeline." alt="" coords="452,431,650,471"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="554,397,554,430,548,430,548,397"/>
+<area shape="rect" id="Node000006" href="$GroundStationWorkers_8cpp.html" title="Implémente les threads de décodage, réordonnancement et observabilité du pipeline." alt="" coords="58,431,257,471"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="452,388,244,433,243,428,451,383"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="1360,125,1212,432,1207,429,1356,123"/>
+<area shape="rect" id="Node000011" href="$GroundStationOptions_8hpp.html" title="Définit la configuration CLI validée de la station sol." alt="" coords="600,167,798,207"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1255,116,822,169,798,173,798,167,821,164,1255,110"/>
+<area shape="rect" id="Node000019" href="$SimulatorOptions_8hpp.html" title="Définit la configuration validée du simulateur de télémétrie." alt="" coords="1400,167,1579,207"/>
+<area shape="poly" id="edge25_Node000010_Node000019" title=" " alt="" coords="1399,117,1465,164,1462,169,1396,122"/>
+<area shape="rect" id="Node000028" href="$NetworkServer_8cpp.html" title="Implémente le cycle de vie commun du récepteur réseau STGS." alt="" coords="1603,174,1771,199"/>
+<area shape="poly" id="edge38_Node000010_Node000028" title=" " alt="" coords="1426,112,1645,171,1644,176,1425,118"/>
+<area shape="rect" id="Node000029" href="$NetworkServerTcp_8cpp.html" title="Implémente la réception TCP multi&#45;clients et le framing STGS par connexion." alt="" coords="834,174,1025,199"/>
+<area shape="poly" id="edge39_Node000010_Node000029" title=" " alt="" coords="1298,117,989,177,988,171,1297,111"/>
+<area shape="rect" id="Node000030" href="$NetworkServerUdp_8cpp.html" title="Implémente la réception UDP des trames STGS." alt="" coords="1050,174,1244,199"/>
+<area shape="poly" id="edge40_Node000010_Node000030" title=" " alt="" coords="1328,119,1178,176,1176,171,1326,114"/>
+<area shape="poly" id="edge41_Node000010_Node000031" title=" " alt="" coords="1468,111,1919,171,1918,177,1468,116"/>
+<area shape="poly" id="edge17_Node000011_Node000002" title=" " alt="" coords="631,215,603,233,578,256,567,277,559,300,554,343,548,342,554,299,562,275,574,253,599,229,629,210"/>
+<area shape="rect" id="Node000012" href="$ground__station_8cpp.html" title="Point d&#39;entrée minimal de la station sol STGS." alt="" coords="940,350,1122,375"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="812,204,936,228,984,241,1010,253,1025,276,1033,303,1035,349,1030,350,1028,304,1021,278,1007,257,982,246,935,233,811,209"/>
+<area shape="rect" id="Node000013" href="$GroundStationApp_8hpp.html" title="Déclare l&#39;orchestrateur de haut niveau de la station sol." alt="" coords="1072,255,1244,295"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="812,206,1072,255,1071,260,811,211"/>
+<area shape="rect" id="Node000014" href="$GroundStationOptions_8cpp.html" title="Parse et valide la configuration de la station sol." alt="" coords="589,255,785,295"/>
+<area shape="poly" id="edge16_Node000011_Node000014" title=" " alt="" coords="697,221,692,255,687,254,692,220"/>
+<area shape="rect" id="Node000015" href="$GroundStationProcessing_8hpp.html" title="Déclare les traitements métier appliqués après décodage d&#39;une trame." alt="" coords="8,255,225,295"/>
+<area shape="poly" id="edge18_Node000011_Node000015" title=" " alt="" coords="587,207,225,260,225,255,586,202"/>
+<area shape="rect" id="Node000017" href="$GroundStationUsage_8cpp.html" title="Contient uniquement l&#39;aide en ligne de commande de la station sol." alt="" coords="810,255,996,295"/>
+<area shape="poly" id="edge21_Node000011_Node000017" title=" " alt="" coords="757,209,859,252,857,257,755,214"/>
+<area shape="rect" id="Node000018" href="$TelemetryOutput_8hpp.html" title="Encapsule l&#39;écriture déterministe des trames vers CSV ou JSON." alt="" coords="300,255,463,295"/>
+<area shape="poly" id="edge22_Node000011_Node000018" title=" " alt="" coords="617,213,452,257,450,252,615,208"/>
+<area shape="poly" id="edge15_Node000013_Node000003" title=" " alt="" coords="1161,309,1155,347,1147,367,1136,384,1108,408,1076,425,1042,437,1008,445,1007,440,1040,432,1074,420,1105,403,1132,381,1143,365,1150,346,1156,308"/>
+<area shape="poly" id="edge14_Node000013_Node000012" title=" " alt="" coords="1120,305,1050,352,1047,348,1117,300"/>
+<area shape="poly" id="edge20_Node000015_Node000006" title=" " alt="" coords="57,303,33,321,15,344,8,363,15,381,27,397,42,409,78,428,75,433,39,414,23,400,10,384,3,363,10,341,29,317,54,299"/>
+<area shape="rect" id="Node000016" href="$GroundStationProcessing_8cpp.html" title="Implémente l&#39;interprétation STGA et le rendu des transitions de santé." alt="" coords="24,343,240,383"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="125,308,131,342,126,343,120,309"/>
+<area shape="poly" id="edge23_Node000018_Node000002" title=" " alt="" coords="432,298,515,340,513,345,430,303"/>
+<area shape="poly" id="edge24_Node000018_Node000007" title=" " alt="" coords="371,309,356,343,351,341,366,306"/>
+<area shape="rect" id="Node000020" href="$satellite__simulator_8cpp.html" title="Point d&#39;entrée minimal du simulateur de télémétrie STGS." alt="" coords="1432,350,1638,375"/>
+<area shape="poly" id="edge26_Node000019_Node000020" title=" " alt="" coords="1409,215,1381,232,1360,256,1353,275,1360,293,1377,313,1399,328,1448,347,1446,352,1396,332,1374,316,1355,296,1348,275,1355,253,1378,228,1406,210"/>
+<area shape="rect" id="Node000021" href="$SimulatorApp_8hpp.html" title="Déclare l&#39;orchestrateur de haut niveau du simulateur STGS." alt="" coords="1572,255,1751,295"/>
+<area shape="poly" id="edge27_Node000019_Node000021" title=" " alt="" coords="1541,210,1625,252,1623,257,1538,215"/>
+<area shape="rect" id="Node000022" href="$SimulatorFrameFactory_8hpp.html" title="Déclare la génération déterministe des trames de démonstration." alt="" coords="1775,255,1978,295"/>
+<area shape="poly" id="edge30_Node000019_Node000022" title=" " alt="" coords="1588,207,1792,252,1791,257,1587,212"/>
+<area shape="rect" id="Node000024" href="$SimulatorOptions_8cpp.html" title="Parse et valide la configuration du simulateur STGS." alt="" coords="2002,255,2180,295"/>
+<area shape="poly" id="edge33_Node000019_Node000024" title=" " alt="" coords="1593,204,1793,228,1990,252,2002,254,2001,259,1989,257,1793,233,1592,209"/>
+<area shape="rect" id="Node000025" href="$SimulatorSocket_8hpp.html" title="Déclare les primitives réseau utilisées par le simulateur." alt="" coords="2255,255,2434,295"/>
+<area shape="poly" id="edge34_Node000019_Node000025" title=" " alt="" coords="1593,204,1762,222,1894,231,2025,238,2193,252,2255,259,2254,264,2192,257,2025,243,1894,236,1761,228,1592,209"/>
+<area shape="rect" id="Node000027" href="$SimulatorUsage_8cpp.html" title="Contient l&#39;aide de ligne de commande du simulateur STGS." alt="" coords="1370,255,1548,295"/>
+<area shape="poly" id="edge37_Node000019_Node000027" title=" " alt="" coords="1481,221,1468,255,1463,254,1476,219"/>
+<area shape="poly" id="edge29_Node000021_Node000008" title=" " alt="" coords="1765,293,2027,342,2026,347,1764,298"/>
+<area shape="poly" id="edge28_Node000021_Node000020" title=" " alt="" coords="1624,305,1554,352,1551,348,1621,300"/>
+<area shape="poly" id="edge31_Node000022_Node000008" title=" " alt="" coords="1942,297,2065,340,2063,345,1941,302"/>
+<area shape="rect" id="Node000023" href="$SimulatorFrameFactory_8cpp.html" title="Implémente la génération des données de démonstration du satellite simulé." alt="" coords="1775,343,1978,383"/>
+<area shape="poly" id="edge32_Node000022_Node000023" title=" " alt="" coords="1879,309,1879,342,1874,342,1874,309"/>
+<area shape="poly" id="edge35_Node000025_Node000008" title=" " alt="" coords="2282,302,2167,345,2165,340,2280,297"/>
+<area shape="rect" id="Node000026" href="$SimulatorSocket_8cpp.html" title="Implémente les opérations socket du simulateur STGS." alt="" coords="2255,343,2434,383"/>
+<area shape="poly" id="edge36_Node000025_Node000026" title=" " alt="" coords="2347,309,2347,342,2342,342,2342,309"/>
+</map>

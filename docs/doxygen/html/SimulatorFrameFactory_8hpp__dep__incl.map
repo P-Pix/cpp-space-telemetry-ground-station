@@ -1,0 +1,7 @@
+<map id="apps/satellite_simulator/SimulatorFrameFactory.hpp" name="apps/satellite_simulator/SimulatorFrameFactory.hpp">
+<area shape="rect" id="Node000001" title="Déclare la génération déterministe des trames de démonstration." alt="" coords="100,5,303,45"/>
+<area shape="rect" id="Node000002" href="$SimulatorApp_8cpp.html" title="Assemble découverte, génération, transport et capture du simulateur STGS." alt="" coords="5,93,184,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,56,120,95,117,91,165,52"/>
+<area shape="rect" id="Node000003" href="$SimulatorFrameFactory_8cpp.html" title="Implémente la génération des données de démonstration du satellite simulé." alt="" coords="208,93,411,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,52,287,91,284,95,234,56"/>
+</map>

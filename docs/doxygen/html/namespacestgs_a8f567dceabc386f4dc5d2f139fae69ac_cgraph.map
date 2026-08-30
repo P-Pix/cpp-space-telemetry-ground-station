@@ -1,0 +1,8 @@
+<map id="stgs::toString" name="stgs::toString">
+<area shape="rect" id="Node000001" title="Produit un résumé humain d&#39;une trame déjà validée." alt="" coords="5,55,113,80"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="161,29,316,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,57,147,52,148,58,114,62"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#ab4e19b7617cb12defb08493a6b3cdaff" title="Convertit un statut de télémétrie en libellé stable pour logs et exports." alt="" coords="164,79,313,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="114,72,150,77,150,82,113,77"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="209,31,203,21,206,11,218,5,239,3,263,6,274,15,270,19,261,11,239,8,220,10,210,15,208,20,213,28"/>
+</map>

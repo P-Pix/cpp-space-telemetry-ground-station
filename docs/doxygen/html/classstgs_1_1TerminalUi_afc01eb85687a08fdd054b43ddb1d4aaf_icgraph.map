@@ -1,0 +1,9 @@
+<map id="stgs::TerminalUi::width" name="stgs::TerminalUi::width">
+<area shape="rect" id="Node000001" title="Retourne la largeur détectée du terminal ou une largeur de repli documentée." alt="" coords="347,42,517,67"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1TerminalUi.html#ada2090e90ddbbfb3c414946682a62fd9" title="Affiche un bloc de signal sous forme de sparklines brute/filtrée et de métriques." alt="" coords="108,5,299,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,45,298,40,299,35,334,39"/>
+<area shape="rect" id="Node000003" href="$classstgs_1_1TerminalUi.html#a47273df409944d53f44113a0b6953a22" title="Affiche un titre de section compact, coloré uniquement sur un TTY compatible." alt="" coords="112,70,295,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="333,69,295,74,295,69,333,64"/>
+<area shape="rect" id="Node000004" href="$port__check_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,70,60,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="98,85,60,85,60,80,98,80"/>
+</map>

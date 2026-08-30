@@ -1,0 +1,9 @@
+<map id="stgs::detail::readFloatBE" name="stgs::detail::readFloatBE">
+<area shape="rect" id="Node000001" title="Reconstruit un float 32 bits à partir de son motif binaire big&#45;endian." alt="" coords="533,38,715,63"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#af8f13007bacb6d468b61280260ae8daf" title="Interprète une enveloppe STGA après validation de la trame externe." alt="" coords="257,13,485,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="519,43,485,39,486,34,520,38"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#abfa6635744db7019364480e2614afb32" title="Valide une trame reçue et retourne soit la télémétrie, soit une erreur structurée." alt="" coords="299,62,444,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="520,63,445,70,444,65,519,58"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1app_1_1ground__station.html#a0d507efe3c231057079de3c7ca8c07ee" title="Interprète un payload STGA et déclenche le rendu opérateur approprié." alt="" coords="5,5,209,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="244,28,209,28,209,23,244,23"/>
+</map>

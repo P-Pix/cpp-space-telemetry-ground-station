@@ -1,0 +1,28 @@
+<map id="tests/support/TestSupport.hpp" name="tests/support/TestSupport.hpp">
+<area shape="rect" id="Node000001" title="Fournit le mini&#45;harnais commun aux tests STGS sans framework externe." alt="" coords="343,5,558,31"/>
+<area shape="rect" id="Node000002" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="57,79,244,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,33,213,78,212,73,402,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="343,23,258,28,170,38,94,55,66,67,47,80,39,93,35,108,36,138,30,138,30,107,34,91,43,77,64,62,93,50,169,32,257,22,343,18"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="213,152,272,177"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="426,33,385,54,340,81,299,113,265,144,262,140,296,109,337,76,382,49,424,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="298,152,361,177"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="425,33,392,52,361,80,345,109,336,139,331,138,340,107,357,77,388,48,422,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="370,79,433,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="445,33,419,69,415,66,440,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="457,79,543,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="461,29,486,66,482,69,457,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="567,79,654,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="477,28,573,71,571,75,475,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="679,79,732,104"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="494,28,666,76,665,81,492,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="757,79,843,104"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="507,28,743,76,742,81,506,33"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="867,79,927,104"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="552,28,692,47,854,76,853,81,691,52,552,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,152,186,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,104,153,138,148,138,148,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="134,106,70,147,67,142,131,102"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="167,102,219,141,215,146,164,106"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="180,102,289,144,287,149,178,107"/>
+</map>

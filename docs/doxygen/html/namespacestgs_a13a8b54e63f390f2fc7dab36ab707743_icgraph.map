@@ -1,0 +1,15 @@
+<map id="stgs::nowIso8601" name="stgs::nowIso8601">
+<area shape="rect" id="Node000001" title="Produit un timestamp UTC ISO&#45;8601 avec précision milliseconde." alt="" coords="392,104,527,129"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1Logger.html#ad62b4fe2573d0fbc245bc8499072132e" title="Émet une ligne timestampée si level atteint le seuil courant." alt="" coords="215,104,344,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="378,119,344,119,344,114,378,114"/>
+<area shape="rect" id="Node000003" href="$classstgs_1_1Logger.html#a7b1647059e095774d43512bd0ade1000" title="Journalise une information de débogage." alt="" coords="11,5,161,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,98,211,70,166,44,137,33,139,28,168,40,214,66,253,93"/>
+<area shape="rect" id="Node000004" href="$classstgs_1_1Logger.html#a714e363fcba209c745f8fb22eb220d60" title="Journalise une erreur applicative importante." alt="" coords="16,55,156,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="215,103,136,83,138,78,217,98"/>
+<area shape="rect" id="Node000005" href="$classstgs_1_1Logger.html#a259da3304341bbf21616732231939265" title="Journalise un événement opérateur normal." alt="" coords="19,104,153,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="201,119,154,119,154,114,201,114"/>
+<area shape="rect" id="Node000006" href="$classstgs_1_1Logger.html#af61fa84f5e582f599b428efd3c283879" title="Journalise un événement très détaillé de diagnostic." alt="" coords="15,153,157,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="217,135,138,156,136,151,215,130"/>
+<area shape="rect" id="Node000007" href="$classstgs_1_1Logger.html#a4263b13735c24e070fc838460b83706e" title="Journalise une anomalie maîtrisée qui ne stoppe pas nécessairement le service." alt="" coords="5,203,167,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="252,140,213,167,168,192,136,205,134,200,166,188,211,162,249,135"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="include/stgs/ApplicationPayload.hpp" name="include/stgs/ApplicationPayload.hpp">
+<area shape="rect" id="Node000001" title="Définit les payloads applicatifs typés transportés dans une trame STGS v1." alt="" coords="218,5,395,45"/>
+<area shape="rect" id="Node000002" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="57,93,244,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,48,187,89,185,85,268,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,167,72,192"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="219,41,116,62,74,77,47,95,40,108,36,123,36,153,31,153,31,122,35,106,43,92,71,73,114,57,217,36"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="213,167,272,192"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="301,47,255,155,250,153,296,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="298,167,361,192"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="312,45,328,153,323,153,307,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="369,93,423,119"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="330,44,374,82,371,86,327,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="447,93,515,119"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="350,43,444,85,442,90,347,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,167,186,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,119,153,153,148,153,148,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="134,121,70,161,67,157,131,116"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="167,117,219,156,215,160,164,121"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="180,116,289,159,287,164,178,121"/>
+</map>

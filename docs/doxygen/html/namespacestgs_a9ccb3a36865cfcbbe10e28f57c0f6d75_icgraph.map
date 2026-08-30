@@ -1,0 +1,15 @@
+<map id="stgs::parseFiniteDouble" name="stgs::parseFiniteDouble">
+<area shape="rect" id="Node000001" title="Parse un flottant fini en refusant toute portion de chaîne non consommée." alt="" coords="553,54,728,79"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1ground__station.html#a310e8ff89b553d737d7d1ccdc9e91491" title="Parse et valide l&#39;ensemble de la configuration de la station avant tout effet de bord." alt="" coords="108,5,295,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="568,54,505,44,396,34,295,30,295,24,397,29,506,39,568,49"/>
+<area shape="rect" id="Node000004" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="126,79,277,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="571,85,506,95,385,102,277,103,277,98,385,97,505,89,570,79"/>
+<area shape="rect" id="Node000006" href="$namespacestgs.html#a8bfe5e03446c5b8d5b62144ac66a6c5c" title="Parse une probabilité bornée dans l&#39;intervalle fermé [0, 1]." alt="" coords="343,54,505,79"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="539,69,506,69,506,64,539,64"/>
+<area shape="rect" id="Node000003" href="$ground__station_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+<area shape="rect" id="Node000005" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,86,60,111"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="112,101,60,101,60,96,112,96"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="341,54,294,45,295,40,342,49"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="330,83,277,91,276,85,329,78"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="stgs::PortRange::count" name="stgs::PortRange::count">
+<area shape="rect" id="Node000001" title="Retourne le nombre de ports de la plage inclusive." alt="" coords="5,55,173,80"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="226,29,381,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,55,212,50,213,55,174,60"/>
+<area shape="rect" id="Node000003" href="$structstgs_1_1PortRange.html#a88a5c45197a3c12512d3421d91595005" title="Vérifie que la plage décrit au moins un port utilisateur valide." alt="" coords="221,79,385,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="174,74,208,78,207,83,173,79"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="268,31,261,21,265,11,279,5,303,3,333,6,345,15,342,20,331,11,303,8,281,10,269,15,266,20,273,28"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="stgs::parseProbability" name="stgs::parseProbability">
+<area shape="rect" id="Node000001" title="Parse une probabilité bornée dans l&#39;intervalle fermé [0, 1]." alt="" coords="343,45,505,70"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1ground__station.html#a310e8ff89b553d737d7d1ccdc9e91491" title="Parse et valide l&#39;ensemble de la configuration de la station avant tout effet de bord." alt="" coords="108,5,295,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="329,46,295,41,295,36,330,41"/>
+<area shape="rect" id="Node000004" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="126,69,277,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="330,74,277,81,276,76,329,68"/>
+<area shape="rect" id="Node000003" href="$ground__station_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+<area shape="rect" id="Node000005" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,77,60,102"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="112,92,60,92,60,87,112,87"/>
+</map>

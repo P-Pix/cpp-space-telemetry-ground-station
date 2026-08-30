@@ -1,0 +1,15 @@
+<map id="apps/ground_station/TelemetryOutput.hpp" name="apps/ground_station/TelemetryOutput.hpp">
+<area shape="rect" id="Node000001" title="Encapsule l&#39;écriture déterministe des trames vers CSV ou JSON." alt="" coords="417,5,580,45"/>
+<area shape="rect" id="Node000002" href="$GroundStationPipeline_8hpp.html" title="Déclare le pipeline concurrent de réception, décodage et export de la station sol." alt="" coords="297,93,495,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="467,56,420,95,417,91,464,52"/>
+<area shape="rect" id="Node000007" href="$TelemetryOutput_8cpp.html" title="Implémente l&#39;export CSV/JSON de la station sol." alt="" coords="520,93,683,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="534,52,580,91,577,95,530,56"/>
+<area shape="rect" id="Node000003" href="$GroundStationApp_8cpp.html" title="Assemble les services de haut niveau de la station sol." alt="" coords="5,181,176,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,140,158,184,157,179,315,134"/>
+<area shape="rect" id="Node000004" href="$GroundStationInput_8cpp.html" title="Implémente les producteurs réseau et replay du pipeline." alt="" coords="200,181,379,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="363,144,315,183,311,179,360,140"/>
+<area shape="rect" id="Node000005" href="$GroundStationPipeline_8cpp.html" title="Implémente le cycle de vie et la synchronisation globale du pipeline." alt="" coords="403,181,602,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="432,140,481,179,477,183,429,144"/>
+<area shape="rect" id="Node000006" href="$GroundStationWorkers_8cpp.html" title="Implémente les threads de décodage, réordonnancement et observabilité du pipeline." alt="" coords="626,181,825,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="482,134,654,179,653,184,481,139"/>
+</map>

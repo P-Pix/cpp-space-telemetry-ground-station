@@ -1,0 +1,23 @@
+<map id="apps/ground_station/PosixSignalStopController.cpp" name="apps/ground_station/PosixSignalStopController.cpp">
+<area shape="rect" id="Node000001" title="Implémente l&#39;arrêt coopératif SIGINT/SIGTERM de la station sol." alt="" coords="403,5,623,45"/>
+<area shape="rect" id="Node000002" href="$PosixSignalStopController_8hpp.html" title="Déclare le contrôleur d&#39;arrêt propre sur SIGINT/SIGTERM." alt="" coords="131,93,349,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="449,48,294,92,292,87,447,43"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="373,93,435,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="488,48,433,87,430,83,485,43"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="459,93,567,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="516,46,516,79,511,79,511,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="591,93,651,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="541,43,595,83,592,87,538,48"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="675,93,759,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="563,43,675,86,673,91,561,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,72,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="209,121,85,165,83,159,207,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="97,167,183,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="225,121,169,161,166,156,222,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="208,167,272,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="243,119,243,153,237,153,237,119"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="296,167,360,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="256,117,305,156,301,160,252,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="385,167,458,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="270,116,380,159,378,164,268,121"/>
+</map>

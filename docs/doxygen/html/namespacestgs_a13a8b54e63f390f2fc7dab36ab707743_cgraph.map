@@ -1,0 +1,6 @@
+<map id="stgs::nowIso8601" name="stgs::nowIso8601">
+<area shape="rect" id="Node000001" title="Produit un timestamp UTC ISO&#45;8601 avec précision milliseconde." alt="" coords="5,29,140,55"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="188,29,343,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,39,174,39,174,45,140,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="234,31,227,21,230,11,244,5,265,3,292,6,303,15,299,19,290,11,265,8,245,10,234,15,232,20,238,28"/>
+</map>

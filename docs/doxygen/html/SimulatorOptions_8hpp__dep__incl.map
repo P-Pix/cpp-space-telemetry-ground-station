@@ -1,0 +1,24 @@
+<map id="apps/satellite_simulator/SimulatorOptions.hpp" name="apps/satellite_simulator/SimulatorOptions.hpp">
+<area shape="rect" id="Node000001" title="Définit la configuration validée du simulateur de télémétrie." alt="" coords="467,5,645,45"/>
+<area shape="rect" id="Node000002" href="$satellite__simulator_8cpp.html" title="Point d&#39;entrée minimal du simulateur de télémétrie STGS." alt="" coords="5,189,211,214"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="453,33,363,39,269,51,188,69,157,81,135,95,120,117,112,142,110,188,104,188,107,141,115,114,131,91,154,76,186,64,268,46,363,34,453,27"/>
+<area shape="rect" id="Node000003" href="$SimulatorApp_8hpp.html" title="Déclare l&#39;orchestrateur de haut niveau du simulateur STGS." alt="" coords="145,93,324,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="473,51,306,96,304,91,472,46"/>
+<area shape="rect" id="Node000005" href="$SimulatorFrameFactory_8hpp.html" title="Déclare la génération déterministe des trames de démonstration." alt="" coords="348,93,551,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="523,56,475,95,471,91,520,52"/>
+<area shape="rect" id="Node000007" href="$SimulatorOptions_8cpp.html" title="Parse et valide la configuration du simulateur STGS." alt="" coords="777,93,956,133"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="638,46,799,91,798,96,637,52"/>
+<area shape="rect" id="Node000008" href="$SimulatorSocket_8hpp.html" title="Déclare les primitives réseau utilisées par le simulateur." alt="" coords="575,93,753,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="592,52,642,91,638,95,589,56"/>
+<area shape="rect" id="Node000010" href="$SimulatorUsage_8cpp.html" title="Contient l&#39;aide de ligne de commande du simulateur STGS." alt="" coords="980,93,1159,133"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="660,40,968,91,980,93,979,98,968,96,659,45"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="197,143,127,191,124,186,194,139"/>
+<area shape="rect" id="Node000004" href="$SimulatorApp_8cpp.html" title="Assemble découverte, génération, transport et capture du simulateur STGS." alt="" coords="235,181,413,221"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="266,141,306,179,302,183,263,145"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="412,144,353,183,350,179,409,139"/>
+<area shape="rect" id="Node000006" href="$SimulatorFrameFactory_8cpp.html" title="Implémente la génération des données de démonstration du satellite simulé." alt="" coords="437,181,640,221"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="481,141,521,179,517,183,477,145"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="577,139,399,184,398,179,576,134"/>
+<area shape="rect" id="Node000009" href="$SimulatorSocket_8cpp.html" title="Implémente les opérations socket du simulateur STGS." alt="" coords="664,181,843,221"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="696,141,735,179,732,183,692,145"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="src/Crc32.cpp" name="src/Crc32.cpp">
+<area shape="rect" id="Node000001" title="Implémente le CRC&#45;32 des trames de télémétrie STGS." alt="" coords="179,5,288,31"/>
+<area shape="rect" id="Node000002" href="$Crc32_8hpp.html" title="Déclare le CRC&#45;32/ISO&#45;HDLC utilisé pour l&#39;intégrité des trames STGS." alt="" coords="63,79,182,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,33,154,73,151,69,214,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="205,79,261,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="236,31,236,65,231,65,231,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="286,79,357,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="249,29,298,68,295,72,246,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,106,65,145,61,141,107,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="96,152,149,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="125,104,125,138,120,138,120,104"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="174,152,271,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="140,102,197,142,194,146,137,106"/>
+</map>

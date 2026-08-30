@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['sampleratehz_0',['sampleratehz',['../structstgs_1_1SignalBlockPayload.html#ac4c8789330f8ad372a3fca1334bd1c23',1,'stgs::SignalBlockPayload::sampleRateHz'],['../structstgs_1_1app_1_1simulator_1_1Options.html#a31f7c4dc336360f800ac4f4b553e00a5',1,'stgs::app::simulator::Options::sampleRateHz']]],
+  ['samples_1',['samples',['../structstgs_1_1SignalBlockPayload.html#acc005fc6b49bb551b8af112c85fe9a4f',1,'stgs::SignalBlockPayload::samples'],['../structstgs_1_1StationHealthSnapshot.html#ac076771cb4b6b4382f3de6640f7ce96d',1,'stgs::StationHealthSnapshot::samples']]],
+  ['satelliteid_2',['satelliteid',['../structstgs_1_1app_1_1simulator_1_1Options.html#afa7f9572268bc6705bae9331624e9f6c',1,'stgs::app::simulator::Options::satelliteId'],['../structstgs_1_1TelemetryFrame.html#a7f471964a23c24e508e48ea1466ac4c9',1,'stgs::TelemetryFrame::satelliteId']]],
+  ['satelliteidoffset_3',['SatelliteIdOffset',['../namespacestgs.html#aa8866bb9f2fbb06067d64f767c57f05c',1,'stgs']]],
+  ['seed_4',['seed',['../structstgs_1_1app_1_1simulator_1_1Options.html#a1a94dde0d2e6935b0bc83208e5326993',1,'stgs::app::simulator::Options']]],
+  ['sequence_5',['sequence',['../structstgs_1_1app_1_1ground__station_1_1RawWorkItem.html#afdd80733f6b0f098459da24c7cd82f81',1,'stgs::app::ground_station::RawWorkItem::sequence'],['../structstgs_1_1app_1_1ground__station_1_1DecodedWorkItem.html#acc367717ff78c1d60024cb03205157d4',1,'stgs::app::ground_station::DecodedWorkItem::sequence'],['../structstgs_1_1TextMessagePayload.html#a74eb74e7d9d01d2335926dbd227d17f8',1,'stgs::TextMessagePayload::sequence']]],
+  ['signalamplitude_6',['signalAmplitude',['../structstgs_1_1app_1_1simulator_1_1Options.html#aa3dfb2846769581622dfb17c2f9b0945',1,'stgs::app::simulator::Options']]],
+  ['signalblockfixedwiresize_7',['SignalBlockFixedWireSize',['../namespacestgs.html#a5be2a744a7b57928b157df2f4b6babc3',1,'stgs']]],
+  ['signalfilter_8',['signalFilter',['../structstgs_1_1app_1_1ground__station_1_1Options.html#ad5f9bcb7d6564a7b7f3e54e14d0eaf92',1,'stgs::app::ground_station::Options']]],
+  ['signalfrequencyhz_9',['signalFrequencyHz',['../structstgs_1_1app_1_1simulator_1_1Options.html#a4d3951ffa0baa81bd61f96a269009dd4',1,'stgs::app::simulator::Options']]],
+  ['signalsamples_10',['signalSamples',['../structstgs_1_1app_1_1simulator_1_1Options.html#a46df4ae2374ceb30b18b559a064fbfcb',1,'stgs::app::simulator::Options']]],
+  ['signalsamplewiresize_11',['SignalSampleWireSize',['../namespacestgs.html#a254c9e97079925357922b1b95e69d74f',1,'stgs']]],
+  ['sincoefficient_12',['sinCoefficient',['../SignalProcessing_8cpp.html#ab3e66d17e811e3952f9f74cc9f759bcf',1,'SignalProcessing.cpp']]],
+  ['snapshot_13',['snapshot',['../structstgs_1_1StationStateTransition.html#a1248dc626d4b84c6867b0325bee95a24',1,'stgs::StationStateTransition']]],
+  ['startsampleindex_14',['startSampleIndex',['../structstgs_1_1SignalBlockPayload.html#a53686760a63a50567c62cb70bb6fe5d6',1,'stgs::SignalBlockPayload']]],
+  ['state_15',['state',['../structstgs_1_1TcpPortProbeResult.html#a4ad18ed976e1f6df94ec358f40d32256',1,'stgs::TcpPortProbeResult::state'],['../structstgs_1_1StationHealthSnapshot.html#a61fd8b5b83ce472ef2e205931c1b9f83',1,'stgs::StationHealthSnapshot::state']]],
+  ['status_16',['status',['../structstgs_1_1TelemetryFrame.html#a823f07b9cf54cab10219ca4491c20435',1,'stgs::TelemetryFrame']]],
+  ['statusoffset_17',['StatusOffset',['../namespacestgs.html#aec51795d1382632f3af398d04dfc7599',1,'stgs']]]
+];

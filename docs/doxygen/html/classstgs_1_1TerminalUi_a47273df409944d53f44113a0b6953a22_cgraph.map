@@ -1,0 +1,9 @@
+<map id="stgs::TerminalUi::section" name="stgs::TerminalUi::section">
+<area shape="rect" id="Node000001" title="Affiche un titre de section compact, coloré uniquement sur un TTY compatible." alt="" coords="5,29,188,55"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="455,29,609,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,39,441,39,441,45,188,45"/>
+<area shape="rect" id="Node000003" href="$classstgs_1_1TerminalUi.html#afc01eb85687a08fdd054b43ddb1d4aaf" title="Retourne la largeur détectée du terminal ou une largeur de repli documentée." alt="" coords="236,55,407,80"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="189,50,223,54,222,59,188,55"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="497,31,490,21,494,11,508,5,532,3,561,6,573,15,570,20,559,11,532,8,510,10,498,15,495,20,502,28"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="406,54,441,50,441,56,407,60"/>
+</map>

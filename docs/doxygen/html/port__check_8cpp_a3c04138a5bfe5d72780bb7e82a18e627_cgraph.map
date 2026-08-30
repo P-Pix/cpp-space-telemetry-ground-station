@@ -1,0 +1,29 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,208,60,233"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1TerminalUi.html#abca15310e22fe982ba94d3b7f44b843b" title="Affiche une paire clé/valeur utilisée pour rendre configuration et étapes." alt="" coords="345,5,540,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="38,206,63,163,83,138,106,117,160,86,218,61,276,43,331,30,333,36,278,48,220,66,162,90,110,121,87,142,68,166,42,209"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a53f008098655c7495554541d87b0872e" title="Probe séquentiellement une plage locale inclusive et produit un rapport par port." alt="" coords="132,132,273,157"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="59,206,160,161,162,165,61,211"/>
+<area shape="rect" id="Node000007" href="$classstgs_1_1TerminalUi.html#a47273df409944d53f44113a0b6953a22" title="Affiche un titre de section compact, coloré uniquement sur un TTY compatible." alt="" coords="351,208,534,233"/>
+<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="60,218,338,218,338,223,60,223"/>
+<area shape="rect" id="Node000009" href="$classstgs_1_1TerminalUi.html#ad63a28060f9eab714bcdbd1a7b1e925a" title="Affiche une ligne de diagnostic structurée avec gravité visuelle." alt="" coords="588,308,791,333"/>
+<area shape="poly" id="edge15_Node000001_Node000009" title=" " alt="" coords="60,222,592,303,591,308,60,227"/>
+<area shape="rect" id="Node000010" href="$namespacestgs.html#a076b443733c851d7d25ccbfb195d5771" title="Convertit l&#39;état d&#39;un probe en libellé stable pour le terminal." alt="" coords="108,309,297,335"/>
+<area shape="poly" id="edge17_Node000001_Node000010" title=" " alt="" coords="47,232,74,260,109,288,140,302,138,307,107,292,70,264,43,236"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="839,157,993,183"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="540,7,599,8,663,13,729,26,792,48,826,68,856,93,900,144,896,148,852,97,822,72,790,52,728,31,663,18,599,13,540,13"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="879,159,871,149,875,139,891,133,916,131,948,135,960,144,957,148,946,139,916,136,892,138,879,143,876,148,883,155"/>
+<area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="263,129,297,122,345,111,470,88,570,70,618,66,668,68,725,76,791,91,820,102,847,116,891,146,888,151,844,121,818,107,790,97,724,81,668,73,618,72,570,75,471,93,346,117,298,127,264,135"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#a7adda113b45c802e2582cd09d38b31e0" title="Indique si une adresse IPv4 textuelle cible le loopback 127.0.0.0/8." alt="" coords="610,107,769,132"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="273,138,596,121,597,127,273,144"/>
+<area shape="rect" id="Node000006" href="$namespacestgs.html#a31f0fdd245489f09a743aa8df55707df" title="Tente une connexion TCP locale non bloquante et mesure sa latence." alt="" coords="372,157,513,183"/>
+<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="274,149,359,159,358,164,274,155"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="748,130,846,152,845,157,747,135"/>
+<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="513,167,825,167,825,173,513,173"/>
+<area shape="poly" id="edge9_Node000006_Node000005" title=" " alt="" coords="505,155,613,132,614,137,506,160"/>
+<area shape="poly" id="edge12_Node000007_Node000003" title=" " alt="" coords="534,208,825,177,825,182,534,214"/>
+<area shape="rect" id="Node000008" href="$classstgs_1_1TerminalUi.html#afc01eb85687a08fdd054b43ddb1d4aaf" title="Retourne la largeur détectée du terminal ou une largeur de repli documentée." alt="" coords="604,259,775,284"/>
+<area shape="poly" id="edge13_Node000007_Node000008" title=" " alt="" coords="506,231,614,253,613,258,505,236"/>
+<area shape="poly" id="edge14_Node000008_Node000003" title=" " alt="" coords="736,256,790,237,839,213,882,188,885,192,841,217,792,242,738,261"/>
+<area shape="poly" id="edge16_Node000009_Node000003" title=" " alt="" coords="764,306,789,294,822,272,852,244,896,192,900,196,855,248,825,276,792,299,766,310"/>
+</map>

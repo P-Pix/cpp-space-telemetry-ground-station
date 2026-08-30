@@ -1,0 +1,38 @@
+<map id="tests/support/TestSupport.cpp" name="tests/support/TestSupport.cpp">
+<area shape="rect" id="Node000001" title="Implémente les fixtures et helpers réseau loopback partagés par les tests." alt="" coords="544,5,759,31"/>
+<area shape="rect" id="Node000002" href="$TestSupport_8hpp.html" title="Fournit le mini&#45;harnais commun aux tests STGS sans framework externe." alt="" coords="445,79,572,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="629,33,545,75,543,70,627,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,225,172,251"/>
+<area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="544,28,401,42,242,66,167,82,101,102,49,126,29,139,15,154,9,165,9,174,15,184,25,193,54,209,89,222,87,227,52,214,22,197,11,187,4,176,4,163,10,150,26,135,46,122,99,97,165,77,241,61,400,37,543,23"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="860,152,947,177"/>
+<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="646,32,633,67,632,86,638,102,847,148,845,154,635,106,626,87,628,66,641,30"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="648,79,740,104"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="661,30,682,66,678,68,656,32"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="764,79,867,104"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="679,28,777,71,775,76,676,33"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="891,79,966,104"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="696,28,879,75,877,80,695,33"/>
+<area shape="rect" id="Node000003" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="350,152,537,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="500,106,465,144,461,140,496,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="434,225,501,251"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="523,103,548,136,555,157,551,178,532,203,508,221,505,216,528,199,546,176,549,158,543,138,519,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="571,225,630,251"/>
+<area shape="poly" id="edge13_Node000002_Node000006" title=" " alt="" coords="525,102,548,123,571,151,586,181,597,211,592,213,581,183,566,153,545,127,522,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="313,225,376,251"/>
+<area shape="poly" id="edge15_Node000002_Node000007" title=" " alt="" coords="445,100,416,106,387,117,361,132,340,154,334,167,332,182,337,212,332,212,327,182,329,165,336,150,358,128,385,112,415,101,444,94"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="663,152,725,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="539,102,652,145,650,149,537,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="749,152,836,177"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="555,101,737,147,735,152,554,107"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="25,152,112,177"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="446,104,126,155,125,149,445,99"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="137,152,190,177"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="445,106,336,126,204,154,203,149,335,121,444,101"/>
+<area shape="poly" id="edge12_Node000002_Node000012" title=" " alt="" coords="572,100,847,149,846,154,571,106"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="215,152,275,177"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="467,107,289,154,287,149,465,101"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="395,180,186,228,185,223,393,175"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="450,177,461,211,456,213,445,179"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="470,175,564,217,561,222,467,180"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="429,180,373,219,370,215,426,175"/>
+</map>

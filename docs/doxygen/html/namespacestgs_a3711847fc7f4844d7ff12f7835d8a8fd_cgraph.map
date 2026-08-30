@@ -1,0 +1,9 @@
+<map id="stgs::findFirstAvailableLocalPort" name="stgs::findFirstAvailableLocalPort">
+<area shape="rect" id="Node000001" title="Cherche le premier port local bindable d&#39;une plage inclusive." alt="" coords="5,23,175,63"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a9e3558ccc5cda76fa7ac8e5cf36b8fa8" title="Vérifie si une socket locale peut être bindée sur un port sans conserver la socket." alt="" coords="223,5,451,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,32,209,28,209,34,175,37"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="499,31,653,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="175,41,485,41,485,46,175,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="451,27,485,31,485,36,451,33"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="537,32,529,22,533,12,549,6,576,4,609,8,622,17,619,22,607,13,576,9,551,11,537,16,534,22,541,29"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="stgs::statusToString" name="stgs::statusToString">
+<area shape="rect" id="Node000001" title="Convertit un statut de télémétrie en libellé stable pour logs et exports." alt="" coords="161,5,311,31"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a8f567dceabc386f4dc5d2f139fae69ac" title="Produit un résumé humain d&#39;une trame déjà validée." alt="" coords="5,5,113,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,21,113,21,113,15,147,15"/>
+</map>

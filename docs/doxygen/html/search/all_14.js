@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['last_0',['last',['../structstgs_1_1PortRange.html#a23ae79afc9384a569e6de733f9a972ba',1,'stgs::PortRange']]],
+  ['latencyms_1',['latencyMs',['../structstgs_1_1TcpPortProbeResult.html#a777d1834bbd051ecce69df18c371e711',1,'stgs::TcpPortProbeResult']]],
+  ['latex_2',['Recompiler les sources LaTeX',['../md_docs_2README__DOCUMENTATION.html#autotoc_md12',1,'']]],
+  ['layered_20architecture_3',['2. Layered architecture',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md25',1,'']]],
+  ['layout_4',['Project layout',['../md_README.html#autotoc_md70',1,'']]],
+  ['lengthmismatch_5',['LengthMismatch',['../namespacestgs.html#a6c3c97c875363adab257eb270bb20f14aefe3ddb6bb6a51712447485fd452d87d',1,'stgs']]],
+  ['les_20sources_20latex_6',['Recompiler les sources LaTeX',['../md_docs_2README__DOCUMENTATION.html#autotoc_md12',1,'']]],
+  ['license_7',['License',['../md_README.html#autotoc_md72',1,'']]],
+  ['limitations_8',['18. Deliberate limitations',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md41',1,'']]],
+  ['limites_20assumées_9',['Limites assumées',['../md_docs_2VERIFICATION__REPORT.html#autotoc_md52',1,'']]],
+  ['live_20tcp_20telemetry_10',['1. Live TCP telemetry',['../md_README.html#autotoc_md57',1,'']]],
+  ['local_20port_20selection_20and_20diagnostics_11',['2. Automatic local port selection and diagnostics',['../md_README.html#autotoc_md58',1,'']]],
+  ['local_20range_12',['3. Diagnose the local range',['../md_docs_2SHOWCASE__GUIDE.html#autotoc_md17',1,'']]],
+  ['localportavailability_13',['LocalPortAvailability',['../structstgs_1_1LocalPortAvailability.html',1,'stgs']]],
+  ['log_14',['log',['../classstgs_1_1Logger.html#ad62b4fe2573d0fbc245bc8499072132e',1,'stgs::Logger']]],
+  ['logfile_15',['logFile',['../structstgs_1_1app_1_1ground__station_1_1Options.html#aab0afe12f93a9cb1d5fbd63f48baabfb',1,'stgs::app::ground_station::Options']]],
+  ['logger_16',['logger',['../classstgs_1_1Logger.html',1,'stgs::Logger'],['../classstgs_1_1Logger.html#ab57feb2db1362d1cab97d3fcaba73063',1,'stgs::Logger::Logger(const Logger &amp;)=delete'],['../classstgs_1_1Logger.html#aa47f826e89b7d939d7c2989379d5cd6a',1,'stgs::Logger::Logger(std::optional&lt; std::filesystem::path &gt; filePath=std::nullopt, LogLevel minLevel=LogLevel::Info)']]],
+  ['logger_2ecpp_17',['Logger.cpp',['../Logger_8cpp.html',1,'']]],
+  ['logger_2ehpp_18',['Logger.hpp',['../Logger_8hpp.html',1,'']]],
+  ['loglevel_19',['loglevel',['../namespacestgs.html#a2b4a335983593d5d8d599d58cd7ee203',1,'stgs::LogLevel'],['../structstgs_1_1app_1_1ground__station_1_1Options.html#a3ac5b50d75e9f27157c8ecda7c902501',1,'stgs::app::ground_station::Options::logLevel']]],
+  ['logleveltostring_20',['logLevelToString',['../namespacestgs.html#accc0b6ac907948c066bcc504da10d3cf',1,'stgs']]],
+  ['logtransition_21',['logTransition',['../namespacestgs_1_1app_1_1ground__station.html#a78082cb7155ab90735f365ccd62a3846',1,'stgs::app::ground_station']]],
+  ['lossprobability_22',['lossProbability',['../structstgs_1_1app_1_1simulator_1_1Options.html#af28305ade385c9c587b2870b3007feb2',1,'stgs::app::simulator::Options']]]
+];

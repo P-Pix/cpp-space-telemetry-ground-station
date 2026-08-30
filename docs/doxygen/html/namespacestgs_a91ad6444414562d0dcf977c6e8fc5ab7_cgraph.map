@@ -1,0 +1,9 @@
+<map id="stgs::encodeTextMessagePayload" name="stgs::encodeTextMessagePayload">
+<area shape="rect" id="Node000001" title="Encode un message texte dans le mini&#45;format applicatif STGA." alt="" coords="5,31,245,56"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1detail.html#a423df63e483c463ac6f72b4bb82bd2ca" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="293,5,487,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,29,279,26,280,31,246,35"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="535,31,689,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="246,41,521,41,521,46,246,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="487,26,521,30,521,36,487,32"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="576,32,568,22,572,12,587,6,612,4,643,8,655,17,652,21,641,13,612,9,588,11,576,16,573,22,580,29"/>
+</map>

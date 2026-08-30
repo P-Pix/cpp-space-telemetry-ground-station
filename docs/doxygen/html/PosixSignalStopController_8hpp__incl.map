@@ -1,0 +1,13 @@
+<map id="apps/ground_station/PosixSignalStopController.hpp" name="apps/ground_station/PosixSignalStopController.hpp">
+<area shape="rect" id="Node000001" title="Déclare le contrôleur d&#39;arrêt propre sur SIGINT/SIGTERM." alt="" coords="129,5,351,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,72,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,48,82,91,80,86,191,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,93,183,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,48,167,87,164,82,214,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,93,272,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="243,46,243,79,237,79,237,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="296,93,360,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,44,306,82,303,86,260,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="385,93,458,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="284,43,383,85,381,90,282,48"/>
+</map>

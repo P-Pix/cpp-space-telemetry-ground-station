@@ -1,0 +1,6 @@
+<map id="stgs::TerminalUi::width" name="stgs::TerminalUi::width">
+<area shape="rect" id="Node000001" title="Retourne la largeur détectée du terminal ou une largeur de repli documentée." alt="" coords="5,29,176,55"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="224,29,379,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,39,210,39,210,45,176,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="267,31,259,21,263,11,278,5,301,3,331,6,342,15,339,20,329,11,301,8,279,10,267,15,265,20,271,28"/>
+</map>

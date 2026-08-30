@@ -1,0 +1,7 @@
+<map id="stgs::encodeSignalBlockPayload" name="stgs::encodeSignalBlockPayload">
+<area shape="rect" id="Node000001" title="Encode les métadonnées et échantillons d&#39;un signal dans STGA." alt="" coords="307,13,537,38"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="108,5,259,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,28,259,28,259,23,293,23"/>
+<area shape="rect" id="Node000003" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+</map>

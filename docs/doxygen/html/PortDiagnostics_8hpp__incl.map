@@ -1,0 +1,35 @@
+<map id="include/stgs/PortDiagnostics.hpp" name="include/stgs/PortDiagnostics.hpp">
+<area shape="rect" id="Node000001" title="Déclare les diagnostics de ports locaux utilisés par les outils STGS." alt="" coords="515,5,749,31"/>
+<area shape="rect" id="Node000002" href="$CliParsing_8hpp.html" title="Fournit un parsing strict et réutilisable des valeurs de ligne de commande STGS." alt="" coords="378,79,523,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="604,33,494,76,492,71,602,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="579,33,367,81,86,153,85,148,366,76,578,28"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="897,152,956,177"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="620,33,604,48,590,66,583,86,584,94,589,102,609,117,639,128,720,139,808,143,884,150,884,155,808,149,719,144,638,133,607,122,585,106,579,96,578,85,585,64,600,44,616,29"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="599,79,665,104"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="635,31,635,65,629,65,629,31"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="690,79,761,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="649,29,701,68,698,72,645,33"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="785,79,860,104"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="664,28,780,71,778,76,662,33"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="885,79,947,104"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="679,28,872,76,871,81,678,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,152,159,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,107,174,154,172,149,392,101"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,152,265,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="415,107,275,150,273,145,413,101"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="289,152,351,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="431,106,354,148,352,143,428,102"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="378,105,246,125,86,155,85,149,245,120,378,100"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="375,152,441,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="446,106,424,142,420,139,441,103"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="465,152,524,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="460,103,483,139,478,142,456,106"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="549,152,635,177"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="475,102,558,143,556,148,472,106"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="524,99,884,150,883,155,523,105"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="659,152,757,177"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="493,101,654,146,653,151,491,107"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="781,152,873,177"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="513,101,767,149,766,154,512,107"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="stgs::encodeFrame" name="stgs::encodeFrame">
+<area shape="rect" id="Node000001" title="Sérialise une télémétrie selon le format binaire STGS." alt="" coords="5,157,151,183"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1detail.html#aaa3c420d8f0978f8552479c0ad1ec915" title="Sérialise les bits IEEE&#45;754 d&#39;un float 32 bits en big&#45;endian." alt="" coords="199,56,399,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,155,142,127,198,98,237,83,239,88,200,103,145,132,100,159"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1detail.html#a423df63e483c463ac6f72b4bb82bd2ca" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="447,5,640,31"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="85,155,127,98,159,66,197,41,255,20,316,8,377,3,433,4,433,9,377,9,317,13,257,25,200,46,163,70,131,101,89,159"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="688,157,843,183"/>
+<area shape="poly" id="edge15_Node000001_Node000004" title=" " alt="" coords="151,155,198,149,322,137,419,131,516,132,640,142,701,152,700,157,640,147,516,138,419,137,323,143,199,154,151,160"/>
+<area shape="rect" id="Node000005" href="$namespacestgs_1_1detail.html#a3562b4e5b96b0bda2897b0f5825781b9" title="Sérialise un entier 16 bits en ordre réseau (big&#45;endian)." alt="" coords="447,157,640,183"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="151,167,433,167,433,173,151,173"/>
+<area shape="rect" id="Node000006" href="$namespacestgs_1_1detail.html#a000ee99a480982ea130c1d18ec722c27" title="Sérialise un entier 64 bits en ordre réseau (big&#45;endian)." alt="" coords="447,207,640,232"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="151,175,433,205,432,210,151,180"/>
+<area shape="rect" id="Node000007" href="$namespacestgs_1_1detail.html#a536b35bbdc62402256e05df0084dd249" title="Ajoute un octet sans transformation à un buffer wire." alt="" coords="215,259,383,284"/>
+<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="100,181,145,208,200,237,239,252,237,257,198,242,142,213,97,185"/>
+<area shape="rect" id="Node000008" href="$namespacestgs.html#a6b24ed28e7cb67e90a0d801ea9602534" title="Calcule le CRC&#45;32/ISO&#45;HDLC d&#39;une séquence binaire." alt="" coords="253,308,345,333"/>
+<area shape="poly" id="edge13_Node000001_Node000008" title=" " alt="" coords="90,181,133,236,164,267,200,293,240,309,238,314,197,298,161,271,129,239,86,185"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="361,53,468,31,469,36,362,58"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="399,65,516,73,579,83,641,98,693,121,736,147,734,152,690,125,639,103,578,88,515,78,399,70"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="598,28,641,48,673,70,703,96,748,145,744,149,699,100,670,75,639,52,595,33"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="729,159,721,149,725,139,740,133,765,131,796,134,808,143,805,148,794,139,765,136,742,138,729,143,727,148,733,156"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="640,167,674,167,674,173,640,173"/>
+<area shape="poly" id="edge10_Node000006_Node000004" title=" " alt="" coords="601,204,693,183,695,188,602,209"/>
+<area shape="poly" id="edge12_Node000007_Node000004" title=" " alt="" coords="383,272,506,267,573,257,639,241,691,217,735,189,738,193,694,222,641,246,574,262,506,272,383,277"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="345,321,406,321,481,316,561,303,601,291,639,277,670,259,699,237,744,191,747,195,703,241,673,263,641,282,603,297,563,308,481,321,406,326,345,326"/>
+</map>

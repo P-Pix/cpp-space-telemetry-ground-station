@@ -1,0 +1,23 @@
+<map id="src/SignalProcessing.cpp" name="src/SignalProcessing.cpp">
+<area shape="rect" id="Node000001" title="Implémente les filtres FIR et projection sinusoïdale de la démonstration STGS." alt="" coords="388,5,571,31"/>
+<area shape="rect" id="Node000002" href="$SignalProcessing_8hpp.html" title="Déclare les traitements DSP légers de la démonstration de signaux STGS." alt="" coords="80,79,271,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="431,33,238,78,237,73,430,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="295,79,381,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="458,33,374,75,372,70,455,28"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="405,79,468,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="475,32,453,68,448,66,470,30"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="493,79,551,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="489,30,510,66,506,68,484,32"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="576,79,655,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="502,28,582,70,580,75,500,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="679,79,765,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="519,28,671,72,669,77,518,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,106,76,148,74,143,152,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="171,106,150,141,145,139,166,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="191,152,245,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="185,103,206,139,202,142,180,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="269,152,332,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="197,102,270,143,267,147,194,106"/>
+</map>

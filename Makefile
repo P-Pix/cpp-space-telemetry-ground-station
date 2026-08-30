@@ -2,6 +2,9 @@
 # CMake remains the source of truth; this file only exposes memorable showcase commands.
 
 CMAKE ?= cmake
+DOXYGEN ?= doxygen
+BROWSER ?= firefox
+
 BUILD_DIR ?= build
 BUILD_TYPE ?= Release
 JOBS ?= $(shell nproc 2>/dev/null || printf '2')
@@ -13,9 +16,12 @@ COUNT ?= 100
 RATE ?= 50
 OUTPUT ?= telemetry.csv
 
+DOXYFILE ?= Doxyfile
+DOXYGEN_OUTPUT ?= docs/doxygen
+
 .PHONY: all configure build debug release test run-ground-tcp run-ground-udp \
         run-sim-tcp run-sim-udp port-check message-demo signal-demo benchmark \
-        asan-test tsan-test clean distclean help
+        asan-test tsan-test doxigen clean distclean help
 
 all: build
 
@@ -68,11 +74,48 @@ tsan-test:
 	$(CMAKE) --build build-tsan --parallel $(JOBS)
 	TSAN_OPTIONS=halt_on_error=1 ctest --test-dir build-tsan --output-on-failure
 
+doxigen:
+	@command -v $(DOXYGEN) >/dev/null 2>&1 || { \
+		printf '%s\n' 'Erreur : Doxygen est introuvable. Installe-le avec : sudo apt install doxygen graphviz'; \
+		exit 1; \
+	}
+	@command -v $(BROWSER) >/dev/null 2>&1 || { \
+		printf '%s\n' 'Erreur : Mozilla Firefox est introuvable.'; \
+		exit 1; \
+	}
+	@if [ ! -f "$(DOXYFILE)" ]; then \
+		printf '%s\n' 'Création de $(DOXYFILE)...'; \
+		$(DOXYGEN) -g "$(DOXYFILE)" >/dev/null; \
+		sed -i \
+			-e 's|^PROJECT_NAME[[:space:]]*=.*|PROJECT_NAME           = "STGS - Space Telemetry Ground Station"|' \
+			-e 's|^OUTPUT_DIRECTORY[[:space:]]*=.*|OUTPUT_DIRECTORY       = $(DOXYGEN_OUTPUT)|' \
+			-e 's|^RECURSIVE[[:space:]]*=.*|RECURSIVE              = YES|' \
+			-e 's|^EXTRACT_ALL[[:space:]]*=.*|EXTRACT_ALL            = YES|' \
+			-e 's|^GENERATE_HTML[[:space:]]*=.*|GENERATE_HTML          = YES|' \
+			-e 's|^GENERATE_LATEX[[:space:]]*=.*|GENERATE_LATEX         = NO|' \
+			-e 's|^HAVE_DOT[[:space:]]*=.*|HAVE_DOT               = YES|' \
+			-e 's|^CALL_GRAPH[[:space:]]*=.*|CALL_GRAPH             = YES|' \
+			-e 's|^CALLER_GRAPH[[:space:]]*=.*|CALLER_GRAPH           = YES|' \
+			-e 's|^SOURCE_BROWSER[[:space:]]*=.*|SOURCE_BROWSER         = YES|' \
+			-e 's|^INLINE_SOURCES[[:space:]]*=.*|INLINE_SOURCES         = YES|' \
+			-e 's|^INPUT[[:space:]]*=.*|INPUT                  = .|' \
+			-e 's|^EXCLUDE[[:space:]]*=.*|EXCLUDE                = build build-asan build-tsan $(DOXYGEN_OUTPUT) .git|' \
+			"$(DOXYFILE)"; \
+	fi
+	@printf '%s\n' 'Génération de la documentation Doxygen...'
+	@$(DOXYGEN) "$(DOXYFILE)"
+	@test -f "$(DOXYGEN_OUTPUT)/html/index.html" || { \
+		printf '%s\n' 'Erreur : index.html Doxygen introuvable.'; \
+		exit 1; \
+	}
+	@printf '%s\n' 'Ouverture de la documentation dans Mozilla Firefox...'
+	@$(BROWSER) --new-window "file://$(CURDIR)/$(DOXYGEN_OUTPUT)/html/index.html" >/dev/null 2>&1 &
+
 clean:
 	$(CMAKE) --build $(BUILD_DIR) --target clean 2>/dev/null || true
 
 distclean:
-	rm -rf build build-* telemetry.csv telemetry.json *.stgf
+	rm -rf build build-* docs/doxygen telemetry.csv telemetry.json *.stgf
 
 help:
 	@printf '%s\n' \
@@ -84,4 +127,5 @@ help:
 	  'make asan-test      - run tests with ASan + UBSan' \
 	  'make tsan-test      - run tests with ThreadSanitizer' \
 	  'make benchmark      - run decode benchmark' \
+	  'make doxigen        - generate Doxygen HTML docs and open them in Firefox' \
 	  'make distclean      - remove generated build/output files'

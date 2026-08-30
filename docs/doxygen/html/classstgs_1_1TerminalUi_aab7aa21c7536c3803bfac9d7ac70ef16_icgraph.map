@@ -1,0 +1,5 @@
+<map id="stgs::TerminalUi::sparkline" name="stgs::TerminalUi::sparkline">
+<area shape="rect" id="Node000001" title="Compresse un bloc numérique en représentation sparkline." alt="" coords="244,13,439,38"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1TerminalUi.html#ada2090e90ddbbfb3c414946682a62fd9" title="Affiche un bloc de signal sous forme de sparklines brute/filtrée et de métriques." alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>

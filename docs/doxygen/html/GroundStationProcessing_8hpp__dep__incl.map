@@ -1,0 +1,7 @@
+<map id="apps/ground_station/GroundStationProcessing.hpp" name="apps/ground_station/GroundStationProcessing.hpp">
+<area shape="rect" id="Node000001" title="Déclare les traitements métier appliqués après décodage d&#39;une trame." alt="" coords="121,5,338,45"/>
+<area shape="rect" id="Node000002" href="$GroundStationProcessing_8cpp.html" title="Implémente l&#39;interprétation STGA et le rendu des transitions de santé." alt="" coords="5,93,221,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,56,141,95,137,91,191,52"/>
+<area shape="rect" id="Node000003" href="$GroundStationWorkers_8cpp.html" title="Implémente les threads de décodage, réordonnancement et observabilité du pipeline." alt="" coords="246,93,445,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,52,321,91,318,95,264,56"/>
+</map>

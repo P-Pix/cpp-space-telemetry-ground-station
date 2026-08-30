@@ -1,0 +1,12 @@
+<map id="stgs::encodeTextMessagePayload" name="stgs::encodeTextMessagePayload">
+<area shape="rect" id="Node000001" title="Encode un message texte dans le mini&#45;format applicatif STGA." alt="" coords="535,42,775,67"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1simulator.html#a3a1a7a1c5f19e37e5663378b5dafec76" title="Construit une trame de télémétrie cohérente pour la séquence demandée." alt="" coords="336,5,487,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="536,43,487,37,487,32,536,38"/>
+<area shape="rect" id="Node000005" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="123,63,273,103"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="521,65,274,81,273,75,521,60"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1app_1_1simulator.html#abd617338ab0f74c5f58570eff7308cb4" title="Exécute le scénario de génération et de transmission configuré." alt="" coords="108,13,288,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,28,288,28,288,23,322,23"/>
+<area shape="rect" id="Node000004" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,42,60,67"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,43,60,53,60,47,112,38"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="108,70,60,62,61,57,109,65"/>
+</map>

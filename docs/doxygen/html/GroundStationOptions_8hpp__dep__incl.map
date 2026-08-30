@@ -1,0 +1,33 @@
+<map id="apps/ground_station/GroundStationOptions.hpp" name="apps/ground_station/GroundStationOptions.hpp">
+<area shape="rect" id="Node000001" title="Définit la configuration CLI validée de la station sol." alt="" coords="375,5,572,45"/>
+<area shape="rect" id="Node000002" href="$ground__station_8cpp.html" title="Point d&#39;entrée minimal de la station sol STGS." alt="" coords="5,189,187,214"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="362,38,292,47,223,59,165,75,143,85,127,95,112,117,103,143,98,189,93,188,98,141,107,114,123,91,140,80,163,70,222,53,292,41,361,33"/>
+<area shape="rect" id="Node000003" href="$GroundStationApp_8hpp.html" title="Déclare l&#39;orchestrateur de haut niveau de la station sol." alt="" coords="138,93,310,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="406,52,279,96,278,91,405,47"/>
+<area shape="rect" id="Node000005" href="$GroundStationOptions_8cpp.html" title="Parse et valide la configuration de la station sol." alt="" coords="821,93,1017,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="585,45,822,91,821,96,584,51"/>
+<area shape="rect" id="Node000006" href="$GroundStationPipeline_8hpp.html" title="Déclare le pipeline concurrent de réception, décodage et export de la station sol." alt="" coords="261,181,459,221"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="424,55,401,73,382,95,372,116,366,139,362,181,357,181,361,138,367,114,378,92,397,69,421,51"/>
+<area shape="rect" id="Node000010" href="$GroundStationProcessing_8hpp.html" title="Déclare les traitements métier appliqués après décodage d&#39;une trame." alt="" coords="579,93,797,133"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="534,48,642,91,640,96,532,53"/>
+<area shape="rect" id="Node000012" href="$GroundStationUsage_8cpp.html" title="Contient uniquement l&#39;aide en ligne de commande de la station sol." alt="" coords="1041,93,1228,133"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="586,36,793,59,1030,91,1042,93,1041,98,1029,96,792,64,586,41"/>
+<area shape="rect" id="Node000013" href="$TelemetryOutput_8hpp.html" title="Encapsule l&#39;écriture déterministe des trames vers CSV ou JSON." alt="" coords="392,93,555,133"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="476,59,476,93,471,93,471,59"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="186,143,115,191,112,186,183,139"/>
+<area shape="rect" id="Node000004" href="$GroundStationApp_8cpp.html" title="Assemble les services de haut niveau de la station sol." alt="" coords="23,269,193,309"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="225,148,217,185,201,223,176,251,146,271,143,267,172,247,196,220,212,184,220,147"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="293,228,164,272,162,267,291,223"/>
+<area shape="rect" id="Node000007" href="$GroundStationInput_8cpp.html" title="Implémente les producteurs réseau et replay du pipeline." alt="" coords="217,269,396,309"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="343,234,321,271,316,268,339,232"/>
+<area shape="rect" id="Node000008" href="$GroundStationPipeline_8cpp.html" title="Implémente le cycle de vie et la synchronisation globale du pipeline." alt="" coords="421,269,619,309"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="408,225,486,267,484,272,406,230"/>
+<area shape="rect" id="Node000009" href="$GroundStationWorkers_8cpp.html" title="Implémente les threads de décodage, réordonnancement et observabilité du pipeline." alt="" coords="643,269,842,309"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="458,222,659,267,658,272,457,227"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="697,146,716,220,736,268,731,270,711,222,691,148"/>
+<area shape="rect" id="Node000011" href="$GroundStationProcessing_8cpp.html" title="Implémente l&#39;interprétation STGA et le rendu des transitions de santé." alt="" coords="725,181,941,221"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="733,138,803,179,800,184,730,143"/>
+<area shape="poly" id="edge16_Node000013_Node000006" title=" " alt="" coords="439,144,387,183,383,179,436,140"/>
+<area shape="rect" id="Node000014" href="$TelemetryOutput_8cpp.html" title="Implémente l&#39;export CSV/JSON de la station sol." alt="" coords="484,181,647,221"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="505,141,547,179,543,183,502,145"/>
+</map>

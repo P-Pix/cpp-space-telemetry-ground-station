@@ -1,0 +1,8 @@
+<map id="stgs::app::ground_station::logTransition" name="stgs::app::ground_station::logTransition">
+<area shape="rect" id="Node000001" title="Journalise une transition d&#39;état de la station avec le niveau adapté." alt="" coords="5,47,192,87"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="257,29,411,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,55,243,49,243,54,193,60"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#aab97099af93b31681943b81e22a072f9" title="Convertit l&#39;état de santé en libellé stable de log/export." alt="" coords="240,79,428,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="193,74,227,78,226,83,192,80"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="296,31,288,21,292,11,308,5,334,3,367,7,380,16,376,20,365,11,334,8,309,10,295,15,293,20,300,27"/>
+</map>

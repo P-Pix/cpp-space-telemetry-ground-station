@@ -1,0 +1,6 @@
+<map id="stgs::StationHealthMonitor::recordDecoded" name="stgs::StationHealthMonitor::recordDecoded">
+<area shape="rect" id="Node000001" title="Ajoute une télémétrie valide à la fenêtre de santé." alt="" coords="5,22,201,62"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="249,29,404,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,39,236,39,236,45,201,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="291,31,283,21,287,11,302,5,327,3,357,6,370,15,366,20,355,11,327,8,303,10,290,15,288,20,295,28"/>
+</map>

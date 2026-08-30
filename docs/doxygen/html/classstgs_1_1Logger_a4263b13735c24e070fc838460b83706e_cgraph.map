@@ -1,0 +1,14 @@
+<map id="stgs::Logger::warning" name="stgs::Logger::warning">
+<area shape="rect" id="Node000001" title="Journalise une anomalie maîtrisée qui ne stoppe pas nécessairement le service." alt="" coords="5,56,167,81"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1Logger.html#ad62b4fe2573d0fbc245bc8499072132e" title="Émet une ligne timestampée si level atteint le seuil courant." alt="" coords="215,56,344,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,66,201,66,201,71,167,71"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#accc0b6ac907948c066bcc504da10d3cf" title="Convertit un niveau en libellé stable utilisé dans les lignes de log." alt="" coords="392,5,556,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,53,411,32,412,37,330,58"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="604,56,759,81"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="344,66,590,66,590,71,344,71"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#a13a8b54e63f390f2fc7dab36ab707743" title="Produit un timestamp UTC ISO&#45;8601 avec précision milliseconde." alt="" coords="407,107,541,132"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="330,79,412,101,411,106,328,84"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="528,28,616,50,615,55,526,33"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="648,58,640,48,644,38,658,32,681,29,710,33,721,42,718,46,708,38,681,35,659,37,648,41,646,47,652,54"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="526,104,615,82,616,87,528,109"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="apps/ground_station/PosixSignalStopController.hpp" name="apps/ground_station/PosixSignalStopController.hpp">
+<area shape="rect" id="Node000001" title="Déclare le contrôleur d&#39;arrêt propre sur SIGINT/SIGTERM." alt="" coords="89,5,311,45"/>
+<area shape="rect" id="Node000002" href="$GroundStationApp_8cpp.html" title="Assemble les services de haut niveau de la station sol." alt="" coords="5,93,176,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,56,117,95,113,91,163,52"/>
+<area shape="rect" id="Node000003" href="$PosixSignalStopController_8cpp.html" title="Implémente l&#39;arrêt coopératif SIGINT/SIGTERM de la station sol." alt="" coords="201,93,421,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,52,288,91,285,95,234,56"/>
+</map>

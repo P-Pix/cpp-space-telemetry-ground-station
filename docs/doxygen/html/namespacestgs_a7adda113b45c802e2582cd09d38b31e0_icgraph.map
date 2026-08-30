@@ -1,0 +1,14 @@
+<map id="stgs::isLoopbackIpv4" name="stgs::isLoopbackIpv4">
+<area shape="rect" id="Node000001" title="Indique si une adresse IPv4 textuelle cible le loopback 127.0.0.0/8." alt="" coords="496,70,655,95"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="297,5,448,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="516,69,443,48,445,43,517,64"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31f0fdd245489f09a743aa8df55707df" title="Tente une connexion TCP locale non bloquante et mesure sa latence." alt="" coords="302,70,443,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="482,85,444,85,444,80,482,80"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#a53f008098655c7495554541d87b0872e" title="Probe séquentiellement une plage locale inclusive et produit un rapport par port." alt="" coords="108,95,249,121"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="510,101,448,111,344,116,250,114,250,109,344,110,448,105,509,96"/>
+<area shape="rect" id="Node000003" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="151,13,206,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,28,206,28,206,23,283,23"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="289,96,250,101,250,96,288,91"/>
+<area shape="rect" id="Node000006" href="$port__check_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,95,60,121"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="94,111,60,111,60,105,94,105"/>
+</map>

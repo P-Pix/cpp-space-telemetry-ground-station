@@ -1,0 +1,9 @@
+<map id="stgs::crc32" name="stgs::crc32">
+<area shape="rect" id="Node000001" title="Surcharge pratique pour les vecteurs de contrôle textuels." alt="" coords="5,31,97,56"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a6b24ed28e7cb67e90a0d801ea9602534" title="Calcule le CRC&#45;32/ISO&#45;HDLC d&#39;une séquence binaire." alt="" coords="145,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,32,131,26,132,31,98,38"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="285,31,440,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="98,41,272,41,272,46,98,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="238,22,272,27,271,32,237,27"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="334,32,328,22,331,13,343,6,363,4,386,7,396,16,393,20,384,12,363,9,345,11,335,16,333,22,339,29"/>
+</map>

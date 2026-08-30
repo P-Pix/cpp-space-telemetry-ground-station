@@ -1,0 +1,13 @@
+<map id="stgs::scanTcpPorts" name="stgs::scanTcpPorts">
+<area shape="rect" id="Node000001" title="Probe séquentiellement une plage locale inclusive et produit un rapport par port." alt="" coords="5,29,147,55"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a7adda113b45c802e2582cd09d38b31e0" title="Indique si une adresse IPv4 textuelle cible le loopback 127.0.0.0/8." alt="" coords="384,29,543,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,39,371,39,371,45,147,45"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="591,29,745,55"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="147,27,194,21,369,7,445,8,543,15,599,24,599,29,542,21,445,13,369,12,195,26,148,32"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31f0fdd245489f09a743aa8df55707df" title="Tente une connexion TCP locale non bloquante et mesure sa latence." alt="" coords="195,80,336,105"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="125,52,205,74,203,79,124,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="543,39,577,39,577,45,543,45"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="635,31,628,21,631,11,645,5,668,3,696,6,708,16,704,20,694,11,668,8,646,10,635,15,633,20,639,28"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="315,77,399,55,401,61,317,82"/>
+<area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="336,86,434,78,542,65,597,55,598,60,543,70,434,83,336,91"/>
+</map>

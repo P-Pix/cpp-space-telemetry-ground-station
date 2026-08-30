@@ -1,0 +1,9 @@
+<map id="stgs::detail::appendFloatBE" name="stgs::detail::appendFloatBE">
+<area shape="rect" id="Node000001" title="Sérialise les bits IEEE&#45;754 d&#39;un float 32 bits en big&#45;endian." alt="" coords="5,31,205,56"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1detail.html#a423df63e483c463ac6f72b4bb82bd2ca" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="253,5,447,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,30,240,27,240,32,206,36"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="495,31,649,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="206,41,481,41,481,46,206,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="447,26,481,30,481,36,447,32"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="536,32,528,22,532,12,547,6,572,4,603,8,615,17,612,21,601,13,572,9,548,11,536,16,533,22,540,29"/>
+</map>

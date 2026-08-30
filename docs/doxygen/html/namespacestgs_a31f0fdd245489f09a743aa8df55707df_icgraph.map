@@ -1,0 +1,7 @@
+<map id="stgs::probeTcpPort" name="stgs::probeTcpPort">
+<area shape="rect" id="Node000001" title="Tente une connexion TCP locale non bloquante et mesure sa latence." alt="" coords="297,5,439,31"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a53f008098655c7495554541d87b0872e" title="Probe séquentiellement une plage locale inclusive et produit un rapport par port." alt="" coords="108,5,249,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,21,250,21,250,15,283,15"/>
+<area shape="rect" id="Node000003" href="$port__check_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

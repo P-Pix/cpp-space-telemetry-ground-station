@@ -1,0 +1,23 @@
+<map id="include/stgs/FrameCodec.hpp" name="include/stgs/FrameCodec.hpp">
+<area shape="rect" id="Node000001" title="Déclare le codec strict des trames STGS et le réassembleur de flux TCP." alt="" coords="246,5,459,31"/>
+<area shape="rect" id="Node000002" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="103,79,290,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="329,33,236,75,234,70,327,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="260,33,156,53,112,66,82,81,70,93,61,108,49,139,44,137,56,106,66,90,79,77,110,61,155,48,259,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="246,33,153,51,116,64,93,80,88,94,91,110,113,140,108,143,86,112,83,94,89,77,114,60,151,46,245,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="191,152,250,177"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="350,32,332,67,304,106,280,128,254,147,251,142,276,124,300,102,327,64,345,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="323,152,385,177"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="355,31,356,138,351,138,350,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="415,79,490,104"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="370,29,427,68,424,73,367,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="514,79,567,104"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="384,28,502,73,500,78,382,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="592,79,660,104"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="397,28,579,75,578,80,396,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,106,80,149,78,144,171,102"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="188,106,155,143,151,140,184,103"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="203,103,215,138,210,140,198,105"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="223,102,317,144,315,149,221,106"/>
+</map>

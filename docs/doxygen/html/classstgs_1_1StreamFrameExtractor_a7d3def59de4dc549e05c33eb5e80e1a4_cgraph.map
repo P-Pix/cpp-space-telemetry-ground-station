@@ -1,0 +1,9 @@
+<map id="stgs::StreamFrameExtractor::feed" name="stgs::StreamFrameExtractor::feed">
+<area shape="rect" id="Node000001" title="Ajoute un fragment de flux TCP et restitue les trames complètes disponibles." alt="" coords="5,22,209,62"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="480,29,635,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,39,466,39,466,45,210,45"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1detail.html#a5348b159392823cfed94d84a1632e3c0" title="Lit un entier 16 bits big&#45;endian depuis un buffer déjà borné." alt="" coords="257,55,432,80"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="210,50,244,54,244,59,209,56"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="523,31,515,21,519,11,534,5,557,3,587,6,598,15,595,20,585,11,557,8,535,10,523,15,521,20,527,28"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="432,54,466,50,467,55,432,60"/>
+</map>

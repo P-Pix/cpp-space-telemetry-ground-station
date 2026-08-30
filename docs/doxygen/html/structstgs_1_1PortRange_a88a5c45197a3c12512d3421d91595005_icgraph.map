@@ -1,0 +1,5 @@
+<map id="stgs::PortRange::valid" name="stgs::PortRange::valid">
+<area shape="rect" id="Node000001" title="Vérifie que la plage décrit au moins un port utilisateur valide." alt="" coords="221,5,385,31"/>
+<area shape="rect" id="Node000002" href="$structstgs_1_1PortRange.html#a7cfeaa08040db1b19a5906537fb263e2" title="Retourne le nombre de ports de la plage inclusive." alt="" coords="5,5,173,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,21,174,21,174,15,207,15"/>
+</map>

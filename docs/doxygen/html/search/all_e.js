@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['fd_0',['fd',['../NetworkServerTcp_8cpp.html#a6f8059414f0228f0256115e024eeed4b',1,'NetworkServerTcp.cpp']]],
+  ['feed_1',['feed',['../classstgs_1_1StreamFrameExtractor.html#a7d3def59de4dc549e05c33eb5e80e1a4',1,'stgs::StreamFrameExtractor']]],
+  ['filter_20it_2',['4. Send a noisy wave and filter it',['../md_README.html#autotoc_md60',1,'']]],
+  ['filteredrms_3',['filteredRms',['../structstgs_1_1SignalMetrics.html#aa2d9ad888f22cb619a4e17cd73803133',1,'stgs::SignalMetrics']]],
+  ['filtering_4',['10. Signal generation, noise and filtering',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md33',1,'']]],
+  ['findfirstavailablelocalport_5',['findFirstAvailableLocalPort',['../namespacestgs.html#a3711847fc7f4844d7ff12f7835d8a8fd',1,'stgs']]],
+  ['finish_6',['finish',['../classstgs_1_1app_1_1ground__station_1_1PosixSignalStopController.html#a6e65c3fb986b905596a254439d8f252a',1,'stgs::app::ground_station::PosixSignalStopController::finish()'],['../classstgs_1_1app_1_1ground__station_1_1TelemetryOutput.html#ab31b4fba12a683f1505951d406717776',1,'stgs::app::ground_station::TelemetryOutput::finish()']]],
+  ['first_7',['first',['../md_docs_2SHOWCASE__GUIDE.html#autotoc_md15',1,'1. Build confidence first'],['../structstgs_1_1PortRange.html#a5974ad2a5dff722fc5fd7c646cce679d',1,'stgs::PortRange::first']]],
+  ['float32wiresize_8',['Float32WireSize',['../namespacestgs.html#ad30888b452380949c566d434784bba70',1,'stgs']]],
+  ['flush_9',['flush',['../classstgs_1_1FrameFileWriter.html#abbf59bb86fa348f352879a01beaf9586',1,'stgs::FrameFileWriter']]],
+  ['format_10',['3. STGS v1 wire format',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md26',1,'']]],
+  ['formats_20de_20sortie_11',['Déterminisme et formats de sortie',['../md_docs_2VERIFICATION__REPORT.html#autotoc_md50',1,'']]],
+  ['frame_20decoding_20policy_12',['5. Frame decoding policy',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md28',1,'']]],
+  ['framecallback_13',['FrameCallback',['../classstgs_1_1NetworkServer.html#ac504eb1e38628a5ba4cec43d9af0b51e',1,'stgs::NetworkServer']]],
+  ['framecodec_2ecpp_14',['FrameCodec.cpp',['../FrameCodec_8cpp.html',1,'']]],
+  ['framecodec_2ehpp_15',['FrameCodec.hpp',['../FrameCodec_8hpp.html',1,'']]],
+  ['frameerror_16',['FrameError',['../structstgs_1_1FrameError.html',1,'stgs']]],
+  ['frameerrorcode_17',['FrameErrorCode',['../namespacestgs.html#a6c3c97c875363adab257eb270bb20f14',1,'stgs']]],
+  ['framefilereader_18',['framefilereader',['../classstgs_1_1FrameFileReader.html',1,'stgs::FrameFileReader'],['../classstgs_1_1FrameFileReader.html#ac91f1a5de928bef5d277a829a8a41cd8',1,'stgs::FrameFileReader::FrameFileReader(const FrameFileReader &amp;)=delete'],['../classstgs_1_1FrameFileReader.html#ad2ba5c80795b399b144122b666d8d184',1,'stgs::FrameFileReader::FrameFileReader(const std::filesystem::path &amp;path)']]],
+  ['framefilewriter_19',['framefilewriter',['../classstgs_1_1FrameFileWriter.html#afd0202fe0483bd7ccebe184db6f0d15f',1,'stgs::FrameFileWriter::FrameFileWriter(const FrameFileWriter &amp;)=delete'],['../classstgs_1_1FrameFileWriter.html#a6a98b7bef36f40e1e3e2e1ba0fb473e9',1,'stgs::FrameFileWriter::FrameFileWriter(const std::filesystem::path &amp;path)'],['../classstgs_1_1FrameFileWriter.html',1,'stgs::FrameFileWriter']]],
+  ['framemagic_20',['FrameMagic',['../namespacestgs.html#a0e4be2b427b7e545711791601cd0d394',1,'stgs']]],
+  ['frameparseresult_21',['FrameParseResult',['../namespacestgs.html#a6f51df7d9b7e75ff18a4bae663ff262f',1,'stgs']]],
+  ['frequencyhz_22',['frequencyHz',['../structstgs_1_1SignalBlockPayload.html#a7119d2eca398e407971983d71051fb9e',1,'stgs::SignalBlockPayload']]],
+  ['from_23',['from',['../structstgs_1_1StationStateTransition.html#a9f85cfbfc0332168e30dbb69094463d7',1,'stgs::StationStateTransition']]]
+];

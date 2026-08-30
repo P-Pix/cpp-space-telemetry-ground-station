@@ -1,0 +1,30 @@
+<map id="stgs::app::ground_station::processApplicationPayload" name="stgs::app::ground_station::processApplicationPayload">
+<area shape="rect" id="Node000001" title="Interprète un payload STGA et déclenche le rendu opérateur approprié." alt="" coords="5,164,209,204"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a45a2c8095b5dbfef861d3de94fa3e602" title="Convertit un code d&#39;erreur STGA en libellé stable de diagnostic." alt="" coords="281,5,461,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,162,182,113,218,86,256,62,285,48,288,53,259,66,221,90,186,117,130,166"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a28ae1709832b8407892d8d3b767cae0d" title="Calcule RMS, résidu, amplitude estimée et SNR approximatif." alt="" coords="773,70,976,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,161,194,135,257,112,390,87,526,75,652,71,760,73,760,78,652,76,526,80,391,93,258,117,196,139,143,166"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="1024,247,1179,273"/>
+<area shape="poly" id="edge16_Node000001_Node000004" title=" " alt="" coords="209,168,360,155,553,149,658,152,766,160,873,174,977,196,1027,215,1070,238,1067,242,1025,220,975,201,872,179,765,165,658,157,553,154,361,160,210,173"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#af8f13007bacb6d468b61280260ae8daf" title="Interprète une enveloppe STGA après validation de la trame externe." alt="" coords="257,222,485,247"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="210,201,292,217,291,222,209,206"/>
+<area shape="rect" id="Node000009" href="$namespacestgs.html#ab457496c4c0e42e80f6799eeca183c62" title="Applique un filtre FIR moyenne glissante centré." alt="" coords="533,373,725,398"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="147,202,258,256,395,312,534,357,565,367,563,372,533,363,393,317,256,261,145,207"/>
+<area shape="rect" id="Node000010" href="$namespacestgs.html#a56200a6087e716885d56efa37b538687" title="Reconstruit la composante sinusoïdale connue par projection corrélative." alt="" coords="783,425,966,450"/>
+<area shape="poly" id="edge17_Node000001_Node000010" title=" " alt="" coords="123,203,145,235,176,275,214,314,259,347,321,378,388,402,456,420,526,432,658,443,770,443,770,448,658,448,525,437,455,425,386,407,319,383,256,352,211,318,172,278,141,238,119,206"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="936,93,977,112,1012,141,1043,173,1088,234,1083,237,1039,177,1009,145,975,117,933,98"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="1064,249,1056,239,1061,229,1076,223,1101,221,1133,225,1145,234,1142,238,1131,229,1101,226,1077,228,1064,233,1062,238,1068,245"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="438,219,533,207,658,199,756,200,853,209,976,228,1040,241,1039,246,976,233,852,215,755,205,658,204,534,212,438,225"/>
+<area shape="rect" id="Node000006" href="$namespacestgs_1_1detail.html#a43b10e016ab984cb5800e62c8e8eac0f" title="Reconstruit un float 32 bits à partir de son motif binaire big&#45;endian." alt="" coords="539,222,720,247"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="485,232,525,232,525,237,485,237"/>
+<area shape="rect" id="Node000007" href="$namespacestgs_1_1detail.html#acf588485290204c5dbe14e3e3ca09da5" title="Lit un entier 32 bits big&#45;endian depuis un buffer déjà borné." alt="" coords="787,273,962,298"/>
+<area shape="poly" id="edge13_Node000005_Node000007" title=" " alt="" coords="451,245,534,256,774,277,773,282,533,261,450,250"/>
+<area shape="rect" id="Node000008" href="$namespacestgs_1_1detail.html#a5348b159392823cfed94d84a1632e3c0" title="Lit un entier 16 bits big&#45;endian depuis un buffer déjà borné." alt="" coords="542,323,717,349"/>
+<area shape="poly" id="edge11_Node000005_Node000008" title=" " alt="" coords="401,245,534,302,576,317,574,322,532,306,399,250"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="720,237,1010,252,1010,258,720,242"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="692,245,800,267,799,272,691,250"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="962,273,1010,268,1011,273,963,278"/>
+<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="717,334,840,327,908,319,975,307,1020,293,1061,276,1063,281,1022,298,977,312,909,325,841,333,717,339"/>
+<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="725,381,847,369,912,356,975,338,1029,310,1073,279,1076,283,1032,315,977,342,913,362,847,374,726,387"/>
+<area shape="poly" id="edge18_Node000010_Node000004" title=" " alt="" coords="933,422,975,403,1009,375,1039,343,1083,283,1088,286,1043,347,1012,379,977,408,936,427"/>
+</map>

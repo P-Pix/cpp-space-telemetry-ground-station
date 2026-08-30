@@ -1,0 +1,5 @@
+<map id="stgs::TerminalUi::sanitizeRemoteText" name="stgs::TerminalUi::sanitizeRemoteText">
+<area shape="rect" id="Node000001" title="Neutralise les contrôles ASCII/ANSI avant affichage d&#39;un texte reçu du réseau." alt="" coords="244,5,431,45"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1TerminalUi.html#a473df2d3fd1b2c88e11ff4e7cb09fcbd" title="Affiche un message applicatif après neutralisation des contrôles terminaux." alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>

@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['badcrc_0',['BadCrc',['../namespacestgs.html#a6c3c97c875363adab257eb270bb20f14a63afce0aa4ad8e31dbdfc57d15771a1c',1,'stgs']]],
+  ['badmagic_1',['BadMagic',['../namespacestgs.html#a6c3c97c875363adab257eb270bb20f14ac87c2d41af62cc035e76f90e0f889e4f',1,'stgs']]],
+  ['batteryoffset_2',['BatteryOffset',['../namespacestgs.html#aceda3f1abf5c9b9a85133a4566b455c1',1,'stgs']]],
+  ['batterypercent_3',['batteryPercent',['../structstgs_1_1TelemetryFrame.html#a02c7ba32d96eb0fea578eefac2cc8d6f',1,'stgs::TelemetryFrame']]],
+  ['behavior_4',['6. UDP behavior',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md29',1,'']]],
+  ['behavior_20and_20the_20poll_20snapshot_20invariant_5',['7. TCP behavior and the poll snapshot invariant',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md30',1,'']]],
+  ['benchmark_6',['benchmark',['../md_README.html#autotoc_md69',1,'12. Benchmark'],['../md_docs_2README__DOCUMENTATION.html#autotoc_md11',1,'Build, tests, diagnostic et benchmark']]],
+  ['benchmark_20command_7',['2. Benchmark command',['../md_docs_2PERFORMANCE__REPORT.html#autotoc_md2',1,'']]],
+  ['benchmark_20de_20contrôle_8',['Benchmark de contrôle',['../md_docs_2VERIFICATION__REPORT.html#autotoc_md51',1,'']]],
+  ['benchmark_5fdecode_2ecpp_9',['benchmark_decode.cpp',['../benchmark__decode_8cpp.html',1,'']]],
+  ['binary_20protocol_3a_20stgs_20v1_10',['8. Binary protocol: STGS v1',['../md_README.html#autotoc_md64',1,'']]],
+  ['bindaddress_11',['bindaddress',['../structstgs_1_1NetworkConfig.html#af526151af5d29d05947a1ed99f781749',1,'stgs::NetworkConfig::bindAddress'],['../structstgs_1_1app_1_1ground__station_1_1Options.html#a69dadf7f1603c0332a2b4a210ab8332d',1,'stgs::app::ground_station::Options::bindAddress']]],
+  ['blockingqueue_12',['blockingqueue',['../classstgs_1_1BlockingQueue.html#acc6b8fc0643c9a0056a9c289a6b9bcba',1,'stgs::BlockingQueue::BlockingQueue(const BlockingQueue &amp;)=delete'],['../classstgs_1_1BlockingQueue.html#a338b6b942f4ccf56cf64e754433e76fc',1,'stgs::BlockingQueue::BlockingQueue(std::size_t capacity=0U)'],['../classstgs_1_1BlockingQueue.html',1,'stgs::BlockingQueue&lt; T &gt;']]],
+  ['blockingqueue_2ehpp_13',['BlockingQueue.hpp',['../BlockingQueue_8hpp.html',1,'']]],
+  ['blockingqueue_3c_20stgs_3a_3aapp_3a_3aground_5fstation_3a_3adecodedworkitem_20_3e_14',['BlockingQueue&lt; stgs::app::ground_station::DecodedWorkItem &gt;',['../classstgs_1_1BlockingQueue.html',1,'stgs']]],
+  ['blockingqueue_3c_20stgs_3a_3aapp_3a_3aground_5fstation_3a_3arawworkitem_20_3e_15',['BlockingQueue&lt; stgs::app::ground_station::RawWorkItem &gt;',['../classstgs_1_1BlockingQueue.html',1,'stgs']]],
+  ['bounded_20concurrent_20pipeline_20and_20deterministic_20output_16',['8. Bounded concurrent pipeline and deterministic output',['../md_docs_2TECHNICAL__DESIGN.html#autotoc_md31',1,'']]],
+  ['bufferedbytes_17',['bufferedBytes',['../classstgs_1_1StreamFrameExtractor.html#a4c8db84b6856dc01b744e7fce8c8df14',1,'stgs::StreamFrameExtractor']]],
+  ['build_18',['Build',['../md_README.html#autotoc_md56',1,'']]],
+  ['build_20confidence_20first_19',['1. Build confidence first',['../md_docs_2SHOWCASE__GUIDE.html#autotoc_md15',1,'']]],
+  ['build_20tests_20diagnostic_20et_20benchmark_20',['Build, tests, diagnostic et benchmark',['../md_docs_2README__DOCUMENTATION.html#autotoc_md11',1,'']]],
+  ['bytemask_21',['ByteMask',['../namespacestgs_1_1detail.html#aa375565c0fc4c92865ea298dba3b6691',1,'stgs::detail']]],
+  ['bytes_22',['bytes',['../structstgs_1_1app_1_1ground__station_1_1RawWorkItem.html#a32c01440dff1d6c5d5f1bdd55f3905c9',1,'stgs::app::ground_station::RawWorkItem']]],
+  ['byteutils_2ehpp_23',['ByteUtils.hpp',['../ByteUtils_8hpp.html',1,'']]],
+  ['bytevector_24',['ByteVector',['../namespacestgs.html#ad5ffad61c84bc02fa03a4d2c7f7e8305',1,'stgs']]]
+];

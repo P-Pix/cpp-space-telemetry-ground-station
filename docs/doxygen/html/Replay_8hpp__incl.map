@@ -1,0 +1,21 @@
+<map id="include/stgs/Replay.hpp" name="include/stgs/Replay.hpp">
+<area shape="rect" id="Node000001" title="Déclare la lecture et l’écriture du format de replay STGF." alt="" coords="359,5,533,31"/>
+<area shape="rect" id="Node000002" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="83,79,270,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,33,234,78,233,73,402,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="294,79,385,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="430,33,370,73,367,69,427,28"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="409,79,483,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="449,31,449,65,443,65,443,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="507,79,582,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="463,29,519,68,516,73,460,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="606,79,659,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="477,28,594,73,592,78,475,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="156,106,76,148,74,143,154,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="172,106,150,142,146,139,167,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="191,152,250,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="186,103,209,139,204,142,182,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="275,152,337,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="199,102,274,143,271,147,196,106"/>
+</map>

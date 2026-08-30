@@ -1,0 +1,5 @@
+<map id="stgs::decodeApplicationPayload" name="stgs::decodeApplicationPayload">
+<area shape="rect" id="Node000001" title="Interprète une enveloppe STGA après validation de la trame externe." alt="" coords="257,13,485,38"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1ground__station.html#a0d507efe3c231057079de3c7ca8c07ee" title="Interprète un payload STGA et déclenche le rendu opérateur approprié." alt="" coords="5,5,209,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,28,209,28,209,23,244,23"/>
+</map>

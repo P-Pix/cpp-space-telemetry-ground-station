@@ -1,0 +1,9 @@
+<map id="include/stgs/Crc32.hpp" name="include/stgs/Crc32.hpp">
+<area shape="rect" id="Node000001" title="Déclare le CRC&#45;32/ISO&#45;HDLC utilisé pour l&#39;intégrité des trames STGS." alt="" coords="131,5,301,31"/>
+<area shape="rect" id="Node000002" href="$Crc32_8cpp.html" title="Implémente le CRC&#45;32 des trames de télémétrie STGS." alt="" coords="5,79,115,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,39,87,81,84,76,177,34"/>
+<area shape="rect" id="Node000003" href="$FrameCodec_8cpp.html" title="Implémente l’encodage, la validation et le réassemblage des trames STGS." alt="" coords="139,79,293,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,44,219,79,213,79,213,44"/>
+<area shape="rect" id="Node000004" href="$test__codec_8cpp.html" title="Tests du framing, CRC et codec binaire STGS." alt="" coords="317,79,472,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,33,366,76,364,81,256,38"/>
+</map>

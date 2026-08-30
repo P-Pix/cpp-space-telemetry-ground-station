@@ -1,0 +1,6 @@
+<map id="stgs::FrameFileWriter::FrameFileWriter" name="stgs::FrameFileWriter::FrameFileWriter">
+<area shape="rect" id="Node000001" title="Crée/tronque une capture STGF et écrit immédiatement son en&#45;tête versionné." alt="" coords="5,22,167,62"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="215,29,369,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,39,201,39,201,45,167,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="258,31,251,21,255,11,269,5,292,3,321,6,332,15,329,20,318,11,292,8,270,10,259,15,256,20,262,28"/>
+</map>

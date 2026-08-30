@@ -1,0 +1,16 @@
+<map id="stgs::detail::appendFloatBE" name="stgs::detail::appendFloatBE">
+<area shape="rect" id="Node000001" title="Sérialise les bits IEEE&#45;754 d&#39;un float 32 bits en big&#45;endian." alt="" coords="615,84,815,109"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a96d420ce35d29e8fbcfb4228464169aa" title="Sérialise une télémétrie selon le format binaire STGS." alt="" coords="379,55,524,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="601,87,524,78,525,73,601,81"/>
+<area shape="rect" id="Node000006" href="$namespacestgs.html#a6df02cb32efc818d349522c29ef2197d" title="Encode les métadonnées et échantillons d&#39;un signal dans STGA." alt="" coords="336,108,567,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="601,110,567,113,567,108,601,104"/>
+<area shape="rect" id="Node000003" href="$benchmark__decode_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="171,5,225,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,55,225,26,226,21,373,49"/>
+<area shape="rect" id="Node000004" href="$namespacestgs_1_1app_1_1simulator.html#abd617338ab0f74c5f58570eff7308cb4" title="Exécute le scénario de génération et de transmission configuré." alt="" coords="108,55,288,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,70,288,70,288,65,365,65"/>
+<area shape="rect" id="Node000005" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,84,60,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="113,85,60,95,60,89,112,80"/>
+<area shape="rect" id="Node000007" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="123,105,273,145"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="322,125,274,126,274,121,322,120"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="108,112,60,104,61,99,109,107"/>
+</map>

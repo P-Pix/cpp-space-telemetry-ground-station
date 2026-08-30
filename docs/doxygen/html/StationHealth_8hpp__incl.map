@@ -1,0 +1,21 @@
+<map id="include/stgs/StationHealth.hpp" name="include/stgs/StationHealth.hpp">
+<area shape="rect" id="Node000001" title="Déclare le moniteur de santé opérationnelle de la station sol." alt="" coords="230,5,451,31"/>
+<area shape="rect" id="Node000002" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="82,79,269,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,33,216,76,214,71,313,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="243,33,141,52,99,65,72,81,61,93,54,108,45,139,40,137,49,106,57,90,68,77,97,61,140,47,242,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="279,152,338,177"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="341,32,317,139,312,138,335,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="344,79,407,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="349,30,366,65,361,67,344,32"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="431,79,495,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="362,28,433,69,430,74,359,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="519,79,594,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="376,28,510,72,508,77,375,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,106,76,148,74,143,152,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="171,106,150,141,145,139,166,103"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="198,102,276,143,274,148,196,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="192,152,255,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="185,103,210,139,206,142,181,106"/>
+</map>

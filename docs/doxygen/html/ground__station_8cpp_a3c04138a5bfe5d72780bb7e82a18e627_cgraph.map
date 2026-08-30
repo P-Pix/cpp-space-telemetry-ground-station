@@ -1,0 +1,40 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,310,60,335"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1app_1_1ground__station.html#a310e8ff89b553d737d7d1ccdc9e91491" title="Parse et valide l&#39;ensemble de la configuration de la station avant tout effet de bord." alt="" coords="122,160,309,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,307,176,207,179,211,52,312"/>
+<area shape="rect" id="Node000009" href="$namespacestgs_1_1app_1_1ground__station.html#a0a2153806b7da8fb962bffb9f7ce5d88" title="Prépare l&#39;environnement opérateur puis exécute le pipeline jusqu&#39;à son arrêt." alt="" coords="108,425,323,450"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="55,333,184,415,181,420,53,338"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a9ccb3a36865cfcbbe10e28f57c0f6d75" title="Parse un flottant fini en refusant toute portion de chaîne non consommée." alt="" coords="660,218,835,243"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,198,300,236,335,254,371,267,414,275,459,279,548,275,629,262,694,245,696,250,630,267,548,281,459,285,414,281,370,272,332,258,297,240,240,202"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="909,193,1064,218"/>
+<area shape="poly" id="edge12_Node000002_Node000004" title=" " alt="" coords="243,158,300,122,370,90,506,40,564,21,619,8,674,3,731,7,793,23,863,51,901,77,934,111,959,147,976,179,971,181,954,150,929,115,898,81,860,56,791,28,730,12,674,8,620,13,565,26,508,45,372,95,302,127,246,162"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#ac58de0b5c818c56849a53133a7cf668f" title="Parse un niveau CLI textuel ; retourne std::nullopt pour une valeur inconnue." alt="" coords="672,66,823,91"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="267,158,370,125,522,98,658,83,659,88,523,104,371,131,268,163"/>
+<area shape="rect" id="Node000006" href="$namespacestgs.html#a28244a59e980c9510ee6f8bc1e69809b" title="Parse une plage de ports sous la forme debut:fin ou un port unique." alt="" coords="667,117,827,142"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="309,161,370,152,520,139,654,131,654,136,520,144,371,157,309,166"/>
+<area shape="rect" id="Node000007" href="$namespacestgs.html#a8bfe5e03446c5b8d5b62144ac66a6c5c" title="Parse une probabilité bornée dans l&#39;intervalle fermé [0, 1]." alt="" coords="397,167,559,193"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="309,177,383,177,383,183,309,183"/>
+<area shape="rect" id="Node000008" href="$namespacestgs_1_1app_1_1ground__station.html#a42ae5cdfc32ceb72f4337d6f3bd641ef" title="Affiche l&#39;aide de la station sol sur stdout." alt="" coords="385,217,571,257"/>
+<area shape="poly" id="edge13_Node000002_Node000008" title=" " alt="" coords="308,198,373,212,372,217,307,203"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="834,219,895,212,896,218,835,224"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="948,194,940,184,944,174,960,168,987,166,1020,170,1033,179,1029,184,1018,175,987,171,961,173,948,178,945,184,952,191"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="824,88,862,102,893,119,921,140,966,181,962,185,918,144,890,124,860,106,822,93"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="797,140,862,159,939,185,938,190,861,164,795,145"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="547,190,666,213,665,218,546,195"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="560,181,896,198,895,204,559,187"/>
+<area shape="rect" id="Node000010" href="$classstgs_1_1app_1_1ground__station_1_1PosixSignalStopController.html#a6e65c3fb986b905596a254439d8f252a" title="Finalise explicitement le contrôleur et relaie une éventuelle erreur d&#39;attente." alt="" coords="648,287,847,342"/>
+<area shape="poly" id="edge15_Node000009_Node000010" title=" " alt="" coords="322,427,449,411,518,398,585,382,633,365,679,345,681,350,635,370,586,387,519,403,450,416,323,432"/>
+<area shape="rect" id="Node000011" href="$namespacestgs_1_1app_1_1ground__station.html#affad379af8c3fc0ea84ac38d73164582" title="Résout le format d&#39;export effectif à partir de l&#39;option et de l&#39;extension du fichier." alt="" coords="385,447,571,487"/>
+<area shape="poly" id="edge17_Node000009_Node000011" title=" " alt="" coords="323,447,372,452,371,458,322,452"/>
+<area shape="rect" id="Node000012" href="$classstgs_1_1app_1_1ground__station_1_1GroundStationPipeline.html#a26cb67946ac332611a4ca64dd1fbcea3" title="Exécute réception, workers et finalisation jusqu&#39;à fin de replay, arrêt ou erreur." alt="" coords="376,511,580,551"/>
+<area shape="poly" id="edge18_Node000009_Node000012" title=" " alt="" coords="247,448,372,496,395,504,393,509,370,501,246,453"/>
+<area shape="rect" id="Node000014" href="$classstgs_1_1StationHealthMonitor.html#aad7088b2d36134d9fe303dfae3b4b585" title="Retourne une photographie thread&#45;safe de la fenêtre courante." alt="" coords="649,548,845,588"/>
+<area shape="poly" id="edge21_Node000009_Node000014" title=" " alt="" coords="229,448,252,474,285,506,326,537,372,560,438,578,506,586,574,586,635,583,636,588,574,592,506,591,437,583,370,565,323,541,281,510,248,478,225,452"/>
+<area shape="rect" id="Node000015" href="$classstgs_1_1app_1_1ground__station_1_1GroundStationPipeline.html#a0ccdbc02e3cf4550017e0bc3cb7843eb" title="Retourne un snapshot atomique des compteurs du pipeline." alt="" coords="371,332,585,372"/>
+<area shape="poly" id="edge23_Node000009_Node000015" title=" " alt="" coords="255,422,402,374,403,379,256,427"/>
+<area shape="poly" id="edge16_Node000010_Node000004" title=" " alt="" coords="807,285,944,221,946,226,810,290"/>
+<area shape="rect" id="Node000013" href="$classstgs_1_1app_1_1ground__station_1_1AsyncFailure.html#a954e8aad79cb6da0637af5f80f50695a" title=" " alt="" coords="633,405,861,445"/>
+<area shape="poly" id="edge19_Node000012_Node000013" title=" " alt="" coords="550,508,584,496,692,449,695,454,586,501,551,513"/>
+<area shape="poly" id="edge20_Node000013_Node000004" title=" " alt="" coords="785,403,822,380,860,351,921,287,967,228,971,231,925,290,863,355,825,384,788,408"/>
+<area shape="poly" id="edge22_Node000014_Node000004" title=" " alt="" coords="772,546,815,506,859,456,897,396,930,333,974,230,978,232,935,335,902,398,863,459,819,510,775,550"/>
+</map>

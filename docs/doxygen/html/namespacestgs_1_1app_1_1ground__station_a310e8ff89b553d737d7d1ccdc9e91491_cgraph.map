@@ -1,0 +1,21 @@
+<map id="stgs::app::ground_station::parseArgs" name="stgs::app::ground_station::parseArgs">
+<area shape="rect" id="Node000001" title="Parse et valide l&#39;ensemble de la configuration de la station avant tout effet de bord." alt="" coords="5,117,192,157"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a9ccb3a36865cfcbbe10e28f57c0f6d75" title="Parse un flottant fini en refusant toute portion de chaîne non consommée." alt="" coords="475,48,649,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,114,190,97,239,83,353,66,460,59,461,64,354,71,241,89,192,102,147,119"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="697,99,852,124"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="126,114,177,82,239,54,352,21,399,10,444,4,489,3,536,7,589,17,650,33,678,43,705,57,750,88,747,92,703,62,676,48,649,38,588,22,535,13,488,9,444,10,400,15,353,26,241,59,179,87,129,118"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#ac58de0b5c818c56849a53133a7cf668f" title="Parse un niveau CLI textuel ; retourne std::nullopt pour une valeur inconnue." alt="" coords="487,149,637,175"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="192,139,473,154,473,160,192,144"/>
+<area shape="rect" id="Node000005" href="$namespacestgs.html#a28244a59e980c9510ee6f8bc1e69809b" title="Parse une plage de ports sous la forme debut:fin ou un port unique." alt="" coords="482,199,642,224"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="193,149,469,194,469,199,192,154"/>
+<area shape="rect" id="Node000006" href="$namespacestgs.html#a8bfe5e03446c5b8d5b62144ac66a6c5c" title="Parse une probabilité bornée dans l&#39;intervalle fermé [0, 1]." alt="" coords="252,99,415,124"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="192,124,238,119,239,124,192,129"/>
+<area shape="rect" id="Node000007" href="$namespacestgs_1_1app_1_1ground__station.html#a42ae5cdfc32ceb72f4337d6f3bd641ef" title="Affiche l&#39;aide de la station sol sur stdout." alt="" coords="240,250,427,290"/>
+<area shape="poly" id="edge12_Node000001_Node000007" title=" " alt="" coords="128,155,179,191,241,229,268,242,266,247,239,234,176,195,125,159"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="617,71,708,93,707,98,616,76"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="740,100,733,90,737,80,751,74,775,72,804,76,816,85,812,89,802,81,775,77,752,79,740,84,738,89,744,97"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="616,147,707,125,708,130,617,152"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="617,196,648,185,700,158,744,129,747,134,703,162,650,190,619,201"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="391,96,490,74,491,79,392,101"/>
+<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="415,109,683,109,683,114,415,114"/>
+</map>

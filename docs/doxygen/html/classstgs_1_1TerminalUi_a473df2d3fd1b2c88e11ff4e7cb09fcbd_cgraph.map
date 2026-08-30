@@ -1,0 +1,9 @@
+<map id="stgs::TerminalUi::receivedMessage" name="stgs::TerminalUi::receivedMessage">
+<area shape="rect" id="Node000001" title="Affiche un message applicatif après neutralisation des contrôles terminaux." alt="" coords="5,22,196,62"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="479,29,633,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,36,244,35,431,35,465,36,465,41,431,41,244,41,196,42"/>
+<area shape="rect" id="Node000003" href="$classstgs_1_1TerminalUi.html#a2d3f47e6d3f62d5650686d67b6bfeef9" title="Neutralise les contrôles ASCII/ANSI avant affichage d&#39;un texte reçu du réseau." alt="" coords="244,50,431,90"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="196,51,231,55,230,60,196,56"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="520,31,513,21,517,11,531,5,556,3,586,6,598,15,595,20,584,11,556,8,533,10,520,15,518,20,524,28"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="431,55,465,51,465,56,431,61"/>
+</map>

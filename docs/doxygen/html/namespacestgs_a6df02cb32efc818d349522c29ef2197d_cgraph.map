@@ -1,0 +1,16 @@
+<map id="stgs::encodeSignalBlockPayload" name="stgs::encodeSignalBlockPayload">
+<area shape="rect" id="Node000001" title="Encode les métadonnées et échantillons d&#39;un signal dans STGA." alt="" coords="5,81,236,107"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1detail.html#aaa3c420d8f0978f8552479c0ad1ec915" title="Sérialise les bits IEEE&#45;754 d&#39;un float 32 bits en big&#45;endian." alt="" coords="284,56,484,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,80,270,77,271,82,237,86"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1detail.html#a423df63e483c463ac6f72b4bb82bd2ca" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="532,5,725,31"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="154,79,214,59,283,41,404,24,518,17,518,22,405,30,285,46,215,64,156,84"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="773,81,928,107"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="236,91,760,91,760,97,236,97"/>
+<area shape="rect" id="Node000005" href="$namespacestgs_1_1detail.html#a3562b4e5b96b0bda2897b0f5825781b9" title="Sérialise un entier 16 bits en ordre réseau (big&#45;endian)." alt="" coords="532,157,725,183"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="162,104,220,121,284,135,405,152,518,162,518,167,404,158,284,141,218,126,161,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,53,553,31,554,36,447,58"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="484,71,760,86,760,92,484,77"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="669,28,726,47,802,74,800,79,724,53,668,33"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="815,83,807,73,811,63,826,57,851,55,881,58,894,67,890,72,879,63,851,60,827,62,814,67,812,72,819,80"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="668,155,724,135,800,109,802,114,726,141,669,160"/>
+</map>

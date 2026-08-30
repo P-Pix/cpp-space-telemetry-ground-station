@@ -1,0 +1,8 @@
+<map id="stgs::app::ground_station::GroundStationPipeline::run" name="stgs::app::ground_station::GroundStationPipeline::run">
+<area shape="rect" id="Node000001" title="Exécute réception, workers et finalisation jusqu&#39;à fin de replay, arrêt ou erreur." alt="" coords="5,22,209,62"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1app_1_1ground__station_1_1AsyncFailure.html#a954e8aad79cb6da0637af5f80f50695a" title=" " alt="" coords="257,22,485,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,39,244,39,244,45,210,45"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="533,29,688,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="485,39,520,39,520,45,485,45"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="572,31,564,21,568,11,584,5,611,3,644,7,657,16,653,20,642,11,611,8,585,10,572,15,569,20,576,27"/>
+</map>

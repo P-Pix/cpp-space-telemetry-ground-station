@@ -1,0 +1,9 @@
+<map id="stgs::app::ground_station::AsyncFailure::rethrowIfPresent" name="stgs::app::ground_station::AsyncFailure::rethrowIfPresent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="623,5,851,45"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1app_1_1ground__station_1_1GroundStationPipeline.html#a26cb67946ac332611a4ca64dd1fbcea3" title="Exécute réception, workers et finalisation jusqu&#39;à fin de replay, arrêt ou erreur." alt="" coords="371,5,575,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="609,28,575,28,575,23,609,23"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1app_1_1ground__station.html#a0a2153806b7da8fb962bffb9f7ce5d88" title="Prépare l&#39;environnement opérateur puis exécute le pipeline jusqu&#39;à son arrêt." alt="" coords="108,13,323,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,28,323,28,323,23,357,23"/>
+<area shape="rect" id="Node000004" href="$ground__station_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+</map>

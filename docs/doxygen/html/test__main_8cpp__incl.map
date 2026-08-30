@@ -1,0 +1,33 @@
+<map id="tests/test_main.cpp" name="tests/test_main.cpp">
+<area shape="rect" id="Node000001" title="Point d&#39;entrée du mini&#45;harnais de tests STGS." alt="" coords="639,5,790,31"/>
+<area shape="rect" id="Node000002" href="$TestSupport_8hpp.html" title="Fournit le mini&#45;harnais commun aux tests STGS sans framework externe." alt="" coords="357,79,536,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="672,33,503,78,502,73,670,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="814,152,900,177"/>
+<area shape="poly" id="edge16_Node000001_Node000009" title=" " alt="" coords="717,31,724,65,731,85,742,102,771,127,805,145,802,149,768,132,738,106,726,87,718,67,712,32"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="752,79,832,104"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="728,29,771,67,767,71,725,33"/>
+<area shape="rect" id="Node000003" href="$TelemetryFrame_8hpp.html" title="Définit le modèle métier, le layout wire et les limites d&#39;une trame STGS v1." alt="" coords="501,152,688,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="471,102,559,144,557,148,469,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="213,225,280,251"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="357,94,262,97,161,106,114,114,73,124,41,138,19,154,9,173,14,189,31,202,58,212,129,226,199,232,199,238,128,231,57,217,28,206,9,192,3,173,15,150,38,133,71,119,113,109,160,101,262,92,356,89"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="657,225,716,251"/>
+<area shape="poly" id="edge13_Node000002_Node000006" title=" " alt="" coords="536,99,635,118,676,132,702,150,709,165,710,182,701,214,696,212,705,182,704,167,698,154,673,137,633,123,535,105"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="742,225,804,251"/>
+<area shape="poly" id="edge15_Node000002_Node000007" title=" " alt="" coords="536,91,582,97,631,108,679,125,724,150,739,163,751,179,767,211,762,214,746,182,735,167,721,154,677,130,630,113,581,102,535,97"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="30,152,92,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="370,107,249,126,106,154,105,149,249,121,369,101"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="515,101,795,149,801,150,800,156,794,155,514,107"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="116,152,203,177"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="401,107,217,152,216,147,400,101"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="228,152,281,177"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="416,107,295,151,293,146,414,102"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="306,152,392,177"/>
+<area shape="poly" id="edge12_Node000002_Node000012" title=" " alt="" coords="432,106,378,146,374,141,429,102"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="416,152,476,177"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="449,104,449,138,444,138,444,104"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="559,225,630,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="597,178,597,212,592,212,592,178"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="539,180,294,230,293,225,538,175"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="611,175,662,215,659,219,607,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="624,175,732,218,730,223,622,180"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="stgs::TerminalUi::receivedSignal" name="stgs::TerminalUi::receivedSignal">
+<area shape="rect" id="Node000001" title="Affiche un bloc de signal sous forme de sparklines brute/filtrée et de métriques." alt="" coords="5,61,196,101"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="487,68,641,93"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,58,186,35,243,17,298,7,341,3,385,6,439,17,490,35,534,58,531,63,488,40,438,22,384,11,342,8,299,12,245,22,188,40,139,63"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a50f2f8ec0839574a23fbf2fa3a7e2778" title="Convertit le filtre en libellé CLI stable." alt="" coords="252,31,431,71"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="196,67,238,61,239,67,196,72"/>
+<area shape="rect" id="Node000004" href="$classstgs_1_1TerminalUi.html#aab7aa21c7536c3803bfac9d7ac70ef16" title="Compresse un bloc numérique en représentation sparkline." alt="" coords="244,96,439,121"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="196,89,231,93,230,99,196,94"/>
+<area shape="rect" id="Node000005" href="$classstgs_1_1TerminalUi.html#afc01eb85687a08fdd054b43ddb1d4aaf" title="Retourne la largeur détectée du terminal ou une largeur de repli documentée." alt="" coords="256,145,427,171"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="154,98,245,130,276,139,274,144,243,135,153,103"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="528,70,520,60,524,50,539,44,564,41,595,45,607,54,604,58,593,50,564,47,540,49,528,54,525,59,532,66"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="431,61,474,66,473,71,431,66"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="439,94,472,90,473,95,439,99"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="396,143,438,130,522,97,524,102,440,135,397,148"/>
+</map>

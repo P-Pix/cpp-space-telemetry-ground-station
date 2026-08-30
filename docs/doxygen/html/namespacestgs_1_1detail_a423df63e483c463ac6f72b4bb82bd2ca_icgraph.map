@@ -1,0 +1,28 @@
+<map id="stgs::detail::appendU32BE" name="stgs::detail::appendU32BE">
+<area shape="rect" id="Node000001" title="Sérialise un entier 32 bits en ordre réseau (big&#45;endian)." alt="" coords="903,89,1096,114"/>
+<area shape="rect" id="Node000002" href="$namespacestgs_1_1detail.html#aaa3c420d8f0978f8552479c0ad1ec915" title="Sérialise les bits IEEE&#45;754 d&#39;un float 32 bits en big&#45;endian." alt="" coords="635,38,835,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="918,89,801,66,802,61,919,84"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a96d420ce35d29e8fbcfb4228464169aa" title="Sérialise une télémétrie selon le format binaire STGS." alt="" coords="379,10,524,36"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="968,83,916,53,886,39,854,28,767,13,678,8,594,10,524,16,524,11,594,5,678,3,767,8,855,23,888,34,919,48,971,79"/>
+<area shape="rect" id="Node000007" href="$namespacestgs.html#a6df02cb32efc818d349522c29ef2197d" title="Encode les métadonnées et échantillons d&#39;un signal dans STGA." alt="" coords="336,60,567,85"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="889,99,567,81,567,76,889,93"/>
+<area shape="rect" id="Node000009" href="$namespacestgs.html#a91ad6444414562d0dcf977c6e8fc5ab7" title="Encode un message texte dans le mini&#45;format applicatif STGA." alt="" coords="615,140,855,165"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="919,120,802,142,801,137,918,114"/>
+<area shape="rect" id="Node000011" href="$classstgs_1_1FrameFileWriter.html#a425eebf56934d2040d25e97e4927376b" title="Ajoute une trame wire au fichier STGF courant." alt="" coords="654,190,815,230"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="967,124,916,152,856,180,817,193,815,188,854,175,913,148,964,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="621,42,524,33,525,28,621,37"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="621,62,567,66,567,61,621,57"/>
+<area shape="rect" id="Node000004" href="$benchmark__decode_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="171,10,225,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="365,26,225,26,225,20,365,20"/>
+<area shape="rect" id="Node000005" href="$namespacestgs_1_1app_1_1simulator.html#abd617338ab0f74c5f58570eff7308cb4" title="Exécute le scénario de génération et de transmission configuré." alt="" coords="108,89,288,114"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="368,41,337,50,278,70,228,91,226,86,276,65,335,44,366,36"/>
+<area shape="rect" id="Node000006" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,118,60,144"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="113,119,60,129,60,124,112,114"/>
+<area shape="rect" id="Node000008" href="$namespacestgs_1_1app_1_1simulator.html#adae5380ec0cd339bc25c7008d3f97b84" title="Parse la CLI et effectue les validations qui doivent précéder toute transmission." alt="" coords="123,139,273,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="365,91,337,100,313,113,289,128,258,141,256,136,287,123,310,109,335,95,363,86"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="108,147,60,138,61,133,109,141"/>
+<area shape="poly" id="edge14_Node000009_Node000008" title=" " alt="" coords="601,163,567,164,451,166,336,164,273,163,273,158,336,159,451,160,567,159,601,158"/>
+<area shape="rect" id="Node000010" href="$namespacestgs_1_1app_1_1simulator.html#a3a1a7a1c5f19e37e5663378b5dafec76" title="Construit une trame de télémétrie cohérente pour la séquence demandée." alt="" coords="376,110,527,150"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="601,144,526,138,527,133,601,139"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="362,123,288,114,289,109,363,117"/>
+</map>

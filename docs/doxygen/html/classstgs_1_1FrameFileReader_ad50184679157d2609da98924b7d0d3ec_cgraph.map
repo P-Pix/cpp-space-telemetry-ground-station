@@ -1,0 +1,9 @@
+<map id="stgs::FrameFileReader::readNext" name="stgs::FrameFileReader::readNext">
+<area shape="rect" id="Node000001" title="Lit la prochaine trame wire du replay." alt="" coords="5,22,172,62"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="443,29,597,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,39,429,39,429,45,172,45"/>
+<area shape="rect" id="Node000003" href="$namespacestgs_1_1detail.html#acf588485290204c5dbe14e3e3ca09da5" title="Lit un entier 32 bits big&#45;endian depuis un buffer déjà borné." alt="" coords="220,55,395,80"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="173,49,207,53,206,58,172,54"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="485,31,478,21,482,11,496,5,520,3,549,6,561,15,558,20,547,11,520,8,498,10,486,15,483,20,490,28"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="394,54,429,50,430,55,395,60"/>
+</map>

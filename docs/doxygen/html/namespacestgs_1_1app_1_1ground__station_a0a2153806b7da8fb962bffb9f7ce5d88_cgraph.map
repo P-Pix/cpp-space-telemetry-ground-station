@@ -1,0 +1,20 @@
+<map id="stgs::app::ground_station::run" name="stgs::app::ground_station::run">
+<area shape="rect" id="Node000001" title="Prépare l&#39;environnement opérateur puis exécute le pipeline jusqu&#39;à son arrêt." alt="" coords="5,120,220,145"/>
+<area shape="rect" id="Node000002" href="$classstgs_1_1app_1_1ground__station_1_1PosixSignalStopController.html#a6e65c3fb986b905596a254439d8f252a" title="Finalise explicitement le contrôleur et relaie une éventuelle erreur d&#39;attente." alt="" coords="545,5,744,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,118,185,74,225,51,267,34,334,20,404,13,471,12,532,16,532,21,471,18,404,18,335,25,269,39,227,56,188,78,130,122"/>
+<area shape="rect" id="Node000004" href="$namespacestgs_1_1app_1_1ground__station.html#affad379af8c3fc0ea84ac38d73164582" title="Résout le format d&#39;export effectif à partir de l&#39;option et de l&#39;extension du fichier." alt="" coords="282,49,469,89"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="165,117,278,89,280,95,167,122"/>
+<area shape="rect" id="Node000005" href="$classstgs_1_1app_1_1ground__station_1_1GroundStationPipeline.html#a26cb67946ac332611a4ca64dd1fbcea3" title="Exécute réception, workers et finalisation jusqu&#39;à fin de replay, arrêt ou erreur." alt="" coords="273,113,477,153"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="220,130,260,130,260,135,220,135"/>
+<area shape="rect" id="Node000007" href="$classstgs_1_1StationHealthMonitor.html#aad7088b2d36134d9fe303dfae3b4b585" title="Retourne une photographie thread&#45;safe de la fenêtre courante." alt="" coords="547,170,743,210"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="167,143,268,162,406,176,533,184,533,189,405,182,268,167,166,148"/>
+<area shape="rect" id="Node000008" href="$classstgs_1_1app_1_1ground__station_1_1GroundStationPipeline.html#a0ccdbc02e3cf4550017e0bc3cb7843eb" title="Retourne un snapshot atomique des compteurs du pipeline." alt="" coords="268,227,483,267"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="139,143,269,206,304,220,302,225,267,211,137,148"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="807,113,961,139"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="717,58,839,106,837,111,715,63"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="845,115,837,105,841,95,857,89,884,87,917,91,930,100,927,104,915,95,884,92,859,94,845,99,842,104,849,111"/>
+<area shape="rect" id="Node000006" href="$classstgs_1_1app_1_1ground__station_1_1AsyncFailure.html#a954e8aad79cb6da0637af5f80f50695a" title=" " alt="" coords="531,106,759,146"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="477,127,517,127,517,132,478,133"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="759,123,793,123,793,129,759,129"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="720,167,822,140,823,145,721,172"/>
+</map>

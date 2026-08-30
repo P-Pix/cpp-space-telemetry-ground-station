@@ -1,0 +1,7 @@
+<map id="apps/satellite_simulator/SimulatorApp.hpp" name="apps/satellite_simulator/SimulatorApp.hpp">
+<area shape="rect" id="Node000001" title="Déclare l&#39;orchestrateur de haut niveau du simulateur STGS." alt="" coords="127,5,305,45"/>
+<area shape="rect" id="Node000002" href="$satellite__simulator_8cpp.html" title="Point d&#39;entrée minimal du simulateur de télémétrie STGS." alt="" coords="5,101,211,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,56,125,102,121,98,180,52"/>
+<area shape="rect" id="Node000003" href="$SimulatorApp_8cpp.html" title="Assemble découverte, génération, transport et capture du simulateur STGS." alt="" coords="235,93,413,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,52,302,91,298,95,249,56"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="stgs::crc32" name="stgs::crc32">
+<area shape="rect" id="Node000001" title="Calcule le CRC&#45;32/ISO&#45;HDLC d&#39;une séquence binaire." alt="" coords="5,29,97,55"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a31a7ad15af4ad9bb1401e9dcfd3e4bf7" title="Parse un entier non signé en exigeant que toute la chaîne soit consommée." alt="" coords="145,29,300,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,39,132,39,132,45,97,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="194,31,188,21,191,11,203,5,223,3,246,6,256,15,253,19,244,11,223,8,205,10,195,15,193,20,199,28"/>
+</map>

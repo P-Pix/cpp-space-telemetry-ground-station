@@ -1,0 +1,15 @@
+<map id="stgs::crc32" name="stgs::crc32">
+<area shape="rect" id="Node000001" title="Calcule le CRC&#45;32/ISO&#45;HDLC d&#39;une séquence binaire." alt="" coords="529,55,621,80"/>
+<area shape="rect" id="Node000002" href="$namespacestgs.html#a0dfeb4a19f1b73b44a2b0bb9ea498e88" title="Surcharge pratique pour les vecteurs de contrôle textuels." alt="" coords="363,5,455,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,53,452,33,453,28,520,48"/>
+<area shape="rect" id="Node000003" href="$namespacestgs.html#abfa6635744db7019364480e2614afb32" title="Valide une trame reçue et retourne soit la télémétrie, soit une erreur structurée." alt="" coords="336,55,481,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="516,70,482,70,482,65,516,65"/>
+<area shape="rect" id="Node000004" href="$namespacestgs.html#a96d420ce35d29e8fbcfb4228464169aa" title="Sérialise une télémétrie selon le format binaire STGS." alt="" coords="336,104,481,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="520,87,453,106,452,101,518,81"/>
+<area shape="rect" id="Node000005" href="$benchmark__decode_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="171,79,225,104"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="322,109,225,97,226,92,322,104"/>
+<area shape="rect" id="Node000006" href="$namespacestgs_1_1app_1_1simulator.html#abd617338ab0f74c5f58570eff7308cb4" title="Exécute le scénario de génération et de transmission configuré." alt="" coords="108,128,288,153"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="323,129,289,133,288,128,322,124"/>
+<area shape="rect" id="Node000007" href="$satellite__simulator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,128,60,153"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="94,143,60,143,60,138,94,138"/>
+</map>
