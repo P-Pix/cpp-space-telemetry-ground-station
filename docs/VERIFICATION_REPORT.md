@@ -1,8 +1,8 @@
-# Rapport de vérification STGS — version vitrine
+# STGS — contrôles techniques antérieurs
 
-Ce document conserve les contrôles exécutés sur la version livrée du projet. Il s'agit d'une
-validation de qualité logicielle pour un projet de démonstration C++/systèmes ; elle ne constitue
-ni une qualification avionique/spatiale, ni une certification de sûreté.
+Ce fichier rassemble les contrôles réalisés lors d'une revue précédente du projet : compilations GCC/Clang, tests, sanitizers, scénarios réseau et benchmark. Je le conserve pour pouvoir retrouver ce qui avait été testé, mais il ne faut pas le confondre avec les [essais du 2 novembre 2026](VERIFICATIONS_2026-11-02.md), dont le périmètre est différent.
+
+Il s'agit de vérifications logicielles sur un démonstrateur C++/Linux, pas d'une qualification pour un système spatial.
 
 ## Environnement de contrôle
 
@@ -59,7 +59,7 @@ dans ce passage d'analyseur statique.
 
 ## Découpage modulaire
 
-La révision finale a supprimé les principaux fichiers monolithiques sans changer le contrat public :
+Le code a été séparé en modules plus petits pour rendre les responsabilités plus faciles à retrouver :
 
 - `apps/ground_station.cpp` est désormais un `main` minimal ; CLI, signaux POSIX, export, pipeline,
   workers, entrée réseau/replay et traitement STGA sont séparés par responsabilité ;
@@ -69,9 +69,7 @@ La révision finale a supprimé les principaux fichiers monolithiques sans chang
 - la suite de tests est répartie entre codec, STGA/signal, replay/santé et réseau, avec un support
   commun et un runner minimal.
 
-Après découpage, aucun fichier `.cpp` ou `.hpp` de production/tests ne dépasse 300 lignes dans la
-révision livrée ; les fichiers les plus longs restent les parseurs CLI et composants déjà fortement
-cohésifs. Le replay de référence produit exactement le même CSV avec l'ancien binaire et la version
+Après ce découpage, les fichiers `.cpp` et `.hpp` de production/tests restaient sous 300 lignes au moment du contrôle. Ce seuil est un repère de lisibilité, pas une règle de conception à respecter aveuglément. Le replay de référence produit exactement le même CSV avec l'ancien binaire et la version
 refactorée, ce qui fournit un contrôle de non-régression fonctionnelle supplémentaire.
 
 ## Scénario réseau réel

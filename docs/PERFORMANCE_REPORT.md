@@ -1,10 +1,10 @@
-# Performance Report: Space Telemetry Ground Station
+# STGS decode benchmark
 
-## 1. Scope
+## What I wanted to measure
 
-This report documents the reproducible benchmark added for the decode pipeline. The goal is not to claim hardware-independent performance. The goal is to provide a repeatable way to evaluate parser, CRC and multithreaded queue throughput under controlled conditions.
+The decoding pipeline has a few costs that are easy to underestimate: reading a binary frame, checking its CRC and moving work between threads. I added a small benchmark to compare these costs with different payload sizes and worker counts.
 
-The benchmark avoids network and disk I/O. It pre-generates valid binary telemetry frames, pushes them through the same `BlockingQueue<ByteVector>` and `decodeFrame()` path used by the ground station, and measures accepted frames per second.
+It deliberately leaves out network reception and file writing. Frames are created in memory and passed through a `BlockingQueue<ByteVector>` and `decodeFrame()`. The measured throughput therefore belongs to this benchmark, not to a complete ground station.
 
 ## 2. Benchmark command
 
@@ -50,11 +50,11 @@ benchmark=decode_pipeline frames=50000 payload_size=256 decoder_threads=2 decode
 benchmark=decode_pipeline frames=50000 payload_size=1024 decoder_threads=2 decoded=50000 rejected=0 duration_seconds=0.192964 frames_per_second=259116
 ```
 
-## 4. Interpretation
+## 4. What I take from these runs
 
-The benchmark is intentionally simple. It shows that the parser and CRC implementation can process high frame counts on normal Linux infrastructure. Throughput decreases as payload size increases because CRC calculation touches every byte.
+The CRC needs to read the bytes of the frame, so increasing the payload size naturally costs more. I also find the first two measurements interesting: with very small frames, one decoder can be quicker than two. The extra synchronization and contention can outweigh the parallel work.
 
-The 1-thread result can be higher than the 2-thread result for small payloads because the queue synchronization overhead can dominate the work when frames are tiny. This is a useful result: it shows why benchmarking matters before increasing concurrency.
+These were individual runs in a Linux container, not a controlled performance study. Before using these numbers to size a real pipeline, I would repeat the tests on the target machine, include the actual socket and disk I/O, and look at latency as well as throughput.
 
 ## 5. Reproducibility checklist
 

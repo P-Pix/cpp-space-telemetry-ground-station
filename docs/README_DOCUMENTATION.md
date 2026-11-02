@@ -1,64 +1,43 @@
-# STGS - Documentation d'execution
+# Documentation STGS
 
-Cette documentation correspond a la version modulaire de **Space Telemetry Ground Station (STGS)**.
+Il y a deux niveaux de documentation dans ce dossier. Les fichiers Markdown sont là pour retrouver rapidement une décision de conception ou une commande. Les PDF et leurs sources LaTeX vont beaucoup plus loin dans le détail des chemins d'exécution et des options CLI.
 
-L'objectif est de permettre une revue technique precise : pour chaque commande importante, les documents suivent le chemin d'execution depuis `main()` jusqu'aux fonctions C++ appelees, en explicitant les validations, les objets crees, les threads, les sockets, les fichiers, les effets de bord et les limites.
+## Pour commencer
 
-## Documents
+| Document | Contenu |
+| --- | --- |
+| [README principal](../README.md) | Présentation, compilation et premiers essais |
+| [Présentation du projet](PRESENTATION_DU_PROJET.md) | Ce que j'ai cherché à construire et pourquoi |
+| [Notes techniques](NOTES_TECHNIQUES.md) | TCP, UDP, framing, CRC, threads, replay, limites |
+| [Essais rapides](ESSAIS_RAPIDES.md) | Commandes utilisables sur une machine Linux |
+| [Vérifications du 02/11/2026](VERIFICATIONS_2026-11-02.md) | Résultats observés sur le code fourni |
+| [Dossier synthétique PDF](STGS_Presentation_technique.pdf) | Version courte à lire sans parcourir le dépôt |
 
-- `STGS_Manuel_execution_complet.pdf` : manuel complet, 31 pages, regroupant les cinq volumes.
-- `STGS_01_Architecture_et_execution.pdf` : architecture, STGS/STGA, CRC, TCP/UDP, pipeline, backpressure, ordre deterministe, signaux POSIX et terminal.
-- `STGS_02_Commandes_station_sol.pdf` : commandes de `stgs_ground_station`, TCP, UDP, auto-port, replay, export, filtres et sante.
-- `STGS_03_Commandes_simulateur.pdf` : commandes de `stgs_satellite_simulator`, trafic, decouverte, message, onde bruitee, corruption et capture STGF.
-- `STGS_04_Diagnostics_build_tests_benchmark.pdf` : CMake, Makefile, CTest, sanitizers, port-check et benchmark.
-- `STGS_05_Limites_invariants_entretien.pdf` : bornes, invariants, garanties/non-garanties et questions probables de revue technique.
+Pour les détails plus complets, j'ai conservé les documents de référence qui étaient déjà dans le projet :
 
-Chaque PDF autonome possede une source `.tex` de meme nom. `STGS_Manuel_execution_complet.tex` assemble les cinq PDF autonomes avec `pdfpages`.
+- [`TECHNICAL_DESIGN.md`](TECHNICAL_DESIGN.md) — description des composants, formats et invariants.
+- [`PERFORMANCE_REPORT.md`](PERFORMANCE_REPORT.md) — périmètre et mesures du microbenchmark.
+- [`VERIFICATION_REPORT.md`](VERIFICATION_REPORT.md) — compte rendu plus ancien des contrôles (à distinguer de la vérification datée ci-dessus).
+- [`SHOWCASE_GUIDE.md`](SHOWCASE_GUIDE.md) — autres scénarios de démonstration.
 
-## Commandes principales couvertes
+## Manuels d'exécution
 
-### Station sol
+Ces PDF documentent le trajet des commandes jusqu'aux classes C++ concernées. Je les ai laissés dans le dépôt avec leurs sources `.tex` :
 
-```bash
-./build/stgs_ground_station --tcp --port 9000 --decoder-threads 4 --output telemetry.csv
-./build/stgs_ground_station --udp --port 9000 --decoder-threads 4 --output telemetry.csv
-./build/stgs_ground_station --tcp --auto-port 9000:9010 --output telemetry.csv
-./build/stgs_ground_station --replay frames.stgf --replay-rate 100 --output replay.csv
-./build/stgs_ground_station --tcp --port 9000 --output telemetry.json
-./build/stgs_ground_station --tcp --port 9000 --signal-filter moving-average --filter-window 5
-./build/stgs_ground_station --tcp --port 9000 --signal-filter sine-projection
-```
+| Fichier | Sujet |
+| --- | --- |
+| `STGS_01_Architecture_et_execution.pdf` | Architecture, codec, pipeline et réseau |
+| `STGS_02_Commandes_station_sol.pdf` | Options de la station sol |
+| `STGS_03_Commandes_simulateur.pdf` | Options du simulateur |
+| `STGS_04_Diagnostics_build_tests_benchmark.pdf` | Build, diagnostic, tests, benchmark |
+| `STGS_05_Limites_invariants_entretien.pdf` | Limites et invariants discutables dans le code |
+| `STGS_Manuel_execution_complet.pdf` | Ensemble des cinq volumes |
 
-### Simulateur
+Les deux revues de code historiques `stgs_code_review_recruiter_fr.pdf` et `stgs_code_review_recruiter_en.pdf` restent disponibles pour référence. Les notes Markdown plus courtes au-dessus reflètent mieux la présentation actuelle du projet.
 
-```bash
-./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 --count 1000 --rate 500
-./build/stgs_satellite_simulator --udp --host 127.0.0.1 --port 9000 --count 1000 --rate 500
-./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --discover-ports 9000:9010 --count 100
-./build/stgs_satellite_simulator --tcp --host 127.0.0.1 --port 9000 --message "Bonjour STGS"
-./build/stgs_satellite_simulator --output-file frames.stgf --count 1000 --seed 42
-```
+### Recompiler les manuels
 
-Le volume 3 contient egalement la commande complete de generation d'une onde sinusoidale bruitee et le detail mathematique de sa generation/filtration.
-
-### Build, tests, diagnostic et benchmark
-
-```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSTGS_WARNINGS_AS_ERRORS=ON
-cmake --build build --parallel 8
-make build
-make test
-make asan-test
-make tsan-test
-./build/stgs_port_check --host 127.0.0.1 --ports 9000:9010 --timeout-ms 200
-make message-demo HOST=127.0.0.1 PORTS=9000:9010
-make signal-demo HOST=127.0.0.1 PORTS=9000:9010
-./build/stgs_benchmark_decode --frames 200000 --payload-size 256 --decoder-threads 4 --seed 123456789
-```
-
-## Recompiler les sources LaTeX
-
-Depuis ce dossier :
+Depuis `docs/` et avec LaTeX installé :
 
 ```bash
 latexmk -pdf STGS_01_Architecture_et_execution.tex
@@ -69,15 +48,8 @@ latexmk -pdf STGS_05_Limites_invariants_entretien.tex
 latexmk -pdf STGS_Manuel_execution_complet.tex
 ```
 
-La compilation du manuel complet suppose que les cinq PDF autonomes sont présents dans le même dossier.
+Le manuel complet assemble les cinq PDF : il faut donc d'abord les compiler.
 
-## Point important pour une revue technique
+## Deux options à ne pas confondre
 
-La documentation distingue volontairement les fonctionnalites proches mais semantiquement differentes :
-
-- `--auto-port` cherche un port **libre pour binder la station** ;
-- `--discover-ports` cherche un **listener TCP local existant** pour le simulateur ;
-- `stgs_port_check` produit un rapport sur une plage sans identifier le protocole applicatif ;
-- un port `OPEN` ne prouve pas qu'il s'agit d'un service STGS, car STGS v1 n'implemente pas de handshake d'identite.
-
-Les limites chiffrées et seuils de santé sont documentés comme des paramètres de démonstration du projet. Ils ne sont pas presentes comme des exigences normatives aerospatiales.
+`--auto-port` cherche un port local **disponible pour démarrer la station**. `--discover-ports`, côté simulateur, cherche un port TCP **où un listener répond déjà**. Le diagnostic peut indiquer qu'un port est ouvert, mais ne sait pas prouver que le service qui répond parle STGS : il n'y a pas de handshake d'identité dans ce protocole.

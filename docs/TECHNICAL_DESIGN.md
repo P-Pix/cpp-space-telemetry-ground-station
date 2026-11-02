@@ -1,10 +1,10 @@
-# Technical Design: Space Telemetry Ground Station
+# STGS technical design
 
-## 1. Scope and intent
+## 1. Scope
 
-STGS is a C++20/Linux portfolio implementation of a small telemetry ground-station pipeline. Its purpose is to expose systems-programming decisions that can be reviewed directly: binary layout, byte order, CRC integrity, socket semantics, TCP framing, backpressure, ordering under concurrency, replay, diagnostics, DSP-like processing and failure handling.
+STGS is a small C++20/Linux telemetry project. I use it to explore a complete data path, from network bytes to an exported measurement. The parts I pay most attention to are framing, parsing, memory ownership and the behavior of the pipeline when several threads are involved.
 
-It is not presented as certified flight/ground software and does not implement CCSDS, RF demodulation, authentication or a mission-specific operational standard.
+It runs against a simulator, not spacecraft hardware. There is no CCSDS implementation, RF demodulation, authentication or mission-specific qualification here. This document describes the code as it currently works.
 
 ## 2. Layered architecture
 
@@ -133,7 +133,7 @@ Consequences:
 - STGA messages/signals appear in deterministic order;
 - worker scheduling cannot alter externally visible results.
 
-Both handoff queues are bounded. When consumers lag, producers block rather than allowing unbounded heap growth.
+Both handoff queues are bounded. When consumers lag, producers block rather than growing those queues indefinitely. There is one important exception to a fully bounded-memory claim: the writer's reorder map has no independent size limit. A delayed early sequence can allow later decoded results to accumulate; I would add a global in-flight window before handling untrusted sustained load.
 
 A low-frequency terminal monitor samples the counters and queue sizes once per second when activity changes. It is intentionally separated from the data path: observability must not introduce per-frame terminal I/O or alter ordering semantics.
 
@@ -257,9 +257,9 @@ The benchmark isolates encode/decode/queue overhead from networking and disk. Th
 
 See `PERFORMANCE_REPORT.md`.
 
-## 18. Deliberate limitations
+## 18. Current limitations
 
-A reviewer should be able to identify the project scope without reverse engineering it:
+These are the boundaries I would keep in mind before extending the project:
 
 - no TLS, authentication or cryptographic authenticity;
 - CRC detects accidental corruption, not malicious modification;
